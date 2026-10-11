@@ -1,6 +1,38 @@
+# Dependencies & build output
 node_modules
 .next
 out
+build
 next-env.d.ts
 *.tsbuildinfo
+
+# Environment files — never commit secrets
+.env
+.env.*
+!.env.example
+
+# API keys, credentials & certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.jks
+*.keystore
+secrets/
+.secrets
+*.secret
+*secret*.json
+*credentials*.json
+service-account*.json
+.npmrc
+.vercel
+
+# Logs & OS / editor files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .DS_Store
+.idea
+.vscode
