@@ -17,7 +17,7 @@ const copy = {
       {
         h: 'Titular del sitio web',
         p: [
-          `En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de que el titular de este sitio web es ${L.companyName}, con NIF ${L.taxId} y domicilio en ${L.address}. ${L.registry}.`,
+          `En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de que el titular de este sitio web es ${L.companyName}, con NIF ${L.taxId} y domicilio en ${L.address}.${L.registry ? ' ' + L.registry + '.' : ''}`,
           `Contacto: ${siteConfig.email} · ${siteConfig.phone}.`,
         ],
       },
@@ -54,7 +54,7 @@ const copy = {
       {
         h: 'Website owner',
         p: [
-          `In compliance with Spanish Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE), the owner of this website is ${L.companyName}, tax ID ${L.taxId}, registered address ${L.address}. ${L.registry}.`,
+          `In compliance with Spanish Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE), the owner of this website is ${L.companyName}, tax ID ${L.taxId}, registered address ${L.address}.${L.registry ? ' ' + L.registry + '.' : ''}`,
           `Contact: ${siteConfig.email} · ${siteConfig.phone}.`,
         ],
       },
@@ -91,7 +91,7 @@ const copy = {
       {
         h: 'Éditeur du site',
         p: [
-          `Conformément à la loi espagnole 34/2002 sur les services de la société de l’information et le commerce électronique (LSSI-CE), l’éditeur de ce site est ${L.companyName}, NIF ${L.taxId}, dont le siège est situé ${L.address}. ${L.registry}.`,
+          `Conformément à la loi espagnole 34/2002 sur les services de la société de l’information et le commerce électronique (LSSI-CE), l’éditeur de ce site est ${L.companyName}, NIF ${L.taxId}, dont le siège est situé ${L.address}.${L.registry ? ' ' + L.registry + '.' : ''}`,
           `Contact : ${siteConfig.email} · ${siteConfig.phone}.`,
         ],
       },

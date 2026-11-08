@@ -24,9 +24,9 @@ export const siteConfig = {
   linkedin: 'https://www.linkedin.com/company/alc-consulting',
   // Datos legales (aviso legal / privacidad) – rellenar con los datos reales
   legal: {
-    companyName: '[RAZÓN SOCIAL / NOMBRE Y APELLIDOS]',
-    taxId: '[NIF / CIF]',
+    companyName: 'Sami Djellal (ALC Consulting)',
+    taxId: 'Y8931597K',
     address: 'Avenida Maisonave, 28 BIS, 4º, 03003 Alicante, España',
-    registry: '[Datos de inscripción en el Registro Mercantil, si procede]',
+    registry: '',
   },
 } as const;
