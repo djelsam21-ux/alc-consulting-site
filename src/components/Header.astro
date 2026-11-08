@@ -89,17 +89,22 @@ const links: { key: PageKey; label: string; newTab?: boolean }[] = [
   }
   .header__links {
     display: flex;
-    gap: 1.75rem;
+    gap: 1.6rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  @media (min-width: 1121px) {
+  @media (min-width: 1241px) {
     .header__links {
       margin: 0 auto;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .header__actions {
+      flex-shrink: 0;
     }
   }
-  @media (min-width: 1360px) {
+  @media (min-width: 1460px) {
     .header__links {
       position: absolute;
       left: 50%;
@@ -112,7 +117,7 @@ const links: { key: PageKey; label: string; newTab?: boolean }[] = [
     text-decoration: none;
     color: var(--ink);
     font-family: var(--font-head);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 800;
     letter-spacing: -0.01em;
     padding: 0.4rem 0;
@@ -158,7 +163,7 @@ const links: { key: PageKey; label: string; newTab?: boolean }[] = [
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  @media (max-width: 1120px) {
+  @media (max-width: 1240px) {
     .header__toggle {
       display: flex;
     }
