@@ -503,7 +503,11 @@ p {
   display: flex;
   gap: 3rem;
   width: max-content;
-  animation: marquee 40s linear infinite;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
 }
 
 .marquee__item {
@@ -918,5 +922,9 @@ input[type='range'] {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+  /* El banda de palabras clave sigue girando, más despacio */
+  .marquee__track {
+    animation: marquee 60s linear infinite !important;
   }
 }
