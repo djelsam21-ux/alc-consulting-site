@@ -476,7 +476,7 @@ const faqSchema = {
             <div class="comp-card">
               <p class="comp-card__before">
                 <span>{c.compHead[0]}</span>
-                {row[0]}
+                <s>{row[0]}</s>
               </p>
               <p class="comp-card__after">
                 <span>{c.compHead[1]}</span>
@@ -1009,12 +1009,9 @@ const faqSchema = {
   }
   .comp-card__before {
     color: var(--muted);
-    text-decoration: line-through;
-    text-decoration-color: rgba(122, 129, 138, 0.5);
   }
-  .comp-card__before span {
-    text-decoration: none;
-    display: block;
+  .comp-card__before s {
+    text-decoration-color: rgba(122, 129, 138, 0.5);
   }
   .comp-card__after {
     margin-top: 0.8rem !important;
