@@ -152,6 +152,48 @@ const { labels, caption } = Astro.props;
   .hv__card--roi strong {
     color: var(--gold-light);
   }
+  @media (max-width: 640px) {
+    .hv {
+      aspect-ratio: 1 / 0.92;
+    }
+    .hv__card strong {
+      font-size: 1.45rem;
+    }
+    .hv__label {
+      font-size: 0.56rem;
+      letter-spacing: 0.12em;
+    }
+    .hv__card--kpi {
+      width: 60%;
+      padding: 1rem 1.1rem 0.9rem;
+    }
+    .hv__bars {
+      height: 46px;
+      gap: 5px;
+      margin-top: 0.7rem;
+    }
+    .hv__card--check {
+      top: 9%;
+      right: 5%;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.72rem;
+      gap: 0.5rem;
+    }
+    .hv__card--crm,
+    .hv__card--roi {
+      padding: 0.8rem 1rem;
+      min-width: 0;
+    }
+    .hv__card--crm {
+      bottom: 26%;
+    }
+    .hv__caption {
+      left: 0.9rem;
+      bottom: 0.9rem;
+      font-size: 0.68rem;
+      padding: 0.45rem 0.75rem;
+    }
+  }
   @keyframes float {
     0%,
     100% {

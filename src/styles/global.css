@@ -754,6 +754,70 @@ input[type='range'] {
   }
 }
 
+/* Móvil ------------------------------------------------ */
+@media (max-width: 640px) {
+  .container {
+    width: min(var(--container), 100% - 2.5rem);
+  }
+  .section {
+    padding: 3.25rem 0;
+  }
+  .section--tight {
+    padding: 2rem 0;
+  }
+  h1 {
+    font-size: 2.35rem;
+    line-height: 1.05;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+  }
+  .lead {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .section-head {
+    margin-bottom: 1.75rem;
+  }
+  .eyebrow {
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+  }
+  .btn {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .btn--lg {
+    padding: 1rem 1.4rem;
+    font-size: 0.95rem;
+  }
+  .btn-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .btn-row .btn {
+    width: 100%;
+  }
+  .card {
+    padding: 1.4rem;
+  }
+  .page-head {
+    padding: 2.5rem 0;
+  }
+  .marquee__item {
+    font-size: 0.92rem;
+    gap: 2rem;
+  }
+  .marquee__track {
+    gap: 2rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

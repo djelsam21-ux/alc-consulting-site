@@ -470,6 +470,23 @@ const faqSchema = {
           </tbody>
         </table>
       </div>
+      <div class="comp-cards">
+        {
+          c.comp.map((row) => (
+            <div class="comp-card">
+              <p class="comp-card__before">
+                <span>{c.compHead[0]}</span>
+                {row[0]}
+              </p>
+              <p class="comp-card__after">
+                <span>{c.compHead[1]}</span>
+                {row[1]}
+              </p>
+              <p class="comp-card__impact">→ {row[2]}</p>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </section>
 
@@ -935,11 +952,6 @@ const faqSchema = {
     letter-spacing: 0.16em;
   }
 
-  @media (max-width: 600px) {
-    .svc-grid {
-      grid-template-columns: 1fr;
-    }
-  }
   @media (max-width: 1000px) {
     .svc-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -970,6 +982,180 @@ const faqSchema = {
     }
     .diag__cta {
       justify-self: start;
+    }
+  }
+  /* Comparativa móvil */
+  .comp-cards {
+    display: none;
+  }
+  .comp-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.25rem 1.1rem;
+  }
+  .comp-card p {
+    margin: 0;
+    font-size: 0.93rem;
+  }
+  .comp-card span {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+  .comp-card__before {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(122, 129, 138, 0.5);
+  }
+  .comp-card__before span {
+    text-decoration: none;
+    display: block;
+  }
+  .comp-card__after {
+    margin-top: 0.8rem !important;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .comp-card__after span {
+    color: var(--gold);
+  }
+  .comp-card__impact {
+    margin-top: 0.8rem !important;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--line);
+    color: var(--gold-dark);
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: 2.25rem 0 2.5rem;
+    }
+    .hero h1 {
+      max-width: none;
+    }
+    .hero .lead {
+      margin-bottom: 1.5rem;
+    }
+    .hero__note {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+    }
+    .hero__visual {
+      max-width: none;
+      margin-top: 0.5rem;
+    }
+    .stats__list {
+      padding: 1.75rem 0;
+      gap: 1.25rem 1rem;
+    }
+    .stats__list strong {
+      font-size: 1.7rem;
+    }
+    .stats__list span {
+      font-size: 0.82rem;
+    }
+    .why {
+      gap: 1.5rem;
+    }
+    .why__item {
+      padding: 0.95rem 1.1rem;
+      font-size: 0.93rem;
+    }
+    .svc-grid {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+    .svc {
+      padding: 1.4rem;
+    }
+    .svc .icon-badge {
+      width: 38px;
+      height: 38px;
+      margin-bottom: 0.8rem;
+    }
+    .svc h3 {
+      font-size: 1.08rem;
+    }
+    .svc p {
+      margin-bottom: 0.9rem;
+    }
+    .svc-all {
+      width: 100%;
+    }
+    .about {
+      gap: 1.75rem;
+    }
+    .about__card {
+      aspect-ratio: 16 / 10;
+    }
+    .about__card :global(.logo svg) {
+      height: 90px;
+    }
+    .pain {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      column-gap: 0.9rem;
+      padding: 1.2rem;
+    }
+    .pain .icon-badge {
+      width: 38px;
+      height: 38px;
+      margin: 0;
+      grid-row: span 2;
+    }
+    .pain h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .pain p {
+      font-size: 0.9rem;
+    }
+    .table-wrap {
+      display: none;
+    }
+    .comp-cards {
+      display: grid;
+      gap: 0.9rem;
+    }
+    .process__row {
+      padding: 1.25rem;
+    }
+    .process__cta {
+      padding: 1.25rem;
+    }
+    .process__cta .btn {
+      width: 100%;
+    }
+    .diag {
+      padding: 1.5rem;
+      gap: 1.5rem;
+      border-left-width: 3px;
+    }
+    .diag__cta {
+      align-items: stretch;
+      width: 100%;
+    }
+    .faq-wrap {
+      gap: 1.5rem;
+    }
+    .faq__item {
+      padding: 0 1.1rem;
+    }
+    .faq__item summary {
+      font-size: 0.95rem;
+    }
+    .final {
+      padding: 1.75rem 1.5rem;
+      gap: 1.25rem;
+    }
+    .final .btn {
+      width: 100%;
     }
   }
 </style>
