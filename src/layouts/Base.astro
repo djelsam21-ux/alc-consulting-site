@@ -36,6 +36,9 @@ const orgSchema = {
 <!doctype html>
 <html lang={lang}>
   <head>
+    <script is:inline>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-anim');
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
@@ -76,5 +79,8 @@ const orgSchema = {
       <slot />
     </main>
     <Footer lang={lang} />
+    <script>
+      import '../scripts/animations';
+    </script>
   </body>
 </html>
