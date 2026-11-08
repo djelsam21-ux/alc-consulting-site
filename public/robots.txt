@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /es/gracias/
+Disallow: /en/thank-you/
+Disallow: /fr/merci/
+
+Sitemap: https://alc-consulting.netlify.app/sitemap-index.xml

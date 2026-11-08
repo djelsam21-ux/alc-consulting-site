@@ -1,0 +1,295 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../Icon.astro';
+import { services } from '../../data/services';
+import { path, type Lang } from '../../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    metaTitle: 'Servicios de transformación digital para PYMES',
+    metaDesc:
+      'Diagnóstico digital, facturación electrónica y VeriFactu, automatización e IA, web profesional, CRM y formación. Servicios de ALC Consulting para PYMES en España.',
+    eyebrow: 'Servicios',
+    title: 'Todo lo que tu empresa necesita para dar el ', accent: 'salto digital.',
+    lead: 'Cada servicio se contrata por separado, con alcance y precio cerrados. Si no sabes cuál necesitas, empieza por el diagnóstico: te diremos exactamente por dónde atacar.',
+    forWho: 'Para quién es',
+    includes: 'Qué incluye',
+    outcome: 'Resultado',
+    cta: 'Pedir presupuesto',
+    howEyebrow: 'Formatos de colaboración',
+    howTitle: 'Tres maneras de trabajar con nosotros',
+    formats: [
+      {
+        title: 'Proyecto cerrado',
+        text: 'Alcance, plazo y precio definidos de antemano. Ideal para una implantación concreta: facturación, web, CRM.',
+      },
+      {
+        title: 'Acompañamiento mensual',
+        text: 'Una cuota fija al mes para seguir mejorando: soporte, pequeñas automatizaciones, formación y revisión de indicadores.',
+      },
+      {
+        title: 'Dirección digital externa',
+        text: 'Actuamos como tu responsable de digitalización a tiempo parcial. Para empresas que crecen y necesitan criterio, no solo manos.',
+      },
+    ],
+    finalTitle: '¿No sabes por dónde empezar?',
+    finalText: 'Haz nuestro diagnóstico digital gratuito en dos minutos o reserva una llamada y lo vemos juntos.',
+    finalCta: 'Hacer el diagnóstico',
+    finalCta2: 'Reservar llamada',
+  },
+  en: {
+    metaTitle: 'Digital transformation services for SMEs',
+    metaDesc:
+      'Digital assessment, e-invoicing and VeriFactu, automation and AI, professional website, CRM and training. ALC Consulting services for SMEs in Spain.',
+    eyebrow: 'Services',
+    title: 'Everything your business needs to make the ', accent: 'digital leap.',
+    lead: 'Each service is hired separately, with fixed scope and price. If you are not sure which one you need, start with the assessment: we will tell you exactly where to focus.',
+    forWho: 'Who it is for',
+    includes: 'What is included',
+    outcome: 'Outcome',
+    cta: 'Request a quote',
+    howEyebrow: 'Ways of working',
+    howTitle: 'Three ways to work with us',
+    formats: [
+      {
+        title: 'Fixed-scope project',
+        text: 'Scope, timeline and price defined upfront. Ideal for one concrete implementation: invoicing, website, CRM.',
+      },
+      {
+        title: 'Monthly support',
+        text: 'A fixed monthly fee to keep improving: support, small automations, training and KPI review.',
+      },
+      {
+        title: 'Fractional digital leadership',
+        text: 'We act as your part-time head of digital. For growing companies that need judgement, not just hands.',
+      },
+    ],
+    finalTitle: 'Not sure where to start?',
+    finalText: 'Take our free two-minute digital assessment or book a call and we will work it out together.',
+    finalCta: 'Take the assessment',
+    finalCta2: 'Book a call',
+  },
+  fr: {
+    metaTitle: 'Services de transformation digitale pour PME',
+    metaDesc:
+      'Diagnostic digital, facturation électronique et VeriFactu, automatisation et IA, site web professionnel, CRM et formation. Les services d’ALC Consulting pour les PME en Espagne.',
+    eyebrow: 'Services',
+    title: 'Tout ce dont votre entreprise a besoin pour franchir ', accent: 'le cap du digital.',
+    lead: 'Chaque service se contracte séparément, avec un périmètre et un prix fixes. Si vous ne savez pas lequel il vous faut, commencez par le diagnostic : nous vous dirons exactement où agir.',
+    forWho: 'Pour qui',
+    includes: 'Ce qui est inclus',
+    outcome: 'Résultat',
+    cta: 'Demander un devis',
+    howEyebrow: 'Modes de collaboration',
+    howTitle: 'Trois façons de travailler avec nous',
+    formats: [
+      {
+        title: 'Projet au forfait',
+        text: 'Périmètre, délai et prix définis à l’avance. Idéal pour une mise en œuvre précise : facturation, site web, CRM.',
+      },
+      {
+        title: 'Accompagnement mensuel',
+        text: 'Un forfait mensuel fixe pour continuer à progresser : support, petites automatisations, formation et revue des indicateurs.',
+      },
+      {
+        title: 'Direction digitale externalisée',
+        text: 'Nous jouons le rôle de votre responsable digital à temps partagé. Pour les entreprises qui grandissent et ont besoin de discernement, pas seulement de bras.',
+      },
+    ],
+    finalTitle: 'Vous ne savez pas par où commencer ?',
+    finalText: 'Faites notre diagnostic digital gratuit en deux minutes ou réservez un appel et nous verrons cela ensemble.',
+    finalCta: 'Faire le diagnostic',
+    finalCta2: 'Réserver un appel',
+  },
+} as const;
+
+const c = copy[lang];
+const contactUrl = path('contact', lang);
+const diagnosticUrl = path('diagnostic', lang);
+---
+
+<Base lang={lang} page="services" title={c.metaTitle} description={c.metaDesc}>
+  <section class="section section--tight page-head">
+    <div class="container">
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h1>{c.title}<span class="accent">{c.accent}</span></h1>
+      <p class="lead">{c.lead}</p>
+      <nav class="jump" aria-label={c.eyebrow}>
+        {services.map((s) => <a href={`#${s.id}`}>{s.title[lang]}</a>)}
+      </nav>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container services-list">
+      {
+        services.map((s, i) => (
+          <article id={s.id} class:list={['svc', { 'svc--reverse': i % 2 === 1 }]}>
+            <div class="svc__intro">
+              <div class="icon-badge">
+                <Icon name={s.icon} />
+              </div>
+              <h2>{s.title[lang]}</h2>
+              <p class="lead">{s.short[lang]}</p>
+              <a href={`${contactUrl}?servicio=${s.id}`} class="btn btn--dark">
+                {c.cta}
+              </a>
+            </div>
+            <div class="svc__detail card">
+              <h3>{c.forWho}</h3>
+              <p>{s.forWho[lang]}</p>
+              <h3>{c.includes}</h3>
+              <ul class="checklist">
+                {s.includes[lang].map((item) => (
+                  <li>
+                    <Icon name="check" size={18} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <h3>{c.outcome}</h3>
+              <p class="svc__outcome">{s.outcome[lang]}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.howEyebrow}</span>
+        <h2>{c.howTitle}</h2>
+      </div>
+      <div class="grid grid--3">
+        {
+          c.formats.map((f) => (
+            <div class="card">
+              <h3>{f.title}</h3>
+              <p class="muted" style="margin:0">
+                {f.text}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--brand section--tight">
+    <div class="container final">
+      <h2>{c.finalTitle}</h2>
+      <p class="lead">{c.finalText}</p>
+      <div class="btn-row">
+        <a href={diagnosticUrl} class="btn btn--primary btn--lg">{c.finalCta}</a>
+        <a href={`${contactUrl}#reservar`} class="btn btn--outline-light btn--lg">{c.finalCta2}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .jump a {
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-2);
+  }
+  .jump a:hover {
+    border-color: var(--gold);
+    color: var(--gold-dark);
+  }
+
+  .services-list {
+    display: grid;
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+  .svc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    scroll-margin-top: calc(var(--header-h) + 1rem);
+  }
+  .svc--reverse .svc__intro {
+    order: 2;
+  }
+  .svc__intro h2 {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+  }
+  .svc__intro .lead {
+    margin-bottom: 1.6rem;
+  }
+  .svc__detail h3 {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin: 1.4rem 0 0.5rem;
+  }
+  .svc__detail h3:first-child {
+    margin-top: 0;
+  }
+  .svc__detail p {
+    margin: 0;
+    color: var(--ink-2);
+  }
+  .svc__outcome {
+    font-weight: 600;
+    color: var(--ink) !important;
+  }
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .checklist li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    color: var(--ink-2);
+  }
+  .checklist li :global(svg) {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: var(--mint-ink);
+  }
+  .final {
+    text-align: center;
+  }
+  .final .lead {
+    max-width: 600px;
+    margin-inline: auto;
+  }
+  .final .btn-row {
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 860px) {
+    .svc {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .svc--reverse .svc__intro {
+      order: 0;
+    }
+  }
+</style>

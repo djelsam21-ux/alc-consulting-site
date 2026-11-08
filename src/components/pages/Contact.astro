@@ -1,0 +1,385 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../Icon.astro';
+import { services } from '../../data/services';
+import { siteConfig } from '../../config';
+import { path, type Lang } from '../../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    metaTitle: 'Contacto y reserva de llamada',
+    metaDesc:
+      'Pide presupuesto o reserva una llamada gratuita de 30 minutos con ALC Consulting. Atendemos a PYMES de toda España en español, inglés y francés.',
+    eyebrow: 'Contacto',
+    title: 'Hablemos de ', accent: 'tu empresa.',
+    lead: 'Elige lo que prefieras: reserva directamente una llamada en nuestra agenda o cuéntanos tu caso por escrito y te respondemos en menos de un día laborable.',
+    bookTitle: 'Reserva una llamada gratuita',
+    bookText: '30 minutos, sin compromiso. Saldrás con al menos dos ideas accionables.',
+    bookFallback: 'Si el calendario no carga, abre la agenda en una pestaña nueva:',
+    bookOpen: 'Abrir agenda',
+    formTitle: 'O escríbenos',
+    formText: 'Cuanto más contexto nos des, más útil será nuestra primera respuesta.',
+    name: 'Nombre y apellidos',
+    company: 'Empresa',
+    email: 'Email',
+    phone: 'Teléfono (opcional)',
+    service: '¿Qué te interesa?',
+    serviceOther: 'No lo sé todavía / otra cosa',
+    message: 'Cuéntanos tu situación',
+    messagePh: 'Ej.: Somos 8 personas, facturamos con Excel y necesitamos cumplir con VeriFactu. También perdemos mucho tiempo con los presupuestos…',
+    diagLabel: 'Resultado de tu diagnóstico (se adjunta automáticamente)',
+    consent: 'He leído y acepto la',
+    consentLink: 'política de privacidad',
+    consentEnd: 'y el tratamiento de mis datos para responder a mi solicitud.',
+    submit: 'Enviar mensaje',
+    directTitle: 'Contacto directo',
+    whatsapp: 'Escribir por WhatsApp',
+    hours: 'Lunes a viernes, 9:00–18:00 (hora peninsular)',
+  },
+  en: {
+    metaTitle: 'Contact & book a call',
+    metaDesc:
+      'Request a quote or book a free 30-minute call with ALC Consulting. We serve SMEs across Spain in Spanish, English and French.',
+    eyebrow: 'Contact',
+    title: 'Let’s talk about ', accent: 'your business.',
+    lead: 'Pick what suits you: book a call directly in our calendar, or tell us about your case in writing and we will reply within one working day.',
+    bookTitle: 'Book a free call',
+    bookText: '30 minutes, no strings attached. You will leave with at least two actionable ideas.',
+    bookFallback: 'If the calendar does not load, open it in a new tab:',
+    bookOpen: 'Open calendar',
+    formTitle: 'Or write to us',
+    formText: 'The more context you give us, the more useful our first reply will be.',
+    name: 'Full name',
+    company: 'Company',
+    email: 'Email',
+    phone: 'Phone (optional)',
+    service: 'What are you interested in?',
+    serviceOther: 'Not sure yet / something else',
+    message: 'Tell us about your situation',
+    messagePh: 'E.g.: We are a team of 8, we invoice with Excel and need to comply with VeriFactu. We also lose a lot of time on quotes…',
+    diagLabel: 'Your assessment result (attached automatically)',
+    consent: 'I have read and accept the',
+    consentLink: 'privacy policy',
+    consentEnd: 'and the processing of my data to answer my request.',
+    submit: 'Send message',
+    directTitle: 'Direct contact',
+    whatsapp: 'Message on WhatsApp',
+    hours: 'Monday to Friday, 9:00–18:00 (CET)',
+  },
+  fr: {
+    metaTitle: 'Contact et réservation d’appel',
+    metaDesc:
+      'Demandez un devis ou réservez un appel gratuit de 30 minutes avec ALC Consulting. Nous accompagnons les PME de toute l’Espagne en espagnol, anglais et français.',
+    eyebrow: 'Contact',
+    title: 'Parlons de ', accent: 'votre entreprise.',
+    lead: 'Choisissez ce qui vous convient : réservez directement un appel dans notre agenda, ou décrivez-nous votre cas par écrit et nous vous répondons sous un jour ouvré.',
+    bookTitle: 'Réservez un appel gratuit',
+    bookText: '30 minutes, sans engagement. Vous repartirez avec au moins deux idées concrètes.',
+    bookFallback: 'Si le calendrier ne se charge pas, ouvrez l’agenda dans un nouvel onglet :',
+    bookOpen: 'Ouvrir l’agenda',
+    formTitle: 'Ou écrivez-nous',
+    formText: 'Plus vous nous donnez de contexte, plus notre première réponse sera utile.',
+    name: 'Nom et prénom',
+    company: 'Entreprise',
+    email: 'E-mail',
+    phone: 'Téléphone (facultatif)',
+    service: 'Qu’est-ce qui vous intéresse ?',
+    serviceOther: 'Je ne sais pas encore / autre',
+    message: 'Décrivez-nous votre situation',
+    messagePh: 'Ex. : Nous sommes 8, nous facturons sous Excel et devons nous conformer à VeriFactu. Nous perdons aussi beaucoup de temps sur les devis…',
+    diagLabel: 'Résultat de votre diagnostic (joint automatiquement)',
+    consent: 'J’ai lu et j’accepte la',
+    consentLink: 'politique de confidentialité',
+    consentEnd: 'et le traitement de mes données pour répondre à ma demande.',
+    submit: 'Envoyer le message',
+    directTitle: 'Contact direct',
+    whatsapp: 'Écrire sur WhatsApp',
+    hours: 'Du lundi au vendredi, 9h–18h (heure de Madrid)',
+  },
+} as const;
+
+const c = copy[lang];
+const thanksUrl = path('thanks', lang);
+const privacyUrl = path('privacy', lang);
+const calUrl = `https://cal.com/${siteConfig.calLink}`;
+---
+
+<Base lang={lang} page="contact" title={c.metaTitle} description={c.metaDesc}>
+  <section class="section section--tight page-head">
+    <div class="container">
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h1>{c.title}<span class="accent">{c.accent}</span></h1>
+      <p class="lead">{c.lead}</p>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="reservar" class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>{c.bookTitle}</h2>
+        <p class="lead">{c.bookText}</p>
+      </div>
+      <div class="booking card">
+        <div id="cal-inline" class="booking__embed" data-cal-link={siteConfig.calLink}></div>
+        <!-- Cal.com inline embed (official loader snippet) -->
+        <script is:inline>
+          (function (C, A, L) {
+            let p = function (a, ar) {
+              a.q.push(ar);
+            };
+            let d = C.document;
+            C.Cal =
+              C.Cal ||
+              function () {
+                let cal = C.Cal;
+                let ar = arguments;
+                if (!cal.loaded) {
+                  cal.ns = {};
+                  cal.q = cal.q || [];
+                  d.head.appendChild(d.createElement('script')).src = A;
+                  cal.loaded = true;
+                }
+                if (ar[0] === L) {
+                  const api = function () {
+                    p(api, arguments);
+                  };
+                  const namespace = ar[1];
+                  api.q = api.q || [];
+                  if (typeof namespace === 'string') {
+                    cal.ns[namespace] = cal.ns[namespace] || api;
+                    p(cal.ns[namespace], ar);
+                    p(cal, ['initNamespace', namespace]);
+                  } else p(cal, ar);
+                  return;
+                }
+                p(cal, ar);
+              };
+          })(window, 'https://app.cal.com/embed/embed.js', 'init');
+        </script>
+        <p class="booking__fallback muted">
+          {c.bookFallback}
+          <a href={calUrl} target="_blank" rel="noopener noreferrer">{c.bookOpen}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="formulario" class="section">
+    <div class="container contact">
+      <div>
+        <h2>{c.formTitle}</h2>
+        <p class="muted">{c.formText}</p>
+
+        <form
+          name="contacto"
+          method="POST"
+          action={thanksUrl}
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="form card"
+        >
+          <input type="hidden" name="form-name" value="contacto" />
+          <input type="hidden" name="idioma" value={lang} />
+          <p class="visually-hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="name">{c.name}</label>
+              <input id="name" name="nombre" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="company">{c.company}</label>
+              <input id="company" name="empresa" type="text" autocomplete="organization" />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="email">{c.email}</label>
+              <input id="email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="phone">{c.phone}</label>
+              <input id="phone" name="telefono" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="service">{c.service}</label>
+            <select id="service" name="servicio">
+              <option value="">{c.serviceOther}</option>
+              {services.map((s) => <option value={s.id}>{s.title[lang]}</option>)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">{c.message}</label>
+            <textarea id="message" name="mensaje" required placeholder={c.messagePh}></textarea>
+          </div>
+
+          <div class="field" id="diag-field" hidden>
+            <label for="diagnostico">{c.diagLabel}</label>
+            <textarea id="diagnostico" name="diagnostico" readonly rows="3"></textarea>
+          </div>
+
+          <label class="checkbox">
+            <input type="checkbox" name="consentimiento" value="si" required />
+            <span>
+              {c.consent}
+              <a href={privacyUrl} target="_blank" rel="noopener">{c.consentLink}</a>
+              {c.consentEnd}
+            </span>
+          </label>
+
+          <button type="submit" class="btn btn--primary btn--lg">{c.submit}</button>
+        </form>
+      </div>
+
+      <aside class="direct">
+        <h3>{c.directTitle}</h3>
+        <ul>
+          <li>
+            <Icon name="mail" size={20} />
+            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          </li>
+          <li>
+            <Icon name="phone" size={20} />
+            <a href={siteConfig.phoneHref}>{siteConfig.phone}</a>
+          </li>
+          <li>
+            <Icon name="pin" size={20} />
+            <span>{siteConfig.address}</span>
+          </li>
+          <li>
+            <Icon name="clock" size={20} />
+            <span>{siteConfig.hours[lang]}</span>
+          </li>
+        </ul>
+        <a href={siteConfig.whatsapp} class="btn btn--ghost" target="_blank" rel="noopener noreferrer">
+          {c.whatsapp}
+        </a>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  #reservar,
+  #formulario {
+    scroll-margin-top: var(--header-h);
+  }
+  .booking {
+    padding: 1rem;
+    overflow: hidden;
+  }
+  .booking__embed {
+    min-height: 560px;
+    width: 100%;
+  }
+  .booking__fallback {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .contact {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .form {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .form .btn {
+    justify-self: start;
+  }
+  .direct {
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+    padding-top: 0.5rem;
+  }
+  .direct ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: grid;
+    gap: 0.9rem;
+  }
+  .direct li {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    color: var(--ink-2);
+  }
+  .direct li :global(svg) {
+    color: var(--gold-dark);
+    flex-shrink: 0;
+  }
+  .direct a {
+    text-decoration: none;
+  }
+  @media (max-width: 860px) {
+    .contact {
+      grid-template-columns: 1fr;
+    }
+    .form__row {
+      grid-template-columns: 1fr;
+    }
+    .direct {
+      position: static;
+    }
+  }
+</style>
+
+
+
+<script>
+  /* Cal.com inline calendar */
+  const calEl = document.getElementById('cal-inline');
+  const calLink = calEl?.dataset.calLink;
+  const w = window as unknown as { Cal?: (...args: unknown[]) => void };
+  if (calEl && calLink && w.Cal) {
+    w.Cal('init', { origin: 'https://cal.com' });
+    w.Cal('inline', {
+      elementOrSelector: '#cal-inline',
+      calLink,
+      config: { layout: 'month_view', theme: 'light' },
+    });
+    w.Cal('ui', {
+      styles: { branding: { brandColor: '#0f3d5e' } },
+      hideEventTypeDetails: false,
+      layout: 'month_view',
+    });
+  }
+
+  /* Prefill from query params (service from Services page, result from Diagnostic page) */
+  const params = new URLSearchParams(window.location.search);
+  const servicio = params.get('servicio');
+  const select = document.getElementById('service') as HTMLSelectElement | null;
+  if (servicio && select && Array.from(select.options).some((o) => o.value === servicio)) {
+    select.value = servicio;
+  }
+  const diag = params.get('diagnostico');
+  const diagField = document.getElementById('diag-field');
+  const diagInput = document.getElementById('diagnostico') as HTMLTextAreaElement | null;
+  if (diag && diagField && diagInput) {
+    diagInput.value = diag;
+    diagField.hidden = false;
+  }
+</script>

@@ -1,0 +1,622 @@
+---
+import Base from '../../layouts/Base.astro';
+import { locales, path, type Lang } from '../../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    metaTitle: 'Diagnóstico digital gratuito y calculadora de ahorro',
+    metaDesc:
+      'Descubre en dos minutos el nivel de madurez digital de tu PYME y cuánto dinero pierdes al año en tareas manuales. Herramienta gratuita de ALC Consulting.',
+    eyebrow: 'Herramienta gratuita',
+    title: 'Diagnóstico digital y ', accent: 'calculadora de ahorro.',
+    lead: 'Dos minutos, sin registro. Primero evalúa tu madurez digital; después calcula cuánto podrías ahorrar automatizando. Al final podrás enviarnos el resultado para recibir recomendaciones personalizadas.',
+    quizTitle: '1. ¿En qué punto está tu empresa?',
+    quizHelp: 'Responde con sinceridad: no hay respuestas malas, solo puntos de partida.',
+    scale: ['No', 'En parte', 'Sí'],
+    questions: [
+      'Nuestra facturación cumple ya con VeriFactu / factura electrónica con un software certificado.',
+      'Los datos de clientes y presupuestos están centralizados en un CRM o sistema compartido (no en Excel personales ni WhatsApp).',
+      'Las tareas repetitivas (recordatorios, informes, conciliaciones) están automatizadas al menos en parte.',
+      'Nuestra web es moderna, rápida, adaptada a móvil y nos genera contactos cada mes.',
+      'Aparecemos bien posicionados en Google y nuestra ficha de empresa está cuidada y con reseñas.',
+      'Dirección dispone de indicadores actualizados (ventas, cobros, márgenes) sin pedirlos a nadie.',
+      'El equipo ha recibido formación en las herramientas digitales que usa.',
+      'Tenemos copias de seguridad, contraseñas gestionadas y accesos controlados.',
+    ],
+    levelLabel: 'Tu nivel de madurez digital',
+    levels: [
+      {
+        name: 'Inicial',
+        text: 'Tu empresa funciona gracias al esfuerzo de las personas, no de los sistemas. Hay riesgo (normativo y operativo), pero también un enorme margen de mejora rápida: los primeros pasos suelen tener el retorno más alto.',
+      },
+      {
+        name: 'En desarrollo',
+        text: 'Ya has dado pasos importantes, pero conviven herramientas digitales con procesos manuales. El reto ahora es conectar sistemas, automatizar y asegurarte de que el equipo los usa de verdad.',
+      },
+      {
+        name: 'Avanzado',
+        text: 'Estás por delante de la mayoría de PYMES. Las siguientes ganancias vienen de la analítica, la IA aplicada y la optimización fina de procesos. Hablemos de cómo escalar.',
+      },
+    ],
+    roiTitle: '2. ¿Cuánto podrías ahorrar?',
+    roiHelp: 'Ajusta los valores a tu realidad. Los cálculos son estimaciones orientativas, no una promesa.',
+    employees: 'Personas que hacen tareas administrativas',
+    hours: 'Horas semanales por persona en tareas manuales repetitivas',
+    hoursHint: 'Facturar, copiar datos, perseguir cobros, rehacer informes…',
+    cost: 'Coste por hora de esas personas (€)',
+    costHint: 'Salario bruto + seguridad social ÷ horas trabajadas. Como referencia, 18–30 €.',
+    share: 'Porcentaje de esas tareas que se puede automatizar',
+    investment: 'Inversión estimada en el proyecto (€)',
+    investmentHint: 'Puedes dejar el valor orientativo; lo ajustaremos juntos.',
+    resHours: 'Horas recuperadas al año',
+    resMoney: 'Ahorro anual estimado',
+    resPayback: 'Retorno de la inversión',
+    months: 'meses',
+    paybackFast: 'menos de 1 mes',
+    resNote: 'Estimación basada en 46 semanas laborables al año. No incluye beneficios indirectos como menos errores, cobros más rápidos o más ventas.',
+    sendTitle: '3. Recibe recomendaciones personalizadas',
+    sendText: 'Te enviaremos un breve informe con los tres primeros pasos que daríamos en tu caso. Sin compromiso.',
+    sendCta: 'Enviar mis resultados y pedir recomendaciones',
+    bookCta: 'Prefiero reservar una llamada',
+    summaryPrefix: 'Resultado del diagnóstico',
+  },
+  en: {
+    metaTitle: 'Free digital assessment & savings calculator',
+    metaDesc:
+      'Find out in two minutes your SME’s digital maturity level and how much money you lose each year on manual tasks. Free tool by ALC Consulting.',
+    eyebrow: 'Free tool',
+    title: 'Digital assessment & ', accent: 'savings calculator.',
+    lead: 'Two minutes, no sign-up. First assess your digital maturity; then calculate how much you could save by automating. At the end you can send us the result to receive personalised recommendations.',
+    quizTitle: '1. Where does your business stand?',
+    quizHelp: 'Answer honestly — there are no wrong answers, only starting points.',
+    scale: ['No', 'Partly', 'Yes'],
+    questions: [
+      'Our invoicing already complies with VeriFactu / e-invoicing using certified software.',
+      'Customer and quote data is centralised in a CRM or shared system (not personal spreadsheets or WhatsApp).',
+      'Repetitive tasks (reminders, reports, reconciliations) are at least partly automated.',
+      'Our website is modern, fast, mobile-friendly and brings us enquiries every month.',
+      'We rank well on Google and our business profile is well maintained with reviews.',
+      'Management has up-to-date indicators (sales, collections, margins) without asking anyone.',
+      'The team has been trained on the digital tools they use.',
+      'We have backups, managed passwords and controlled access.',
+    ],
+    levelLabel: 'Your digital maturity level',
+    levels: [
+      {
+        name: 'Starting out',
+        text: 'Your business runs on people’s effort, not on systems. There is risk (regulatory and operational) but also huge room for quick wins: the first steps usually have the highest return.',
+      },
+      {
+        name: 'Developing',
+        text: 'You have taken important steps, but digital tools coexist with manual processes. The challenge now is connecting systems, automating and making sure the team actually uses them.',
+      },
+      {
+        name: 'Advanced',
+        text: 'You are ahead of most SMEs. The next gains come from analytics, applied AI and fine-tuning processes. Let’s talk about how to scale.',
+      },
+    ],
+    roiTitle: '2. How much could you save?',
+    roiHelp: 'Adjust the values to your reality. These are indicative estimates, not a promise.',
+    employees: 'People doing administrative tasks',
+    hours: 'Weekly hours per person on repetitive manual tasks',
+    hoursHint: 'Invoicing, copying data, chasing payments, rebuilding reports…',
+    cost: 'Hourly cost of those people (€)',
+    costHint: 'Gross salary + social security ÷ hours worked. As a reference, €18–30.',
+    share: 'Share of those tasks that can be automated',
+    investment: 'Estimated project investment (€)',
+    investmentHint: 'You can leave the indicative value; we will refine it together.',
+    resHours: 'Hours recovered per year',
+    resMoney: 'Estimated annual savings',
+    resPayback: 'Payback period',
+    months: 'months',
+    paybackFast: 'under 1 month',
+    resNote: 'Estimate based on 46 working weeks per year. Excludes indirect benefits such as fewer errors, faster collections or more sales.',
+    sendTitle: '3. Get personalised recommendations',
+    sendText: 'We will send you a short report with the first three steps we would take in your case. No obligation.',
+    sendCta: 'Send my results and request recommendations',
+    bookCta: 'I’d rather book a call',
+    summaryPrefix: 'Assessment result',
+  },
+  fr: {
+    metaTitle: 'Diagnostic digital gratuit et calculateur d’économies',
+    metaDesc:
+      'Découvrez en deux minutes le niveau de maturité digitale de votre PME et combien vous perdez chaque année en tâches manuelles. Outil gratuit d’ALC Consulting.',
+    eyebrow: 'Outil gratuit',
+    title: 'Diagnostic digital et ', accent: 'calculateur d’économies.',
+    lead: 'Deux minutes, sans inscription. Évaluez d’abord votre maturité digitale, puis calculez combien vous pourriez économiser en automatisant. À la fin, vous pourrez nous envoyer le résultat pour recevoir des recommandations personnalisées.',
+    quizTitle: '1. Où en est votre entreprise ?',
+    quizHelp: 'Répondez sincèrement : il n’y a pas de mauvaises réponses, seulement des points de départ.',
+    scale: ['Non', 'En partie', 'Oui'],
+    questions: [
+      'Notre facturation est déjà conforme à VeriFactu / la facture électronique avec un logiciel certifié.',
+      'Les données clients et les devis sont centralisés dans un CRM ou un système partagé (pas dans des Excel personnels ni sur WhatsApp).',
+      'Les tâches répétitives (rappels, rapports, rapprochements) sont au moins en partie automatisées.',
+      'Notre site web est moderne, rapide, adapté au mobile et nous apporte des contacts chaque mois.',
+      'Nous sommes bien positionnés sur Google et notre fiche d’établissement est soignée, avec des avis.',
+      'La direction dispose d’indicateurs à jour (ventes, encaissements, marges) sans les demander à personne.',
+      'L’équipe a été formée aux outils digitaux qu’elle utilise.',
+      'Nous avons des sauvegardes, des mots de passe gérés et des accès contrôlés.',
+    ],
+    levelLabel: 'Votre niveau de maturité digitale',
+    levels: [
+      {
+        name: 'Initial',
+        text: 'Votre entreprise fonctionne grâce à l’effort des personnes, pas des systèmes. Il y a un risque (réglementaire et opérationnel) mais aussi une énorme marge de progression rapide : les premiers pas ont souvent le meilleur retour.',
+      },
+      {
+        name: 'En développement',
+        text: 'Vous avez déjà franchi des étapes importantes, mais des outils digitaux cohabitent avec des processus manuels. L’enjeu est maintenant de connecter les systèmes, d’automatiser et de s’assurer que l’équipe les utilise vraiment.',
+      },
+      {
+        name: 'Avancé',
+        text: 'Vous êtes en avance sur la majorité des PME. Les prochains gains viendront de l’analytique, de l’IA appliquée et de l’optimisation fine des processus. Parlons de la façon de passer à l’échelle.',
+      },
+    ],
+    roiTitle: '2. Combien pourriez-vous économiser ?',
+    roiHelp: 'Ajustez les valeurs à votre réalité. Les calculs sont des estimations indicatives, pas une promesse.',
+    employees: 'Personnes effectuant des tâches administratives',
+    hours: 'Heures hebdomadaires par personne en tâches manuelles répétitives',
+    hoursHint: 'Facturer, recopier des données, relancer les paiements, refaire des rapports…',
+    cost: 'Coût horaire de ces personnes (€)',
+    costHint: 'Salaire brut + charges sociales ÷ heures travaillées. À titre indicatif, 18–30 €.',
+    share: 'Part de ces tâches automatisable',
+    investment: 'Investissement estimé du projet (€)',
+    investmentHint: 'Vous pouvez laisser la valeur indicative ; nous l’affinerons ensemble.',
+    resHours: 'Heures récupérées par an',
+    resMoney: 'Économie annuelle estimée',
+    resPayback: 'Retour sur investissement',
+    months: 'mois',
+    paybackFast: 'moins d’un mois',
+    resNote: 'Estimation basée sur 46 semaines travaillées par an. N’inclut pas les bénéfices indirects : moins d’erreurs, encaissements plus rapides, plus de ventes.',
+    sendTitle: '3. Recevez des recommandations personnalisées',
+    sendText: 'Nous vous enverrons un bref rapport avec les trois premières actions que nous mènerions dans votre cas. Sans engagement.',
+    sendCta: 'Envoyer mes résultats et demander des recommandations',
+    bookCta: 'Je préfère réserver un appel',
+    summaryPrefix: 'Résultat du diagnostic',
+  },
+} as const;
+
+const c = copy[lang];
+const contactUrl = path('contact', lang);
+
+const i18nForScript = {
+  locale: locales[lang],
+  levels: c.levels,
+  months: c.months,
+  paybackFast: c.paybackFast,
+  summaryPrefix: c.summaryPrefix,
+  levelLabel: c.levelLabel,
+  resHours: c.resHours,
+  resMoney: c.resMoney,
+  resPayback: c.resPayback,
+  contactUrl,
+};
+---
+
+<Base lang={lang} page="diagnostic" title={c.metaTitle} description={c.metaDesc}>
+  <section class="section section--tight page-head">
+    <div class="container">
+      <span class="eyebrow">{c.eyebrow}</span>
+      <h1>{c.title}<span class="accent">{c.accent}</span></h1>
+      <p class="lead">{c.lead}</p>
+    </div>
+  </section>
+
+  <div id="diagnostic-app" data-i18n={JSON.stringify(i18nForScript)}>
+    <!-- QUIZ -->
+    <section class="section section--alt">
+      <div class="container tool">
+        <div class="tool__form">
+          <h2>{c.quizTitle}</h2>
+          <p class="muted">{c.quizHelp}</p>
+          <ol class="quiz">
+            {
+              c.questions.map((q, i) => (
+                <li class="quiz__q">
+                  <p id={`q${i}-label`}>{q}</p>
+                  <div class="quiz__opts" role="radiogroup" aria-labelledby={`q${i}-label`}>
+                    {c.scale.map((label, v) => (
+                      <label class="quiz__opt">
+                        <input type="radio" name={`q${i}`} value={v} data-quiz />
+                        <span>{label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+        <aside class="tool__result card">
+          <span class="eyebrow">{c.levelLabel}</span>
+          <div class="score">
+            <div class="score__ring">
+              <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="12"></circle>
+                <circle
+                  id="score-arc"
+                  cx="60"
+                  cy="60"
+                  r="52"
+                  fill="none"
+                  stroke="var(--accent)"
+                  stroke-width="12"
+                  stroke-linecap="round"
+                  stroke-dasharray="326.7"
+                  stroke-dashoffset="326.7"
+                  transform="rotate(-90 60 60)"></circle>
+              </svg>
+              <span id="score-value">0</span>
+            </div>
+            <div>
+              <h3 id="score-level">—</h3>
+              <p id="score-text" class="muted">{c.quizHelp}</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ROI -->
+    <section class="section">
+      <div class="container tool">
+        <div class="tool__form">
+          <h2>{c.roiTitle}</h2>
+          <p class="muted">{c.roiHelp}</p>
+          <div class="roi-form">
+            <div class="field">
+              <label for="employees">{c.employees}</label>
+              <input id="employees" type="number" min="1" max="500" step="1" value="3" data-roi />
+            </div>
+            <div class="field">
+              <label for="hours">{c.hours}</label>
+              <input id="hours" type="number" min="0" max="60" step="0.5" value="6" data-roi />
+              <span class="hint">{c.hoursHint}</span>
+            </div>
+            <div class="field">
+              <label for="cost">{c.cost}</label>
+              <input id="cost" type="number" min="5" max="200" step="1" value="22" data-roi />
+              <span class="hint">{c.costHint}</span>
+            </div>
+            <div class="field">
+              <label for="share">{c.share}: <output id="share-out">40</output> %</label>
+              <input id="share" type="range" min="10" max="90" step="5" value="40" data-roi />
+            </div>
+            <div class="field">
+              <label for="investment">{c.investment}</label>
+              <input id="investment" type="number" min="0" max="500000" step="100" value="4000" data-roi />
+              <span class="hint">{c.investmentHint}</span>
+            </div>
+          </div>
+        </div>
+        <aside class="tool__result card card--brand">
+          <div class="res">
+            <span class="res__label">{c.resHours}</span>
+            <strong id="res-hours">—</strong>
+          </div>
+          <div class="res res--big">
+            <span class="res__label">{c.resMoney}</span>
+            <strong id="res-money">—</strong>
+          </div>
+          <div class="res">
+            <span class="res__label">{c.resPayback}</span>
+            <strong id="res-payback">—</strong>
+          </div>
+          <p class="res__note">{c.resNote}</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SEND -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="send">
+          <h2>{c.sendTitle}</h2>
+          <p class="lead">{c.sendText}</p>
+          <div class="btn-row send__btns">
+            <a id="send-results" href={contactUrl} class="btn btn--primary btn--lg">{c.sendCta}</a>
+            <a href={`${contactUrl}#reservar`} class="btn btn--ghost btn--lg">{c.bookCta}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .tool {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .tool__result {
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+  }
+  .card--brand {
+    background: var(--ink);
+    color: #f6f3ec;
+    border: none;
+  }
+
+  /* Quiz */
+  .quiz {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .quiz__q {
+    padding: 1.2rem 1.3rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .quiz__q > p {
+    margin: 0 0 0.8rem;
+    font-weight: 500;
+  }
+  .quiz__opts {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .quiz__opt {
+    position: relative;
+    cursor: pointer;
+  }
+  .quiz__opt input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+  }
+  .quiz__opt span {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+  .quiz__opt input:focus-visible + span {
+    box-shadow: 0 0 0 3px rgba(15, 61, 94, 0.25);
+  }
+  .quiz__opt input:checked + span {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #f6f3ec;
+  }
+
+  .score {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1.25rem;
+    align-items: center;
+  }
+  .score__ring {
+    position: relative;
+    width: 130px;
+  }
+  .score__ring circle {
+    transition: stroke-dashoffset 0.5s ease;
+  }
+  .score__ring span {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .score h3 {
+    margin-bottom: 0.3rem;
+  }
+  .score p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* ROI */
+  .roi-form {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .res {
+    display: flex;
+    flex-direction: column;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .res:first-child {
+    padding-top: 0;
+  }
+  .res__label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 0.2rem;
+  }
+  .res strong {
+    font-family: var(--font-head);
+    font-size: 1.6rem;
+  }
+  .res--big strong {
+    font-size: 2.4rem;
+    color: var(--gold-light);
+  }
+  .res__note {
+    margin: 1rem 0 0;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Send */
+  .send {
+    text-align: center;
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .send .lead {
+    max-width: 600px;
+    margin-inline: auto;
+  }
+  .send__btns {
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 860px) {
+    .tool {
+      grid-template-columns: 1fr;
+    }
+    .tool__result {
+      position: static;
+    }
+  }
+</style>
+
+<script>
+  type Level = { name: string; text: string };
+  type I18n = {
+    locale: string;
+    levels: Level[];
+    months: string;
+    paybackFast: string;
+    summaryPrefix: string;
+    levelLabel: string;
+    resHours: string;
+    resMoney: string;
+    resPayback: string;
+    contactUrl: string;
+  };
+
+  const app = document.getElementById('diagnostic-app');
+  if (app) {
+    const i18n: I18n = JSON.parse(app.dataset.i18n || '{}');
+    const nf = new Intl.NumberFormat(i18n.locale, { maximumFractionDigits: 0 });
+    const cf = new Intl.NumberFormat(i18n.locale, {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+    });
+
+    const state = { score: 0, answered: 0, total: 0, hours: 0, money: 0, payback: '' };
+
+    /* ---------- Quiz ---------- */
+    const quizInputs = Array.from(app.querySelectorAll<HTMLInputElement>('input[data-quiz]'));
+    const questionNames = new Set(quizInputs.map((i) => i.name));
+    state.total = questionNames.size;
+
+    const arc = document.getElementById('score-arc');
+    const scoreValue = document.getElementById('score-value');
+    const scoreLevel = document.getElementById('score-level');
+    const scoreText = document.getElementById('score-text');
+    const CIRC = 326.7;
+
+    function updateQuiz() {
+      let sum = 0;
+      let answered = 0;
+      questionNames.forEach((name) => {
+        const checked = app!.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`);
+        if (checked) {
+          answered++;
+          sum += Number(checked.value);
+        }
+      });
+      const max = state.total * 2;
+      const score = max ? Math.round((sum / max) * 100) : 0;
+      state.score = score;
+      state.answered = answered;
+
+      if (arc) arc.setAttribute('stroke-dashoffset', String(CIRC - (CIRC * score) / 100));
+      if (scoreValue) scoreValue.textContent = String(score);
+
+      if (answered === 0) return;
+      const level = score < 40 ? i18n.levels[0] : score < 70 ? i18n.levels[1] : i18n.levels[2];
+      if (scoreLevel) scoreLevel.textContent = level.name;
+      if (scoreText) scoreText.textContent = level.text;
+      updateSendLink();
+    }
+
+    quizInputs.forEach((i) => i.addEventListener('change', updateQuiz));
+
+    /* ---------- ROI ---------- */
+    const el = (id: string) => document.getElementById(id) as HTMLInputElement | null;
+    const employees = el('employees');
+    const hours = el('hours');
+    const cost = el('cost');
+    const share = el('share');
+    const shareOut = document.getElementById('share-out');
+    const investment = el('investment');
+    const resHours = document.getElementById('res-hours');
+    const resMoney = document.getElementById('res-money');
+    const resPayback = document.getElementById('res-payback');
+    const WEEKS = 46;
+
+    function num(input: HTMLInputElement | null, fallback: number) {
+      const v = Number(input?.value);
+      return Number.isFinite(v) && v >= 0 ? v : fallback;
+    }
+
+    function updateRoi() {
+      const n = num(employees, 0);
+      const h = num(hours, 0);
+      const c = num(cost, 0);
+      const p = num(share, 0);
+      const inv = num(investment, 0);
+      if (shareOut) shareOut.textContent = String(p);
+
+      const hoursSaved = n * h * WEEKS * (p / 100);
+      const moneySaved = hoursSaved * c;
+      state.hours = Math.round(hoursSaved);
+      state.money = Math.round(moneySaved);
+
+      if (resHours) resHours.textContent = `${nf.format(Math.round(hoursSaved))} h`;
+      if (resMoney) resMoney.textContent = cf.format(Math.round(moneySaved));
+
+      let payback = '—';
+      if (moneySaved > 0) {
+        const months = inv / (moneySaved / 12);
+        payback = months < 1 ? i18n.paybackFast : `${nf.format(Math.ceil(months))} ${i18n.months}`;
+      }
+      state.payback = payback;
+      if (resPayback) resPayback.textContent = payback;
+      updateSendLink();
+    }
+
+    [employees, hours, cost, share, investment].forEach((i) => i?.addEventListener('input', updateRoi));
+
+    /* ---------- Send link ---------- */
+    const sendLink = document.getElementById('send-results') as HTMLAnchorElement | null;
+    function updateSendLink() {
+      if (!sendLink) return;
+      const levelName =
+        state.answered > 0
+          ? (state.score < 40 ? i18n.levels[0] : state.score < 70 ? i18n.levels[1] : i18n.levels[2]).name
+          : '—';
+      const summary =
+        `${i18n.summaryPrefix}: ${i18n.levelLabel} ${state.score}/100 (${levelName}, ${state.answered}/${state.total}). ` +
+        `${i18n.resHours}: ${nf.format(state.hours)} h. ${i18n.resMoney}: ${cf.format(state.money)}. ${i18n.resPayback}: ${state.payback}.`;
+      const url = new URL(i18n.contactUrl, window.location.origin);
+      url.searchParams.set('diagnostico', summary);
+      url.hash = 'formulario';
+      sendLink.href = url.toString();
+    }
+
+    updateQuiz();
+    updateRoi();
+  }
+</script>

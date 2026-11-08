@@ -1,0 +1,75 @@
+---
+/**
+ * Logotipo ALC Consulting (versión horizontal).
+ * Monograma "AC" dorado (A fina/gruesa, swoosh con punto, C en creciente claro)
+ * + "ΛLC" geométrico dibujado en vectorial + "Consulting".
+ */
+interface Props {
+  light?: boolean; // texto claro para fondos oscuros
+  height?: number; // alto en px
+  markOnly?: boolean; // solo el monograma
+}
+const { light = false, height = 44, markOnly = false } = Astro.props;
+const uid = Math.random().toString(36).slice(2, 7);
+const ink = light ? '#f5f6f7' : '#1b1e27';
+const sub = light ? 'rgba(245,246,247,0.8)' : '#33363e';
+const viewBox = markOnly ? '0 0 330 200' : '0 0 590 200';
+---
+
+<span class="logo" style={`--logo-h:${height}px`}>
+  <svg viewBox={viewBox} role="img" aria-label="ALC Consulting">
+    <defs>
+      <linearGradient id={`gA-${uid}`} x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#a98637"></stop>
+        <stop offset="1" stop-color="#d2b678"></stop>
+      </linearGradient>
+      <linearGradient id={`gC-${uid}`} x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ece0c2"></stop>
+        <stop offset="1" stop-color="#cdb27a"></stop>
+      </linearGradient>
+      <linearGradient id={`gS-${uid}`} x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#a98637"></stop>
+        <stop offset="1" stop-color="#c9ab6c"></stop>
+      </linearGradient>
+    </defs>
+    <path
+      d="M322 34 C 250 36, 212 82, 212 120 C 212 160, 252 190, 322 186 C 276 176, 244 152, 244 116 C 244 80, 276 46, 322 34 Z"
+      fill={`url(#gC-${uid})`}></path>
+    <path d="M8 186 L98 18 L112 18 L200 186 L170 186 L104 50 L22 186 Z" fill={`url(#gA-${uid})`}></path>
+    <path d="M16 190 C 70 160, 150 124, 262 104 C 156 132, 78 166, 22 194 Z" fill={`url(#gS-${uid})`}></path>
+    <circle cx="74" cy="164" r="8" fill="#a98637"></circle>
+    {
+      !markOnly && (
+        <>
+          <g fill="none" stroke={ink} stroke-width="11" stroke-linejoin="round">
+            <path d="M340 98 L376 40 L412 98" />
+            <path d="M436 38 V 92.5 H 492" />
+            <path d="M572 43.5 H 528 Q 514 43.5 514 57.5 V 78.5 Q 514 92.5 528 92.5 H 572" />
+          </g>
+          <text
+            x="340"
+            y="160"
+            font-family="Inter, 'Plus Jakarta Sans', system-ui, sans-serif"
+            font-size="46"
+            font-weight="400"
+            fill={sub}
+            textLength="232"
+            lengthAdjust="spacing">
+            Consulting
+          </text>
+        </>
+      )
+    }
+  </svg>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+  }
+  .logo svg {
+    height: var(--logo-h, 44px);
+    width: auto;
+  }
+</style>

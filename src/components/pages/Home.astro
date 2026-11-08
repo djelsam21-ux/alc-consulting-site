@@ -1,0 +1,975 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../Icon.astro';
+import HeroVisual from '../HeroVisual.astro';
+import Logo from '../Logo.astro';
+import { services } from '../../data/services';
+import { siteConfig } from '../../config';
+import { path, type Lang } from '../../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    metaTitle: 'Transformación digital para PYMES en España',
+    metaDesc:
+      'ALC Consulting ayuda a pequeñas y medianas empresas a digitalizar procesos, cumplir con VeriFactu, automatizar tareas y vender más online. Diagnóstico gratuito.',
+    heroEyebrow: 'Desde Alicante · PYMES de toda España',
+    heroA: 'Convertimos la ambición en ',
+    heroAccent: 'resultados medibles.',
+    heroLead:
+      'Procesos, facturación, automatización y presencia online, gestionados como un solo proyecto, con responsabilidad clara y resultados medibles.',
+    heroCta: 'Hablar con un experto',
+    heroCta2: 'Ver servicios',
+    marquee: ['Crecimiento', 'Rendimiento', 'Digital', 'Estrategia', 'Automatización', 'VeriFactu', 'CRM', 'Formación'],
+    aboutEyebrow: 'Sobre nosotros',
+    aboutTitleA: 'Un socio, ',
+    aboutAccent: 'no un simple proveedor.',
+    aboutText1: 'ALC Consulting reúne a consultores apasionados por el rendimiento y por las personas. Creemos que una estrategia vale tanto como las acciones concretas y los resultados que produce.',
+    aboutText2: 'Nuestra fuerza: escucha atenta, un método probado y un compromiso total a tu lado, desde el primer taller hasta el éxito medible de tus proyectos.',
+    aboutChecks: ['Rigor y excelencia en cada etapa', 'Un enfoque 100 % a medida', 'Transparencia y cercanía', 'Resultados medibles y tangibles'],
+    aboutCaption: 'Alicante · Clientes en toda España',
+    heroNote: 'Respondemos en menos de 1 día laborable',
+    visual: { hours: 'Horas ahorradas / mes', hoursValue: '+42 h', compliance: 'VeriFactu conforme', crm: 'Oportunidades en CRM', crmValue: '128', roi: 'Retorno estimado', roiValue: '4,2×' },
+    stats: [
+      { value: '6', unit: '', label: 'disciplinas bajo un mismo responsable' },
+      { value: '3', unit: 'idiomas', label: 'español, inglés y francés' },
+      { value: '2–6', unit: 'sem.', label: 'por fase de implantación' },
+      { value: '100', unit: '%', label: 'enfoque en PYMES y autónomos' },
+    ],
+    whyEyebrow: 'Por qué ALC',
+    whyTitle: 'Por qué las PYMES confían en ALC',
+    why: [
+      'Hablamos en términos de negocio: tiempo, dinero y riesgo. Nada de siglas sin traducir.',
+      'Un único responsable para procesos, herramientas, formación y resultados.',
+      'Independientes de proveedores: recomendamos la herramienta que mejor te encaja, aunque sea la más barata.',
+      'Cada proyecto arranca con un objetivo medible y termina con un informe de lo conseguido.',
+    ],
+    servicesEyebrow: 'Qué hacemos',
+    servicesTitle: 'Qué hacemos',
+    allServices: 'Ver todos los servicios',
+    painsEyebrow: 'Lo que escuchamos cada semana',
+    painsTitleA: 'Problemas reales, ',
+    painsAccent: 'resueltos en semanas.',
+    pains: [
+      { icon: 'invoice', title: 'Facturar da miedo', text: 'VeriFactu, factura electrónica, software certificado… No sabes qué te afecta ni qué programa elegir.' },
+      { icon: 'users', title: 'Todo depende de una persona', text: 'Los presupuestos, los clientes y los seguimientos viven en la cabeza (o el móvil) de alguien.' },
+      { icon: 'clock', title: 'Horas perdidas en lo repetitivo', text: 'Copiar datos de un programa a otro, perseguir pagos, rehacer informes a mano cada mes.' },
+      { icon: 'globe', title: 'Internet no trae clientes', text: 'Tu web está anticuada, no apareces en Google y la competencia sí.' },
+    ],
+    compEyebrow: 'Qué cambia con ALC',
+    compTitleA: 'Menos carga operativa. Más visibilidad. ',
+    compAccent: 'Responsabilidad clara.',
+    compHead: ['Sin ALC', 'Con ALC', 'Impacto en el negocio'],
+    comp: [
+      ['Varias herramientas que no se hablan', 'Un sistema conectado de extremo a extremo', 'Menos errores y datos fiables'],
+      ['Facturación con riesgo normativo', 'Software certificado y proceso documentado', 'Tranquilidad ante Hacienda'],
+      ['Seguimiento comercial de memoria', 'CRM con recordatorios y embudo definido', 'Más presupuestos cerrados'],
+      ['Informes rehechos a mano cada mes', 'Panel de indicadores actualizado', 'Decisiones más rápidas y seguras'],
+    ],
+    processEyebrow: 'Método',
+    processTitleA: 'El mismo proyecto, ',
+    processAccent: 'siempre en cuatro pasos.',
+    process: [
+      { title: 'Llamada de descubrimiento', text: '30 minutos para entender tu negocio, tus urgencias y si podemos ayudarte. Gratis y sin compromiso.', out: 'Primeras recomendaciones' },
+      { title: 'Diagnóstico y propuesta', text: 'Analizamos tus procesos y herramientas y te entregamos una propuesta con alcance, precio cerrado y retorno esperado.', out: 'Propuesta con precio cerrado' },
+      { title: 'Implantación por fases', text: 'Ejecutamos en sprints cortos. Cada fase deja algo funcionando en tu empresa, no un PowerPoint.', out: 'Sistemas en producción' },
+      { title: 'Formación y seguimiento', text: 'Formamos a tu equipo, documentamos todo y medimos resultados. Nos quedamos hasta que funcione solo.', out: 'Equipo autónomo + informe' },
+    ],
+    processCta: 'Reservar la llamada de descubrimiento',
+    diagEyebrow: 'Herramienta gratuita',
+    diagTitleA: '¿Cuánto te cuesta ',
+    diagAccent: 'no digitalizar?',
+    diagText: 'En dos minutos, sin registro: conoce tu nivel de madurez digital y calcula las horas y el dinero que tu empresa pierde cada año en tareas manuales.',
+    diagCta: 'Hacer el diagnóstico',
+    diagNote: 'Online · 2 minutos · sin registro',
+    waysEyebrow: 'Tres formas de trabajar',
+    waysTitle: 'Tres formas de trabajar con nosotros',
+    ways: [
+      { tag: 'Proyecto', title: 'Proyecto cerrado', text: 'Alcance, plazo y precio definidos de antemano. Ideal para una implantación concreta: facturación, web, CRM.', link: 'Pedir presupuesto' },
+      { tag: 'Mensual', title: 'Acompañamiento mensual', text: 'Una cuota fija al mes para seguir mejorando: soporte, pequeñas automatizaciones, formación y revisión de indicadores.', link: 'Hablar con el equipo' },
+      { tag: 'Dirección', title: 'Dirección digital externa', text: 'Actuamos como tu responsable de digitalización a tiempo parcial. Para empresas que crecen y necesitan criterio, no solo manos.', link: 'Explorar la colaboración' },
+    ],
+    faqEyebrow: 'Preguntas frecuentes',
+    faqTitle: 'Lo que suelen preguntarnos antes de empezar',
+    faq: [
+      { q: '¿Trabajáis con empresas muy pequeñas o autónomos?', a: 'Sí. La mayoría de nuestros clientes tienen entre 1 y 50 empleados. Adaptamos el alcance y el presupuesto al tamaño real de tu negocio.' },
+      { q: '¿Cuánto cuesta un proyecto?', a: 'Depende del alcance, pero siempre trabajamos con precio cerrado y por fases. Un diagnóstico inicial parte de unos pocos cientos de euros; una implantación completa se presupuesta tras la llamada de descubrimiento.' },
+      { q: '¿Tenemos que cambiar todas nuestras herramientas?', a: 'Casi nunca. Primero aprovechamos lo que ya tienes y solo sustituimos lo que de verdad frena a la empresa.' },
+      { q: '¿Podéis trabajar en remoto?', a: 'Sí. Estamos en Alicante y atendemos a toda España en remoto, en español, inglés o francés. Para proyectos que lo requieran, también nos desplazamos.' },
+    ],
+    finalTitle: 'Empieza por el resultado que necesitas',
+    finalText: 'Cuéntanos qué tiene que mejorar. Empezaremos por tu operativa, no por un producto.',
+    finalCta: 'Hablar con un experto',
+  },
+  en: {
+    metaTitle: 'Digital transformation for SMEs in Spain',
+    metaDesc:
+      'ALC Consulting helps small and medium-sized businesses digitise processes, comply with VeriFactu, automate tasks and sell more online. Free assessment.',
+    heroEyebrow: 'From Alicante · SMEs across Spain',
+    heroA: 'We turn ambition into ',
+    heroAccent: 'measurable results.',
+    heroLead:
+      'Processes, invoicing, automation and online presence, run as one project, with clear accountability and measurable outcomes.',
+    heroCta: 'Talk to an expert',
+    heroCta2: 'Explore services',
+    marquee: ['Growth', 'Performance', 'Digital', 'Strategy', 'Automation', 'VeriFactu', 'CRM', 'Training'],
+    aboutEyebrow: 'About us',
+    aboutTitleA: 'A partner, ',
+    aboutAccent: 'not just a provider.',
+    aboutText1: 'ALC Consulting brings together consultants who are passionate about performance and people. We believe a strategy is only worth as much as the concrete actions and results it delivers.',
+    aboutText2: 'Our strength: attentive listening, a proven methodology and total commitment by your side — from the first workshop to the measurable success of your projects.',
+    aboutChecks: ['Rigour and excellence at every step', 'A fully bespoke approach', 'Transparency and closeness', 'Measurable, tangible results'],
+    aboutCaption: 'Alicante · Clients across Spain',
+    heroNote: 'We respond within 1 business day',
+    visual: { hours: 'Hours saved / month', hoursValue: '+42 h', compliance: 'VeriFactu compliant', crm: 'Opportunities in CRM', crmValue: '128', roi: 'Estimated return', roiValue: '4.2×' },
+    stats: [
+      { value: '6', unit: '', label: 'disciplines under one accountable lead' },
+      { value: '3', unit: 'languages', label: 'Spanish, English and French' },
+      { value: '2–6', unit: 'wks', label: 'per implementation phase' },
+      { value: '100', unit: '%', label: 'focus on SMEs and freelancers' },
+    ],
+    whyEyebrow: 'Why ALC',
+    whyTitle: 'Why SMEs trust ALC',
+    why: [
+      'We speak in business terms: time, money and risk. No untranslated acronyms.',
+      'One accountable lead for processes, tools, training and results.',
+      'Vendor-independent: we recommend the tool that fits you best, even if it is the cheapest.',
+      'Every project starts with a measurable goal and ends with a report on what was achieved.',
+    ],
+    servicesEyebrow: 'What we do',
+    servicesTitle: 'What we do',
+    allServices: 'See all services',
+    painsEyebrow: 'What we hear every week',
+    painsTitleA: 'Real problems, ',
+    painsAccent: 'solved in weeks.',
+    pains: [
+      { icon: 'invoice', title: 'Invoicing is scary', text: 'VeriFactu, e-invoicing, certified software… You don’t know what applies to you or which tool to pick.' },
+      { icon: 'users', title: 'Everything depends on one person', text: 'Quotes, customers and follow-ups live in someone’s head (or phone).' },
+      { icon: 'clock', title: 'Hours lost to repetitive work', text: 'Copying data between systems, chasing payments, rebuilding reports by hand every month.' },
+      { icon: 'globe', title: 'The internet brings no customers', text: 'Your website is dated, you don’t show up on Google — and your competitors do.' },
+    ],
+    compEyebrow: 'What changes with ALC',
+    compTitleA: 'Less operating burden. More visibility. ',
+    compAccent: 'Clearer accountability.',
+    compHead: ['Without ALC', 'With ALC', 'Business impact'],
+    comp: [
+      ['Several tools that don’t talk to each other', 'One system connected end to end', 'Fewer errors and reliable data'],
+      ['Invoicing with regulatory risk', 'Certified software and documented process', 'Peace of mind with the tax authority'],
+      ['Sales follow-up from memory', 'CRM with reminders and a defined funnel', 'More quotes closed'],
+      ['Reports rebuilt by hand every month', 'Up-to-date KPI dashboard', 'Faster, more confident decisions'],
+    ],
+    processEyebrow: 'Method',
+    processTitleA: 'The same project, ',
+    processAccent: 'always in four steps.',
+    process: [
+      { title: 'Discovery call', text: '30 minutes to understand your business, your priorities and whether we can help. Free, no strings attached.', out: 'First recommendations' },
+      { title: 'Assessment & proposal', text: 'We analyse your processes and tools and deliver a proposal with scope, fixed price and expected return.', out: 'Fixed-price proposal' },
+      { title: 'Phased implementation', text: 'We execute in short sprints. Every phase leaves something working in your business — not a slide deck.', out: 'Systems in production' },
+      { title: 'Training & follow-up', text: 'We train your team, document everything and measure results. We stay until it runs on its own.', out: 'Autonomous team + report' },
+    ],
+    processCta: 'Book the discovery call',
+    diagEyebrow: 'Free tool',
+    diagTitleA: 'What is not digitising ',
+    diagAccent: 'costing you?',
+    diagText: 'Two minutes, no sign-up: learn your digital maturity level and calculate the hours and money your business loses each year on manual tasks.',
+    diagCta: 'Take the assessment',
+    diagNote: 'Online · 2 minutes · no sign-up',
+    waysEyebrow: 'Three ways to engage',
+    waysTitle: 'Three ways to work with us',
+    ways: [
+      { tag: 'Project', title: 'Fixed-scope project', text: 'Scope, timeline and price defined upfront. Ideal for one concrete implementation: invoicing, website, CRM.', link: 'Request a quote' },
+      { tag: 'Monthly', title: 'Monthly support', text: 'A fixed monthly fee to keep improving: support, small automations, training and KPI review.', link: 'Talk to the team' },
+      { tag: 'Leadership', title: 'Fractional digital leadership', text: 'We act as your part-time head of digital. For growing companies that need judgement, not just hands.', link: 'Explore a partnership' },
+    ],
+    faqEyebrow: 'FAQ',
+    faqTitle: 'What people usually ask before starting',
+    faq: [
+      { q: 'Do you work with very small businesses or freelancers?', a: 'Yes. Most of our clients have between 1 and 50 employees. We scale scope and budget to the real size of your business.' },
+      { q: 'How much does a project cost?', a: 'It depends on scope, but we always work with fixed prices and in phases. An initial assessment starts at a few hundred euros; a full implementation is quoted after the discovery call.' },
+      { q: 'Do we have to replace all our tools?', a: 'Almost never. We first build on what you already have and only replace what is truly holding the business back.' },
+      { q: 'Can you work remotely?', a: 'Yes. We are based in Alicante and serve all of Spain remotely, in Spanish, English or French. We also travel for projects that require it.' },
+    ],
+    finalTitle: 'Start with the outcome you need',
+    finalText: 'Tell us what needs to improve. We will start from your operation, not from a product.',
+    finalCta: 'Talk to an expert',
+  },
+  fr: {
+    metaTitle: 'Transformation digitale pour PME en Espagne',
+    metaDesc:
+      'ALC Consulting aide les PME à digitaliser leurs processus, se conformer à VeriFactu, automatiser les tâches et vendre plus en ligne. Diagnostic gratuit.',
+    heroEyebrow: 'Depuis Alicante · PME de toute l’Espagne',
+    heroA: 'Nous transformons l’ambition en ',
+    heroAccent: 'résultats mesurables.',
+    heroLead:
+      'Processus, facturation, automatisation et présence en ligne, menés comme un seul projet, avec une responsabilité claire et des résultats mesurables.',
+    heroCta: 'Parler à un expert',
+    heroCta2: 'Voir les services',
+    marquee: ['Croissance', 'Performance', 'Digital', 'Stratégie', 'Automatisation', 'VeriFactu', 'CRM', 'Formation'],
+    aboutEyebrow: 'À propos',
+    aboutTitleA: 'Un partenaire, ',
+    aboutAccent: 'pas un simple prestataire.',
+    aboutText1: 'ALC Consulting réunit des consultants passionnés par la performance et par les personnes. Une stratégie ne vaut que par les actions concrètes et les résultats qu’elle produit.',
+    aboutText2: 'Notre force : une écoute attentive, une méthode éprouvée et un engagement total à vos côtés — du premier atelier jusqu’au succès mesurable de vos projets.',
+    aboutChecks: ['Rigueur et excellence à chaque étape', 'Une approche 100 % sur mesure', 'Transparence et proximité', 'Des résultats mesurables et tangibles'],
+    aboutCaption: 'Alicante · Clients dans toute l’Espagne',
+    heroNote: 'Nous répondons sous 1 jour ouvré',
+    visual: { hours: 'Heures gagnées / mois', hoursValue: '+42 h', compliance: 'VeriFactu conforme', crm: 'Opportunités dans le CRM', crmValue: '128', roi: 'Retour estimé', roiValue: '4,2×' },
+    stats: [
+      { value: '6', unit: '', label: 'disciplines sous un seul responsable' },
+      { value: '3', unit: 'langues', label: 'espagnol, anglais et français' },
+      { value: '2–6', unit: 'sem.', label: 'par phase de mise en œuvre' },
+      { value: '100', unit: '%', label: 'dédiés aux PME et indépendants' },
+    ],
+    whyEyebrow: 'Pourquoi ALC',
+    whyTitle: 'Pourquoi les PME font confiance à ALC',
+    why: [
+      'Nous parlons en termes business : temps, argent et risque. Pas de sigles non traduits.',
+      'Un seul responsable pour les processus, les outils, la formation et les résultats.',
+      'Indépendants des éditeurs : nous recommandons l’outil qui vous convient le mieux, même le moins cher.',
+      'Chaque projet démarre avec un objectif mesurable et se termine par un bilan de ce qui a été obtenu.',
+    ],
+    servicesEyebrow: 'Ce que nous faisons',
+    servicesTitle: 'Ce que nous faisons',
+    allServices: 'Voir tous les services',
+    painsEyebrow: 'Ce que nous entendons chaque semaine',
+    painsTitleA: 'Des problèmes réels, ',
+    painsAccent: 'résolus en quelques semaines.',
+    pains: [
+      { icon: 'invoice', title: 'Facturer fait peur', text: 'VeriFactu, facture électronique, logiciel certifié… Vous ne savez pas ce qui vous concerne ni quel programme choisir.' },
+      { icon: 'users', title: 'Tout repose sur une personne', text: 'Les devis, les clients et les relances vivent dans la tête (ou le téléphone) de quelqu’un.' },
+      { icon: 'clock', title: 'Des heures perdues dans le répétitif', text: 'Recopier des données d’un logiciel à l’autre, courir après les paiements, refaire les rapports à la main.' },
+      { icon: 'globe', title: 'Internet n’apporte pas de clients', text: 'Votre site est dépassé, vous n’apparaissez pas sur Google — vos concurrents, si.' },
+    ],
+    compEyebrow: 'Ce qui change avec ALC',
+    compTitleA: 'Moins de charge opérationnelle. Plus de visibilité. ',
+    compAccent: 'Une responsabilité claire.',
+    compHead: ['Sans ALC', 'Avec ALC', 'Impact business'],
+    comp: [
+      ['Plusieurs outils qui ne se parlent pas', 'Un système connecté de bout en bout', 'Moins d’erreurs et des données fiables'],
+      ['Facturation à risque réglementaire', 'Logiciel certifié et processus documenté', 'Sérénité face au fisc'],
+      ['Suivi commercial de mémoire', 'CRM avec rappels et entonnoir défini', 'Plus de devis signés'],
+      ['Rapports refaits à la main chaque mois', 'Tableau de bord à jour', 'Décisions plus rapides et plus sûres'],
+    ],
+    processEyebrow: 'Méthode',
+    processTitleA: 'Le même projet, ',
+    processAccent: 'toujours en quatre étapes.',
+    process: [
+      { title: 'Appel découverte', text: '30 minutes pour comprendre votre activité, vos urgences et voir si nous pouvons vous aider. Gratuit et sans engagement.', out: 'Premières recommandations' },
+      { title: 'Diagnostic et proposition', text: 'Nous analysons vos processus et outils et vous remettons une proposition avec périmètre, prix fixe et retour attendu.', out: 'Proposition à prix fixe' },
+      { title: 'Mise en œuvre par phases', text: 'Nous travaillons en sprints courts. Chaque phase laisse quelque chose qui fonctionne dans votre entreprise, pas un PowerPoint.', out: 'Systèmes en production' },
+      { title: 'Formation et suivi', text: 'Nous formons votre équipe, documentons tout et mesurons les résultats. Nous restons jusqu’à ce que ça tourne seul.', out: 'Équipe autonome + bilan' },
+    ],
+    processCta: 'Réserver l’appel découverte',
+    diagEyebrow: 'Outil gratuit',
+    diagTitleA: 'Combien vous coûte le fait de ',
+    diagAccent: 'ne pas digitaliser ?',
+    diagText: 'Deux minutes, sans inscription : découvrez votre niveau de maturité digitale et calculez les heures et l’argent perdus chaque année en tâches manuelles.',
+    diagCta: 'Faire le diagnostic',
+    diagNote: 'En ligne · 2 minutes · sans inscription',
+    waysEyebrow: 'Trois façons de collaborer',
+    waysTitle: 'Trois façons de travailler avec nous',
+    ways: [
+      { tag: 'Projet', title: 'Projet au forfait', text: 'Périmètre, délai et prix définis à l’avance. Idéal pour une mise en œuvre précise : facturation, site web, CRM.', link: 'Demander un devis' },
+      { tag: 'Mensuel', title: 'Accompagnement mensuel', text: 'Un forfait mensuel fixe pour continuer à progresser : support, petites automatisations, formation et revue des indicateurs.', link: 'Parler à l’équipe' },
+      { tag: 'Direction', title: 'Direction digitale externalisée', text: 'Nous jouons le rôle de votre responsable digital à temps partagé. Pour les entreprises qui grandissent et ont besoin de discernement, pas seulement de bras.', link: 'Explorer un partenariat' },
+    ],
+    faqEyebrow: 'Questions fréquentes',
+    faqTitle: 'Ce qu’on nous demande avant de commencer',
+    faq: [
+      { q: 'Travaillez-vous avec de très petites entreprises ou des indépendants ?', a: 'Oui. La majorité de nos clients ont entre 1 et 50 salariés. Nous adaptons le périmètre et le budget à la taille réelle de votre activité.' },
+      { q: 'Combien coûte un projet ?', a: 'Cela dépend du périmètre, mais nous travaillons toujours à prix fixe et par phases. Un diagnostic initial démarre à quelques centaines d’euros ; une mise en œuvre complète est chiffrée après l’appel découverte.' },
+      { q: 'Devons-nous changer tous nos outils ?', a: 'Presque jamais. Nous nous appuyons d’abord sur ce que vous avez et ne remplaçons que ce qui freine vraiment l’entreprise.' },
+      { q: 'Pouvez-vous travailler à distance ?', a: 'Oui. Nous sommes à Alicante et accompagnons toute l’Espagne à distance, en espagnol, anglais ou français. Nous nous déplaçons aussi pour les projets qui le nécessitent.' },
+    ],
+    finalTitle: 'Commencez par le résultat dont vous avez besoin',
+    finalText: 'Dites-nous ce qui doit s’améliorer. Nous partirons de votre activité, pas d’un produit.',
+    finalCta: 'Parler à un expert',
+  },
+} as const;
+
+const c = copy[lang];
+const contactUrl = path('contact', lang);
+const diagnosticUrl = path('diagnostic', lang);
+const servicesUrl = path('services', lang);
+const pad = (n: number) => String(n + 1).padStart(2, '0');
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base lang={lang} page="home" title={c.metaTitle} description={c.metaDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="eyebrow">{c.heroEyebrow}</span>
+        <h1>{c.heroA}<span class="accent">{c.heroAccent}</span></h1>
+        <p class="lead">{c.heroLead}</p>
+        <div class="btn-row">
+          <a href={servicesUrl} class="btn btn--dark btn--lg">{c.heroCta2}</a>
+          <a href={`${contactUrl}#reservar`} class="btn btn--ghost btn--lg btn--noarrow">{c.heroCta}</a>
+        </div>
+        <p class="hero__note mono">{c.heroNote}</p>
+      </div>
+      <div class="hero__visual">
+        <HeroVisual labels={c.visual} caption={c.aboutCaption} />
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <ul class="stats__list">
+        {
+          c.stats.map((s) => (
+            <li>
+              <strong>
+                {s.value}
+                {s.unit && <small>{s.unit}</small>}
+              </strong>
+              <span>{s.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {[...c.marquee, ...c.marquee].map((w) => <span class="marquee__item">{w}</span>)}
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <section class="section">
+    <div class="container why">
+      <div>
+        <span class="eyebrow">{c.whyEyebrow}</span>
+        <h2>{c.whyTitle}</h2>
+      </div>
+      <ul class="why__list">
+        {
+          c.why.map((w) => (
+            <li class="why__item">
+              <span class="why__dot"></span>
+              <span>{w}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO (dark) -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <span class="eyebrow">{c.servicesEyebrow}</span>
+          <h2>{c.servicesTitle}</h2>
+        </div>
+        <a href={servicesUrl} class="btn btn--ghost svc-all">{c.allServices}</a>
+      </div>
+      <div class="svc-grid">
+        {
+          services.map((s, i) => (
+            <a href={`${servicesUrl}#${s.id}`} class:list={['svc', 'card', 'card--hover', i === 1 ? 'card--gold' : 'card--soft']}>
+              <div class="icon-badge">
+                <Icon name={s.icon} />
+              </div>
+              <h3>{s.title[lang]}</h3>
+              <p>{s.short[lang]}</p>
+              <span class="svc__deliv">{s.deliverables[lang].join(' · ')}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section section--alt">
+    <div class="container about">
+      <div class="about__visual">
+        <div class="about__card">
+          <Logo markOnly height={140} />
+          <span class="about__badge">{c.aboutCaption}</span>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">{c.aboutEyebrow}</span>
+        <h2>{c.aboutTitleA}<span class="accent">{c.aboutAccent}</span></h2>
+        <p class="lead">{c.aboutText1}</p>
+        <p class="lead">{c.aboutText2}</p>
+        <ul class="checks">{c.aboutChecks.map((x) => <li>{x}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAINS (cards) -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.painsEyebrow}</span>
+        <h2>{c.painsTitleA}<span class="accent">{c.painsAccent}</span></h2>
+      </div>
+      <div class="grid grid--4">
+        {
+          c.pains.map((p) => (
+            <div class="card card--hover pain">
+              <div class="icon-badge">
+                <Icon name={p.icon} />
+              </div>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.compEyebrow}</span>
+        <h2>{c.compTitleA}<span class="accent">{c.compAccent}</span></h2>
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>{c.compHead.map((h) => <th>{h}</th>)}</tr>
+          </thead>
+          <tbody>
+            {
+              c.comp.map((row) => (
+                <tr>
+                  <td class="is-muted">{row[0]}</td>
+                  <td class="is-strong">{row[1]}</td>
+                  <td class="is-gold">{row[2]}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (numbered table) -->
+  <section id="metodo" class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.processEyebrow}</span>
+        <h2>{c.processTitleA}<span class="accent">{c.processAccent}</span></h2>
+      </div>
+      <div class="process card">
+        {
+          c.process.map((step, i) => (
+            <div class="process__row">
+              <div class="process__head">
+                <span class="num">{pad(i)}</span>
+                <h3>{step.title}</h3>
+              </div>
+              <p class="process__text">{step.text}</p>
+              <div class="process__out">
+                <span class="mono">→</span>
+                <strong>{step.out}</strong>
+              </div>
+            </div>
+          ))
+        }
+        <div class="process__cta">
+          <a href={`${contactUrl}#reservar`} class="btn btn--primary">{c.processCta}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTIC -->
+  <section class="section">
+    <div class="container">
+      <div class="diag">
+        <div class="diag__text">
+          <span class="eyebrow eyebrow--line">{c.diagEyebrow}</span>
+          <h2>{c.diagTitleA}<span class="accent">{c.diagAccent}</span></h2>
+          <p class="lead">{c.diagText}</p>
+        </div>
+        <div class="diag__cta">
+          <a href={diagnosticUrl} class="btn btn--primary btn--lg">{c.diagCta}</a>
+          <span class="mono">{c.diagNote}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE WAYS -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.waysEyebrow}</span>
+        <h2>{c.waysTitle}</h2>
+      </div>
+      <div class="grid grid--3">
+        {
+          c.ways.map((w) => (
+            <div class="card card--hover way">
+              <span class="way__tag">{w.tag}</span>
+              <h3>{w.title}</h3>
+              <p>{w.text}</p>
+              <a href={contactUrl} class="link-caps">{w.link}</a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container faq-wrap">
+      <div>
+        <span class="eyebrow">{c.faqEyebrow}</span>
+        <h2>{c.faqTitle}</h2>
+      </div>
+      <div class="faq">
+        {
+          c.faq.map((f) => (
+            <details class="faq__item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA BANNER -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="final">
+        <div>
+          <h2>{c.finalTitle}</h2>
+          <p class="mono">{c.finalText}</p>
+        </div>
+        <a href={`${contactUrl}#reservar`} class="btn btn--light btn--lg">{c.finalCta}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero */
+  .hero {
+    padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
+    overflow: hidden;
+  }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .hero h1 {
+    max-width: 13ch;
+  }
+  .hero .lead {
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+  .hero__note {
+    margin: 1.75rem 0 0;
+  }
+  .hero__visual {
+    justify-self: end;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  /* Stats */
+  .stats {
+    border-bottom: 1px solid var(--line);
+  }
+  .stats__list {
+    list-style: none;
+    margin: 0;
+    padding: 2.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stats__list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .stats__list strong {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stats__list small {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-left: 0.3rem;
+    letter-spacing: 0;
+  }
+  .stats__list span {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* Why */
+  .why {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .why h2 {
+    max-width: 14ch;
+    margin: 0;
+  }
+  .why__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .why__item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.1rem 1.3rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    color: var(--ink-2);
+    font-size: 0.97rem;
+  }
+  .why__dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 0.55rem;
+  }
+
+  /* Services grid */
+  .svc-all {
+    justify-self: end;
+  }
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .svc {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    padding: 2rem;
+  }
+  .svc h3 {
+    font-size: 1.15rem;
+  }
+  .svc p {
+    margin: 0 0 1.25rem;
+    font-size: 0.93rem;
+    color: var(--ink-2);
+    flex: 1;
+  }
+  .svc.card--gold p {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .svc__deliv {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+  .svc.card--gold .svc__deliv {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* About */
+  .about {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .about__card {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(600px 400px at 80% 0%, rgba(184, 146, 61, 0.35), transparent 60%),
+      linear-gradient(160deg, #1f1f1f, #0f0f0f);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .about__badge {
+    position: absolute;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+  }
+  .about .lead {
+    font-size: 1rem;
+  }
+  .about .checks {
+    margin-top: 1.5rem;
+  }
+
+  /* Pains */
+  .pain h3 {
+    font-size: 1.1rem;
+  }
+  .pain p {
+    margin: 0;
+    font-size: 0.93rem;
+    color: var(--ink-2);
+  }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+  }
+  .table {
+    min-width: 680px;
+  }
+
+  /* Process */
+  .process {
+    padding: 0;
+    overflow: hidden;
+  }
+  .process__row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 2rem;
+    padding: 1.75rem 2rem;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .process__head h3 {
+    font-size: 1.1rem;
+    margin: 0.4rem 0 0;
+  }
+  .process__text {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+  .process__out {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    font-size: 0.93rem;
+  }
+  .process__out .mono {
+    color: var(--gold);
+  }
+  .process__cta {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    background: var(--surface);
+  }
+
+  /* Diagnostic */
+  .diag {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: var(--radius-lg);
+    background: #fff;
+  }
+  .diag h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  }
+  .diag .lead {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .diag__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    justify-self: end;
+  }
+
+  /* Ways */
+  .way {
+    display: flex;
+    flex-direction: column;
+  }
+  .way__tag {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .way h3 {
+    font-size: 1.15rem;
+  }
+  .way p {
+    color: var(--ink-2);
+    font-size: 0.93rem;
+    flex: 1;
+  }
+
+  /* FAQ */
+  .faq-wrap {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .faq-wrap h2 {
+    max-width: 14ch;
+  }
+  .faq {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .faq__item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 0 1.4rem;
+    background: #fff;
+  }
+  .faq__item summary {
+    cursor: pointer;
+    padding: 1.15rem 0;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq__item summary::after {
+    content: '+';
+    color: var(--gold);
+    font-size: 1.3rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .faq__item[open] summary::after {
+    content: '−';
+  }
+  .faq__item p {
+    margin: 0 0 1.3rem;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+
+  /* Final banner */
+  .final {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-3) 100%);
+    border-radius: var(--radius-lg);
+    color: #fff;
+  }
+  .final h2 {
+    color: #fff;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    margin-bottom: 0.5rem;
+  }
+  .final .mono {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+  }
+
+  @media (max-width: 600px) {
+    .svc-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 1000px) {
+    .svc-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .process__row {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+  @media (max-width: 860px) {
+    .hero__inner,
+    .why,
+    .diag,
+    .faq-wrap,
+    .final,
+    .about {
+      grid-template-columns: 1fr;
+    }
+    .svc-all {
+      justify-self: start;
+    }
+    .hero__visual {
+      justify-self: start;
+      max-width: 480px;
+    }
+    .stats__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .diag__cta {
+      justify-self: start;
+    }
+  }
+</style>

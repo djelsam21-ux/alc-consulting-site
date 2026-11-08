@@ -1,0 +1,56 @@
+---
+/**
+ * Raíz del sitio. En Netlify, la redirección por idioma la hace netlify.toml
+ * antes de llegar aquí. Esta página es el respaldo (otros hostings / preview local):
+ * detecta el idioma del navegador y redirige; sin JS, meta refresh a /es/.
+ */
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ALC Consulting</title>
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="1; url=/es/" />
+    <link rel="alternate" hreflang="es" href="/es/" />
+    <link rel="alternate" hreflang="en" href="/en/" />
+    <link rel="alternate" hreflang="fr" href="/fr/" />
+    <link rel="alternate" hreflang="x-default" href="/es/" />
+    <script is:inline>
+      (function () {
+        var supported = ['es', 'en', 'fr'];
+        var langs = navigator.languages || [navigator.language || 'es'];
+        var target = 'es';
+        for (var i = 0; i < langs.length; i++) {
+          var l = String(langs[i]).slice(0, 2).toLowerCase();
+          if (supported.indexOf(l) !== -1) {
+            target = l;
+            break;
+          }
+        }
+        window.location.replace('/' + target + '/');
+      })();
+    </script>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        margin: 0;
+        color: #0f3d5e;
+      }
+      a {
+        color: inherit;
+        margin: 0 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <a href="/es/">Español</a> · <a href="/en/">English</a> · <a href="/fr/">Français</a>
+    </p>
+  </body>
+</html>

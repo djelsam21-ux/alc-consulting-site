@@ -1,0 +1,179 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+import type { Lang } from '../../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const L = siteConfig.legal;
+
+const copy = {
+  es: {
+    title: 'Política de privacidad',
+    desc: 'Cómo trata ALC Consulting los datos personales recogidos a través de este sitio web (RGPD y LOPDGDD).',
+    intro:
+      'En ALC Consulting nos tomamos en serio la protección de tus datos. Esta política explica qué datos recogemos, para qué y cuáles son tus derechos, conforme al Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).',
+    sections: [
+      {
+        h: 'Responsable del tratamiento',
+        p: [`${L.companyName} · NIF ${L.taxId} · ${L.address} · ${siteConfig.email}`],
+      },
+      {
+        h: 'Datos que recogemos',
+        p: [
+          'A través del formulario de contacto: nombre, empresa, email, teléfono (opcional), el mensaje que nos envíes y, si lo adjuntas, el resultado de la herramienta de diagnóstico.',
+          'A través de la reserva de llamadas (Cal.com): nombre, email y los datos que indiques al reservar. Cal.com actúa como encargado del tratamiento según sus propias condiciones.',
+          'Datos técnicos de navegación mínimos necesarios para el funcionamiento del sitio. Este sitio no utiliza cookies de seguimiento publicitario.',
+        ],
+      },
+      {
+        h: 'Finalidad y base jurídica',
+        p: [
+          'Responder a tus consultas y solicitudes de presupuesto, gestionar las llamadas reservadas y, si lo solicitas, enviarte recomendaciones personalizadas. La base jurídica es tu consentimiento y, en su caso, la ejecución de medidas precontractuales.',
+          'No utilizaremos tus datos para enviarte comunicaciones comerciales no solicitadas ni los cederemos a terceros con fines comerciales.',
+        ],
+      },
+      {
+        h: 'Conservación',
+        p: [
+          'Conservamos los datos de contacto mientras dure la relación o hasta que solicites su supresión, y durante los plazos legalmente exigibles.',
+        ],
+      },
+      {
+        h: 'Encargados y transferencias',
+        p: [
+          'Para prestar el servicio utilizamos proveedores tecnológicos (alojamiento web Netlify, gestión de formularios, agenda Cal.com, correo electrónico). Algunos pueden estar ubicados fuera de la UE; en tal caso, las transferencias se amparan en cláusulas contractuales tipo u otros mecanismos previstos en el RGPD.',
+        ],
+      },
+      {
+        h: 'Tus derechos',
+        p: [
+          `Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a ${siteConfig.email}. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).`,
+        ],
+      },
+      {
+        h: 'Actualizaciones',
+        p: ['Esta política puede actualizarse. La versión vigente será siempre la publicada en esta página.'],
+      },
+    ],
+  },
+  en: {
+    title: 'Privacy policy',
+    desc: 'How ALC Consulting processes personal data collected through this website (GDPR and Spanish LOPDGDD).',
+    intro:
+      'At ALC Consulting we take data protection seriously. This policy explains what data we collect, why, and what your rights are, in accordance with Regulation (EU) 2016/679 (GDPR) and Spanish Organic Law 3/2018 (LOPDGDD).',
+    sections: [
+      {
+        h: 'Data controller',
+        p: [`${L.companyName} · Tax ID ${L.taxId} · ${L.address} · ${siteConfig.email}`],
+      },
+      {
+        h: 'Data we collect',
+        p: [
+          'Through the contact form: name, company, email, phone (optional), your message and, if attached, the result of the assessment tool.',
+          'Through call booking (Cal.com): name, email and any details you provide when booking. Cal.com acts as a data processor under its own terms.',
+          'Minimal technical browsing data required for the site to function. This site does not use advertising tracking cookies.',
+        ],
+      },
+      {
+        h: 'Purpose and legal basis',
+        p: [
+          'To answer your enquiries and quote requests, manage booked calls and, if requested, send you personalised recommendations. The legal basis is your consent and, where applicable, pre-contractual measures.',
+          'We will not use your data to send unsolicited marketing nor share it with third parties for commercial purposes.',
+        ],
+      },
+      {
+        h: 'Retention',
+        p: [
+          'We keep contact data for the duration of the relationship or until you request deletion, and for any legally required periods.',
+        ],
+      },
+      {
+        h: 'Processors and transfers',
+        p: [
+          'To provide the service we use technology providers (Netlify hosting, form handling, Cal.com scheduling, email). Some may be located outside the EU; in that case transfers rely on standard contractual clauses or other GDPR mechanisms.',
+        ],
+      },
+      {
+        h: 'Your rights',
+        p: [
+          `You may exercise your rights of access, rectification, erasure, objection, restriction and portability by writing to ${siteConfig.email}. You may also lodge a complaint with the Spanish Data Protection Agency (www.aepd.es).`,
+        ],
+      },
+      {
+        h: 'Updates',
+        p: ['This policy may be updated. The current version is always the one published on this page.'],
+      },
+    ],
+  },
+  fr: {
+    title: 'Politique de confidentialité',
+    desc: 'Comment ALC Consulting traite les données personnelles collectées via ce site (RGPD et LOPDGDD espagnole).',
+    intro:
+      'Chez ALC Consulting, nous prenons la protection de vos données au sérieux. Cette politique explique quelles données nous collectons, pourquoi, et quels sont vos droits, conformément au Règlement (UE) 2016/679 (RGPD) et à la loi organique espagnole 3/2018 (LOPDGDD).',
+    sections: [
+      {
+        h: 'Responsable du traitement',
+        p: [`${L.companyName} · NIF ${L.taxId} · ${L.address} · ${siteConfig.email}`],
+      },
+      {
+        h: 'Données collectées',
+        p: [
+          'Via le formulaire de contact : nom, entreprise, e-mail, téléphone (facultatif), votre message et, le cas échéant, le résultat de l’outil de diagnostic.',
+          'Via la réservation d’appels (Cal.com) : nom, e-mail et les informations fournies lors de la réservation. Cal.com agit comme sous-traitant selon ses propres conditions.',
+          'Données techniques de navigation minimales nécessaires au fonctionnement du site. Ce site n’utilise pas de cookies de suivi publicitaire.',
+        ],
+      },
+      {
+        h: 'Finalité et base juridique',
+        p: [
+          'Répondre à vos demandes et devis, gérer les appels réservés et, si vous le souhaitez, vous envoyer des recommandations personnalisées. La base juridique est votre consentement et, le cas échéant, l’exécution de mesures précontractuelles.',
+          'Nous n’utiliserons pas vos données pour des communications commerciales non sollicitées et ne les céderons pas à des tiers à des fins commerciales.',
+        ],
+      },
+      {
+        h: 'Conservation',
+        p: [
+          'Nous conservons les données de contact pendant la durée de la relation ou jusqu’à votre demande de suppression, ainsi que pendant les délais légaux applicables.',
+        ],
+      },
+      {
+        h: 'Sous-traitants et transferts',
+        p: [
+          'Pour fournir le service, nous utilisons des prestataires technologiques (hébergement Netlify, gestion des formulaires, agenda Cal.com, messagerie). Certains peuvent être situés hors UE ; les transferts reposent alors sur des clauses contractuelles types ou d’autres mécanismes prévus par le RGPD.',
+        ],
+      },
+      {
+        h: 'Vos droits',
+        p: [
+          `Vous pouvez exercer vos droits d’accès, de rectification, d’effacement, d’opposition, de limitation et de portabilité en écrivant à ${siteConfig.email}. Vous pouvez également introduire une réclamation auprès de l’Agence espagnole de protection des données (www.aepd.es).`,
+        ],
+      },
+      {
+        h: 'Mises à jour',
+        p: ['Cette politique peut être mise à jour. La version en vigueur est toujours celle publiée sur cette page.'],
+      },
+    ],
+  },
+} as const;
+const c = copy[lang];
+---
+
+<Base lang={lang} page="privacy" title={c.title} description={c.desc}>
+  <section class="section">
+    <div class="container prose">
+      <h1>{c.title}</h1>
+      <p class="lead">{c.intro}</p>
+      {
+        c.sections.map((s) => (
+          <>
+            <h2>{s.h}</h2>
+            {s.p.map((t) => <p>{t}</p>)}
+          </>
+        ))
+      }
+    </div>
+  </section>
+</Base>

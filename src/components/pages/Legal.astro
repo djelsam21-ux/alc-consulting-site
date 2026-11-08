@@ -1,0 +1,145 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+import { path, type Lang } from '../../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const L = siteConfig.legal;
+
+const copy = {
+  es: {
+    title: 'Aviso legal',
+    desc: 'Aviso legal e información sobre el titular del sitio web de ALC Consulting.',
+    sections: [
+      {
+        h: 'Titular del sitio web',
+        p: [
+          `En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de que el titular de este sitio web es ${L.companyName}, con NIF ${L.taxId} y domicilio en ${L.address}. ${L.registry}.`,
+          `Contacto: ${siteConfig.email} · ${siteConfig.phone}.`,
+        ],
+      },
+      {
+        h: 'Objeto',
+        p: [
+          'Este sitio web tiene carácter informativo sobre los servicios de consultoría y transformación digital que presta ALC Consulting. El acceso y uso del sitio atribuye la condición de usuario e implica la aceptación de las presentes condiciones.',
+        ],
+      },
+      {
+        h: 'Propiedad intelectual e industrial',
+        p: [
+          'Todos los contenidos del sitio (textos, imágenes, diseño, código, marcas y logotipos) son propiedad de ALC Consulting o de terceros que han autorizado su uso. Queda prohibida su reproducción, distribución o transformación sin autorización expresa.',
+        ],
+      },
+      {
+        h: 'Responsabilidad',
+        p: [
+          'ALC Consulting no se hace responsable de los daños derivados del uso del sitio, de la falta de disponibilidad del mismo ni de los contenidos de sitios de terceros enlazados. Las herramientas de cálculo ofrecidas (calculadora de ahorro, diagnóstico) son orientativas y no constituyen asesoramiento vinculante.',
+        ],
+      },
+      {
+        h: 'Legislación aplicable',
+        p: [
+          'Las presentes condiciones se rigen por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales de Alicante, salvo que la normativa de consumidores disponga otro fuero.',
+        ],
+      },
+    ],
+  },
+  en: {
+    title: 'Legal notice',
+    desc: 'Legal notice and information about the owner of the ALC Consulting website.',
+    sections: [
+      {
+        h: 'Website owner',
+        p: [
+          `In compliance with Spanish Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE), the owner of this website is ${L.companyName}, tax ID ${L.taxId}, registered address ${L.address}. ${L.registry}.`,
+          `Contact: ${siteConfig.email} · ${siteConfig.phone}.`,
+        ],
+      },
+      {
+        h: 'Purpose',
+        p: [
+          'This website provides information about the consulting and digital transformation services offered by ALC Consulting. Accessing and using the site makes you a user and implies acceptance of these terms.',
+        ],
+      },
+      {
+        h: 'Intellectual property',
+        p: [
+          'All site contents (texts, images, design, code, trademarks and logos) are the property of ALC Consulting or of third parties who have authorised their use. Reproduction, distribution or transformation without express authorisation is prohibited.',
+        ],
+      },
+      {
+        h: 'Liability',
+        p: [
+          'ALC Consulting is not liable for damages arising from the use of the site, its unavailability, or the contents of linked third-party sites. The calculation tools offered (savings calculator, assessment) are indicative and do not constitute binding advice.',
+        ],
+      },
+      {
+        h: 'Applicable law',
+        p: [
+          'These terms are governed by Spanish law. Any dispute shall be submitted to the courts of Alicante, unless consumer regulations provide otherwise.',
+        ],
+      },
+    ],
+  },
+  fr: {
+    title: 'Mentions légales',
+    desc: 'Mentions légales et informations sur l’éditeur du site web d’ALC Consulting.',
+    sections: [
+      {
+        h: 'Éditeur du site',
+        p: [
+          `Conformément à la loi espagnole 34/2002 sur les services de la société de l’information et le commerce électronique (LSSI-CE), l’éditeur de ce site est ${L.companyName}, NIF ${L.taxId}, dont le siège est situé ${L.address}. ${L.registry}.`,
+          `Contact : ${siteConfig.email} · ${siteConfig.phone}.`,
+        ],
+      },
+      {
+        h: 'Objet',
+        p: [
+          'Ce site a un caractère informatif sur les services de conseil et de transformation digitale proposés par ALC Consulting. L’accès et l’utilisation du site confèrent la qualité d’utilisateur et impliquent l’acceptation des présentes conditions.',
+        ],
+      },
+      {
+        h: 'Propriété intellectuelle',
+        p: [
+          'L’ensemble des contenus du site (textes, images, design, code, marques et logos) est la propriété d’ALC Consulting ou de tiers ayant autorisé leur utilisation. Toute reproduction, distribution ou transformation sans autorisation expresse est interdite.',
+        ],
+      },
+      {
+        h: 'Responsabilité',
+        p: [
+          'ALC Consulting ne saurait être tenue responsable des dommages liés à l’utilisation du site, à son indisponibilité ou au contenu de sites tiers liés. Les outils de calcul proposés (calculateur d’économies, diagnostic) sont indicatifs et ne constituent pas un conseil engageant.',
+        ],
+      },
+      {
+        h: 'Droit applicable',
+        p: [
+          'Les présentes conditions sont régies par le droit espagnol. Tout litige sera soumis aux tribunaux d’Alicante, sauf disposition contraire de la réglementation applicable aux consommateurs.',
+        ],
+      },
+    ],
+  },
+} as const;
+const c = copy[lang];
+---
+
+<Base lang={lang} page="legal" title={c.title} description={c.desc}>
+  <section class="section">
+    <div class="container prose">
+      <h1>{c.title}</h1>
+      {
+        c.sections.map((s) => (
+          <>
+            <h2>{s.h}</h2>
+            {s.p.map((t) => <p>{t}</p>)}
+          </>
+        ))
+      }
+      <p class="muted">
+        <a href={path('privacy', lang)}>→ {lang === 'es' ? 'Política de privacidad' : lang === 'en' ? 'Privacy policy' : 'Politique de confidentialité'}</a>
+      </p>
+    </div>
+  </section>
+</Base>

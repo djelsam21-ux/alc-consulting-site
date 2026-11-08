@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../Icon.astro';
+import { path, type Lang } from '../../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    title: 'Mensaje recibido',
+    desc: 'Gracias por contactar con ALC Consulting.',
+    h1: '¡Gracias! Hemos recibido tu mensaje',
+    text: 'Te responderemos en menos de un día laborable. Si tu consulta es urgente, puedes reservar directamente una llamada o escribirnos por WhatsApp.',
+    cta: 'Reservar una llamada',
+    home: 'Volver al inicio',
+  },
+  en: {
+    title: 'Message received',
+    desc: 'Thank you for contacting ALC Consulting.',
+    h1: 'Thank you! We have received your message',
+    text: 'We will reply within one working day. If your enquiry is urgent, you can book a call directly or message us on WhatsApp.',
+    cta: 'Book a call',
+    home: 'Back to home',
+  },
+  fr: {
+    title: 'Message reçu',
+    desc: 'Merci d’avoir contacté ALC Consulting.',
+    h1: 'Merci ! Nous avons bien reçu votre message',
+    text: 'Nous vous répondrons sous un jour ouvré. Si votre demande est urgente, vous pouvez réserver directement un appel ou nous écrire sur WhatsApp.',
+    cta: 'Réserver un appel',
+    home: 'Retour à l’accueil',
+  },
+} as const;
+const c = copy[lang];
+---
+
+<Base lang={lang} page="thanks" title={c.title} description={c.desc} noindex>
+  <section class="section">
+    <div class="container thanks">
+      <div class="thanks__icon"><Icon name="check" size={36} /></div>
+      <h1>{c.h1}</h1>
+      <p class="lead">{c.text}</p>
+      <div class="btn-row thanks__btns">
+        <a href={`${path('contact', lang)}#reservar`} class="btn btn--primary btn--lg">{c.cta}</a>
+        <a href={path('home', lang)} class="btn btn--ghost btn--lg">{c.home}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks {
+    text-align: center;
+    max-width: 640px;
+    padding: 3rem 0;
+  }
+  .thanks__icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--mint);
+    color: var(--mint-ink);
+    display: grid;
+    place-items: center;
+    margin: 0 auto 1.5rem;
+  }
+  .thanks__btns {
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base lang="es" page="home" title="Página no encontrada" description="La página que buscas no existe." noindex>
+  <section class="section">
+    <div class="container nf">
+      <span class="eyebrow">404</span>
+      <h1>Página no encontrada · Page not found · Page introuvable</h1>
+      <p class="lead">
+        La dirección no existe o ha cambiado. / The address does not exist or has changed. / L’adresse n’existe pas ou a changé.
+      </p>
+      <div class="btn-row">
+        <a href="/es/" class="btn btn--dark">Inicio (ES)</a>
+        <a href="/en/" class="btn btn--ghost">Home (EN)</a>
+        <a href="/fr/" class="btn btn--ghost">Accueil (FR)</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    max-width: 760px;
+    padding: 3rem 0;
+  }
+  .nf h1 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+  }
+</style>

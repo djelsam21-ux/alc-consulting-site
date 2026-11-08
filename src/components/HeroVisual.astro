@@ -1,0 +1,164 @@
+---
+/**
+ * Visual del hero: bloque dorado + tarjetas "glass" con indicadores.
+ * Sustituir por una fotografía del equipo (recortada, PNG) cuando se disponga:
+ *   <img src="/equipo.png" alt="" class="hero__photo" />
+ */
+interface Props {
+  caption?: string;
+  labels: { hours: string; hoursValue: string; compliance: string; crm: string; crmValue: string; roi: string; roiValue: string };
+}
+const { labels, caption } = Astro.props;
+---
+
+<div class="hv" aria-hidden="true">
+  <div class="hv__block"></div>
+  <div class="hv__card hv__card--kpi">
+    <span class="hv__label">{labels.hours}</span>
+    <strong>{labels.hoursValue}</strong>
+    <div class="hv__bars">
+      <i style="height:30%"></i><i style="height:45%"></i><i style="height:40%"></i><i style="height:62%"></i><i style="height:75%"></i><i style="height:100%" class="is-gold"></i>
+    </div>
+  </div>
+  <div class="hv__card hv__card--check">
+    <span class="hv__dot"></span>
+    <span>{labels.compliance}</span>
+  </div>
+  <div class="hv__card hv__card--crm">
+    <span class="hv__label">{labels.crm}</span>
+    <strong>{labels.crmValue}</strong>
+  </div>
+  <div class="hv__card hv__card--roi">
+    <span class="hv__label">{labels.roi}</span>
+    <strong>{labels.roiValue}</strong>
+  </div>
+  {caption && <span class="hv__caption">{caption}</span>}
+</div>
+
+<style>
+  .hv {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.05 / 1;
+    max-width: 560px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background:
+      radial-gradient(500px 360px at 85% 10%, rgba(184, 146, 61, 0.45), transparent 60%),
+      linear-gradient(160deg, #262626, #121212);
+  }
+  .hv__block {
+    position: absolute;
+    right: -8%;
+    bottom: -10%;
+    width: 60%;
+    height: 60%;
+    background: linear-gradient(160deg, #d6b877, #a47f2b 70%, #8f6d22);
+    border-radius: 50% 50% 0 50%;
+    opacity: 0.9;
+  }
+  .hv__caption {
+    position: absolute;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+  }
+  .hv__card {
+    position: absolute;
+    background: rgba(36, 40, 44, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  }
+  .hv__label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.4rem;
+  }
+  .hv__card strong {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .hv__card--kpi {
+    left: 7%;
+    top: 9%;
+    width: 54%;
+    padding: 1.4rem 1.5rem 1.2rem;
+    animation: float 7s ease-in-out infinite;
+  }
+  .hv__bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 7px;
+    height: 70px;
+    margin-top: 1.1rem;
+  }
+  .hv__bars i {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 3px 3px 1px 1px;
+  }
+  .hv__bars i.is-gold {
+    background: var(--gold-light);
+  }
+  .hv__card--check {
+    right: 6%;
+    top: 20%;
+    padding: 0.85rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.9rem;
+    animation: float 6s ease-in-out 1s infinite;
+  }
+  .hv__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    box-shadow: 0 0 0 4px rgba(224, 201, 138, 0.2);
+  }
+  .hv__card--crm {
+    left: 7%;
+    bottom: 22%;
+    padding: 1.1rem 1.3rem;
+    min-width: 42%;
+  }
+  .hv__card--roi {
+    right: 7%;
+    bottom: 9%;
+    padding: 1.1rem 1.3rem;
+    min-width: 38%;
+    animation: float 8s ease-in-out 0.5s infinite;
+  }
+  .hv__card--roi strong {
+    color: var(--gold-light);
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+</style>
