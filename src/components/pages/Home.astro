@@ -42,6 +42,7 @@ const copy = {
     ],
     whyEyebrow: 'Por qué ALC',
     whyTitle: 'Por qué las PYMES confían en ALC',
+    whyLines: ['Por qué', 'las PYMES', 'confían', 'en ALC.'],
     why: [
       'Hablamos en términos de negocio: tiempo, dinero y riesgo. Nada de siglas sin traducir.',
       'Un único responsable para procesos, herramientas, formación y resultados.',
@@ -134,6 +135,7 @@ const copy = {
     ],
     whyEyebrow: 'Why ALC',
     whyTitle: 'Why SMEs trust ALC',
+    whyLines: ['Why', 'SMEs', 'put their', 'trust in ALC.'],
     why: [
       'We speak in business terms: time, money and risk. No untranslated acronyms.',
       'One accountable lead for processes, tools, training and results.',
@@ -226,6 +228,7 @@ const copy = {
     ],
     whyEyebrow: 'Pourquoi ALC',
     whyTitle: 'Pourquoi les PME font confiance à ALC',
+    whyLines: ['Pourquoi', 'les PME', 'font confiance', 'à ALC.'],
     why: [
       'Nous parlons en termes business : temps, argent et risque. Pas de sigles non traduits.',
       'Un seul responsable pour les processus, les outils, la formation et les résultats.',
@@ -361,7 +364,15 @@ const faqSchema = {
     <div class="container why">
       <div>
         <span class="eyebrow">{c.whyEyebrow}</span>
-        <h2>{c.whyTitle}</h2>
+        <h2 class="cascade" aria-label={c.whyTitle}>
+          {
+            c.whyLines.map((line, i) => (
+              <span class:list={['cascade__line', { accent: i === c.whyLines.length - 1 }]} style={`--i:${i}`}>
+                {line}
+              </span>
+            ))
+          }
+        </h2>
       </div>
       <ul class="why__list">
         {
@@ -661,13 +672,40 @@ const faqSchema = {
   /* Why */
   .why {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
     align-items: start;
   }
-  .why h2 {
-    max-width: 14ch;
-    margin: 0;
+  .why > div:first-child {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+  .cascade {
+    margin: 0.25rem 0 0;
+    font-size: clamp(2.6rem, 4.6vw, 4.1rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+  .cascade__line {
+    display: block;
+    padding-left: calc(var(--i) * 0.45em);
+    white-space: nowrap;
+  }
+  .cascade__line.accent {
+    color: var(--gold);
+  }
+  .cascade__line + .cascade__line {
+    margin-top: 0.06em;
+  }
+  .cascade__line:last-child::after {
+    content: '';
+    display: block;
+    width: 3.2rem;
+    height: 3px;
+    margin-top: 0.45em;
+    margin-left: 0.05em;
+    border-radius: 3px;
+    background: var(--gold);
   }
   .why__list {
     list-style: none;
@@ -973,6 +1011,9 @@ const faqSchema = {
     .svc-all {
       justify-self: start;
     }
+    .why > div:first-child {
+      position: static;
+    }
     .hero__visual {
       justify-self: start;
       max-width: 480px;
@@ -1059,6 +1100,16 @@ const faqSchema = {
     }
     .why {
       gap: 1.5rem;
+    }
+    .why > div:first-child {
+      position: static;
+    }
+    .cascade {
+      font-size: clamp(2.3rem, 11vw, 3rem);
+    }
+    .cascade__line {
+      padding-left: calc(var(--i) * 0.4em);
+      white-space: normal;
     }
     .why__item {
       padding: 0.95rem 1.1rem;

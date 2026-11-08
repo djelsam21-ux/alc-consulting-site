@@ -71,7 +71,9 @@ function splitWords(heading: HTMLElement) {
     });
   };
   walk(heading);
-  heading.setAttribute('aria-label', heading.textContent?.replace(/\s+/g, ' ').trim() || '');
+  if (!heading.hasAttribute('aria-label')) {
+    heading.setAttribute('aria-label', heading.textContent?.replace(/\s+/g, ' ').trim() || '');
+  }
 }
 
 function setup() {
