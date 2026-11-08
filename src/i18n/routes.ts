@@ -17,6 +17,7 @@ export const locales: Record<Lang, string> = {
 /** Rutas traducidas: cada página tiene un slug propio por idioma (mejor SEO). */
 export const routes = {
   home: { es: '/es/', en: '/en/', fr: '/fr/' },
+  about: { es: '/es/quienes-somos/', en: '/en/about-us/', fr: '/fr/qui-sommes-nous/' },
   services: { es: '/es/servicios/', en: '/en/services/', fr: '/fr/services/' },
   diagnostic: {
     es: '/es/diagnostico-digital/',
@@ -38,6 +39,7 @@ export function path(page: PageKey, lang: Lang): string {
 /** Textos comunes a toda la web (navegación, pie, botones). */
 export const ui = {
   es: {
+    'nav.about': 'Quiénes somos',
     'nav.services': 'Servicios',
     'nav.diagnostic': 'Diagnóstico digital',
     'nav.contact': 'Contacto',
@@ -54,6 +56,7 @@ export const ui = {
     'skip': 'Saltar al contenido',
   },
   en: {
+    'nav.about': 'About us',
     'nav.services': 'Services',
     'nav.diagnostic': 'Digital assessment',
     'nav.contact': 'Contact',
@@ -70,6 +73,7 @@ export const ui = {
     'skip': 'Skip to content',
   },
   fr: {
+    'nav.about': 'Qui sommes-nous ?',
     'nav.services': 'Services',
     'nav.diagnostic': 'Diagnostic digital',
     'nav.contact': 'Contact',

@@ -1,0 +1,761 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../Icon.astro';
+import Logo from '../Logo.astro';
+import { services } from '../../data/services';
+import { siteConfig } from '../../config';
+import { path, type Lang } from '../../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    metaTitle: 'Quiénes somos',
+    metaDesc:
+      'ALC Consulting es una consultora de transformación digital con sede en Alicante. Ayudamos a las PYMES de España a modernizar procesos, facturación, ventas y presencia online con resultados medibles.',
+    eyebrow: 'Quiénes somos',
+    titleA: 'La consultora que convierte la tecnología en ',
+    titleAccent: 'crecimiento real para las PYMES.',
+    lead: 'ALC Consulting acompaña a pequeñas y medianas empresas en España en cada etapa de su transformación digital: desde el diagnóstico hasta la implantación y la formación de sus equipos. Con la exigencia de una consultora internacional y la cercanía de un socio local.',
+    ctaPrimary: 'Hablar con un consultor',
+    ctaSecondary: 'Descubrir nuestros servicios',
+    facts: [
+      { value: 'Alicante', label: 'Sede central' },
+      { value: 'España', label: 'Cobertura nacional, presencial y en remoto' },
+      { value: 'ES · EN · FR', label: 'Equipo trilingüe' },
+      { value: '6', label: 'Disciplinas bajo un mismo responsable' },
+    ],
+    storyEyebrow: 'Nuestra razón de ser',
+    storyQuote: 'Las grandes empresas tienen departamentos enteros dedicados a la transformación digital. Las PYMES, que son el motor de la economía, merecen el mismo nivel de exigencia.',
+    storyP1:
+      'ALC Consulting nació en Alicante de una constatación sencilla: la mayoría de las PYMES saben que deben digitalizarse, pero se enfrentan solas a un mercado lleno de herramientas, normativas cambiantes y promesas difíciles de evaluar. El resultado suele ser inversiones dispersas, equipos desbordados y sistemas que nadie utiliza de verdad.',
+    storyP2:
+      'Nuestra respuesta es un modelo de consultoría completo y accesible: un único interlocutor que entiende el negocio, diseña la hoja de ruta, implanta las soluciones y se queda hasta que funcionan. Aplicamos los métodos de las grandes consultoras —diagnóstico riguroso, gestión por fases, indicadores de resultado— a la escala y al presupuesto de una PYME.',
+    pillarsEyebrow: 'Misión, visión, ambición',
+    pillarsTitleA: 'Lo que nos mueve ',
+    pillarsAccent: 'cada día.',
+    pillars: [
+      { icon: 'compass', title: 'Misión', text: 'Hacer que cada PYME acceda a una transformación digital de calidad, comprensible y rentable, que libere tiempo, reduzca riesgos y acelere su crecimiento.' },
+      { icon: 'chart', title: 'Visión', text: 'Convertirnos en la referencia de la transformación digital de las PYMES en España, reconocida por la medida de sus resultados y no por la promesa de sus discursos.' },
+      { icon: 'shield', title: 'Compromiso', text: 'Recomendaciones independientes, precios cerrados por fase y total transparencia sobre lo que funciona, lo que cuesta y lo que aporta cada decisión.' },
+    ],
+    doEyebrow: 'Lo que hacemos',
+    doTitleA: 'Seis disciplinas, ',
+    doAccent: 'una sola visión de tu empresa.',
+    doLead: 'Intervenimos donde se juega la eficiencia de una PYME: su organización, su cumplimiento normativo, sus procesos, su presencia digital, su actividad comercial y las competencias de sus equipos.',
+    doMore: 'Ver el detalle',
+    approachEyebrow: 'Nuestro método',
+    approachTitleA: 'Cuatro principios ',
+    approachAccent: 'que no negociamos.',
+    approach: [
+      { title: 'Diagnóstico antes que propuesta', text: 'Nunca recomendamos una solución sin haber entendido antes cómo trabaja tu empresa. Cada proyecto empieza por un análisis de procesos, herramientas y datos.' },
+      { title: 'Independencia total', text: 'No revendemos licencias ni tenemos acuerdos de exclusividad. Elegimos la herramienta que mejor se adapta a tu caso, aunque sea la más sencilla o la más económica.' },
+      { title: 'Resultados medibles', text: 'Cada fase tiene un objetivo cuantificado —horas recuperadas, plazos de cobro, oportunidades cerradas— y termina con un informe de lo conseguido.' },
+      { title: 'Transferencia de conocimiento', text: 'Formamos y documentamos para que tu equipo sea autónomo. Nuestro éxito se mide por lo que funciona cuando ya no estamos.' },
+    ],
+    sectorsEyebrow: 'Con quién trabajamos',
+    sectorsTitleA: 'PYMES y autónomos ',
+    sectorsAccent: 'de todos los sectores.',
+    sectorsLead: 'Acompañamos a empresas de 1 a 50 personas que quieren profesionalizar su gestión y crecer con método.',
+    sectors: ['Comercio y distribución', 'Construcción y reformas', 'Hostelería y turismo', 'Servicios profesionales', 'Logística y transporte', 'Salud y bienestar', 'Industria y talleres', 'Inmobiliaria'],
+    intlEyebrow: 'Dimensión internacional',
+    intlTitleA: 'Estándares europeos, ',
+    intlAccent: 'atención en tu idioma.',
+    intl: [
+      { title: 'Equipo trilingüe', text: 'Trabajamos en español, inglés y francés: ideal para empresas extranjeras implantadas en España y para equipos internacionales.' },
+      { title: 'Cumplimiento normativo', text: 'Dominamos el marco español y europeo: VeriFactu, factura electrónica, RGPD y buenas prácticas de seguridad.' },
+      { title: 'Herramientas de nivel mundial', text: 'Seleccionamos e integramos las mejores soluciones del mercado internacional, adaptadas a la realidad de una PYME española.' },
+    ],
+    valuesEyebrow: 'Nuestros valores',
+    values: [
+      { title: 'Rigor', text: 'Excelencia en cada etapa.' },
+      { title: 'Transparencia', text: 'Hablamos claro, siempre.' },
+      { title: 'Cercanía', text: 'Un interlocutor que responde.' },
+      { title: 'Impacto', text: 'Resultados, no promesas.' },
+    ],
+    finalTitle: 'Construyamos juntos la próxima etapa de tu empresa.',
+    finalText: 'Una primera conversación de 30 minutos, gratuita y sin compromiso, para entender tus prioridades.',
+    finalCta: 'Reservar una llamada',
+    caption: 'Alicante · España',
+  },
+  en: {
+    metaTitle: 'About us',
+    metaDesc:
+      'ALC Consulting is a digital transformation consultancy headquartered in Alicante. We help SMEs across Spain modernise processes, invoicing, sales and online presence with measurable results.',
+    eyebrow: 'About us',
+    titleA: 'The consultancy that turns technology into ',
+    titleAccent: 'real growth for SMEs.',
+    lead: 'ALC Consulting supports small and medium-sized businesses in Spain at every stage of their digital transformation — from assessment to implementation and team training. The standards of an international consultancy, with the closeness of a local partner.',
+    ctaPrimary: 'Talk to a consultant',
+    ctaSecondary: 'Discover our services',
+    facts: [
+      { value: 'Alicante', label: 'Headquarters' },
+      { value: 'Spain', label: 'Nationwide coverage, on-site and remote' },
+      { value: 'ES · EN · FR', label: 'Trilingual team' },
+      { value: '6', label: 'Disciplines under one accountable lead' },
+    ],
+    storyEyebrow: 'Why we exist',
+    storyQuote: 'Large corporations have entire departments dedicated to digital transformation. SMEs, the engine of the economy, deserve the same level of excellence.',
+    storyP1:
+      'ALC Consulting was founded in Alicante on a simple observation: most SMEs know they need to go digital, yet they face a market crowded with tools, shifting regulations and promises that are hard to assess — on their own. The result is often scattered investments, overstretched teams and systems nobody truly uses.',
+    storyP2:
+      'Our answer is a complete, accessible consulting model: a single point of contact who understands the business, designs the roadmap, implements the solutions and stays until they work. We apply the methods of leading consultancies — rigorous assessment, phased delivery, outcome metrics — at the scale and budget of an SME.',
+    pillarsEyebrow: 'Mission, vision, commitment',
+    pillarsTitleA: 'What drives us ',
+    pillarsAccent: 'every day.',
+    pillars: [
+      { icon: 'compass', title: 'Mission', text: 'To give every SME access to high-quality, understandable and profitable digital transformation that frees up time, reduces risk and accelerates growth.' },
+      { icon: 'chart', title: 'Vision', text: 'To become the benchmark for SME digital transformation in Spain, recognised for the measure of our results rather than the promise of our words.' },
+      { icon: 'shield', title: 'Commitment', text: 'Independent recommendations, fixed prices per phase and full transparency on what works, what it costs and what each decision delivers.' },
+    ],
+    doEyebrow: 'What we do',
+    doTitleA: 'Six disciplines, ',
+    doAccent: 'one single view of your business.',
+    doLead: 'We work where an SME’s efficiency is decided: its organisation, regulatory compliance, processes, digital presence, sales activity and team skills.',
+    doMore: 'See details',
+    approachEyebrow: 'Our method',
+    approachTitleA: 'Four principles ',
+    approachAccent: 'we never compromise on.',
+    approach: [
+      { title: 'Assessment before proposal', text: 'We never recommend a solution before understanding how your business works. Every project starts with an analysis of processes, tools and data.' },
+      { title: 'Full independence', text: 'We don’t resell licences or hold exclusive agreements. We choose the tool that best fits your case, even if it is the simplest or the cheapest.' },
+      { title: 'Measurable results', text: 'Each phase has a quantified goal — hours recovered, payment times, deals closed — and ends with a report on what was achieved.' },
+      { title: 'Knowledge transfer', text: 'We train and document so your team becomes autonomous. Our success is measured by what keeps working once we have left.' },
+    ],
+    sectorsEyebrow: 'Who we work with',
+    sectorsTitleA: 'SMEs and freelancers ',
+    sectorsAccent: 'across every sector.',
+    sectorsLead: 'We support businesses of 1 to 50 people that want to professionalise their management and grow with method.',
+    sectors: ['Retail & distribution', 'Construction & renovation', 'Hospitality & tourism', 'Professional services', 'Logistics & transport', 'Health & wellbeing', 'Industry & workshops', 'Real estate'],
+    intlEyebrow: 'International reach',
+    intlTitleA: 'European standards, ',
+    intlAccent: 'service in your language.',
+    intl: [
+      { title: 'Trilingual team', text: 'We work in Spanish, English and French — ideal for foreign companies established in Spain and for international teams.' },
+      { title: 'Regulatory compliance', text: 'We master the Spanish and European framework: VeriFactu, e-invoicing, GDPR and security best practices.' },
+      { title: 'World-class tools', text: 'We select and integrate the best solutions on the international market, adapted to the reality of a Spanish SME.' },
+    ],
+    valuesEyebrow: 'Our values',
+    values: [
+      { title: 'Rigour', text: 'Excellence at every step.' },
+      { title: 'Transparency', text: 'We always speak plainly.' },
+      { title: 'Closeness', text: 'A contact who answers.' },
+      { title: 'Impact', text: 'Results, not promises.' },
+    ],
+    finalTitle: 'Let’s build the next chapter of your business together.',
+    finalText: 'A first 30-minute conversation, free and with no obligation, to understand your priorities.',
+    finalCta: 'Book a call',
+    caption: 'Alicante · Spain',
+  },
+  fr: {
+    metaTitle: 'Qui sommes-nous ?',
+    metaDesc:
+      'ALC Consulting est un cabinet de transformation digitale basé à Alicante. Nous aidons les PME de toute l’Espagne à moderniser leurs processus, leur facturation, leurs ventes et leur présence en ligne, avec des résultats mesurables.',
+    eyebrow: 'Qui sommes-nous ?',
+    titleA: 'Le cabinet qui transforme la technologie en ',
+    titleAccent: 'croissance réelle pour les PME.',
+    lead: 'ALC Consulting accompagne les petites et moyennes entreprises en Espagne à chaque étape de leur transformation digitale : du diagnostic à la mise en œuvre et à la formation des équipes. L’exigence d’un cabinet international, la proximité d’un partenaire local.',
+    ctaPrimary: 'Parler à un consultant',
+    ctaSecondary: 'Découvrir nos services',
+    facts: [
+      { value: 'Alicante', label: 'Siège social' },
+      { value: 'Espagne', label: 'Couverture nationale, sur site et à distance' },
+      { value: 'ES · EN · FR', label: 'Équipe trilingue' },
+      { value: '6', label: 'Disciplines sous un seul responsable' },
+    ],
+    storyEyebrow: 'Notre raison d’être',
+    storyQuote: 'Les grandes entreprises disposent de départements entiers consacrés à la transformation digitale. Les PME, moteur de l’économie, méritent le même niveau d’exigence.',
+    storyP1:
+      'ALC Consulting est né à Alicante d’un constat simple : la plupart des PME savent qu’elles doivent se digitaliser, mais elles affrontent seules un marché saturé d’outils, de réglementations changeantes et de promesses difficiles à évaluer. Résultat : des investissements dispersés, des équipes débordées et des systèmes que personne n’utilise vraiment.',
+    storyP2:
+      'Notre réponse est un modèle de conseil complet et accessible : un interlocuteur unique qui comprend l’activité, conçoit la feuille de route, déploie les solutions et reste jusqu’à ce qu’elles fonctionnent. Nous appliquons les méthodes des grands cabinets — diagnostic rigoureux, pilotage par phases, indicateurs de résultat — à l’échelle et au budget d’une PME.',
+    pillarsEyebrow: 'Mission, vision, engagement',
+    pillarsTitleA: 'Ce qui nous anime ',
+    pillarsAccent: 'chaque jour.',
+    pillars: [
+      { icon: 'compass', title: 'Mission', text: 'Permettre à chaque PME d’accéder à une transformation digitale de qualité, compréhensible et rentable, qui libère du temps, réduit les risques et accélère la croissance.' },
+      { icon: 'chart', title: 'Vision', text: 'Devenir la référence de la transformation digitale des PME en Espagne, reconnue pour la mesure de ses résultats plutôt que pour la promesse de ses discours.' },
+      { icon: 'shield', title: 'Engagement', text: 'Des recommandations indépendantes, des prix fixes par phase et une transparence totale sur ce qui fonctionne, ce que cela coûte et ce que chaque décision rapporte.' },
+    ],
+    doEyebrow: 'Ce que nous faisons',
+    doTitleA: 'Six disciplines, ',
+    doAccent: 'une seule vision de votre entreprise.',
+    doLead: 'Nous intervenons là où se joue l’efficacité d’une PME : son organisation, sa conformité réglementaire, ses processus, sa présence digitale, son activité commerciale et les compétences de ses équipes.',
+    doMore: 'Voir le détail',
+    approachEyebrow: 'Notre méthode',
+    approachTitleA: 'Quatre principes ',
+    approachAccent: 'non négociables.',
+    approach: [
+      { title: 'Le diagnostic avant la proposition', text: 'Nous ne recommandons jamais une solution sans avoir compris comment fonctionne votre entreprise. Chaque projet commence par une analyse des processus, des outils et des données.' },
+      { title: 'Une indépendance totale', text: 'Nous ne revendons pas de licences et n’avons aucun accord d’exclusivité. Nous choisissons l’outil le mieux adapté à votre cas, même s’il est le plus simple ou le moins cher.' },
+      { title: 'Des résultats mesurables', text: 'Chaque phase a un objectif chiffré — heures récupérées, délais d’encaissement, affaires signées — et se conclut par un bilan de ce qui a été obtenu.' },
+      { title: 'Le transfert de compétences', text: 'Nous formons et documentons pour que votre équipe devienne autonome. Notre réussite se mesure à ce qui continue de fonctionner après notre départ.' },
+    ],
+    sectorsEyebrow: 'Avec qui nous travaillons',
+    sectorsTitleA: 'PME et indépendants ',
+    sectorsAccent: 'de tous les secteurs.',
+    sectorsLead: 'Nous accompagnons des entreprises de 1 à 50 personnes qui veulent professionnaliser leur gestion et grandir avec méthode.',
+    sectors: ['Commerce et distribution', 'Bâtiment et rénovation', 'Hôtellerie et tourisme', 'Services professionnels', 'Logistique et transport', 'Santé et bien-être', 'Industrie et ateliers', 'Immobilier'],
+    intlEyebrow: 'Dimension internationale',
+    intlTitleA: 'Des standards européens, ',
+    intlAccent: 'un accompagnement dans votre langue.',
+    intl: [
+      { title: 'Équipe trilingue', text: 'Nous travaillons en espagnol, anglais et français : idéal pour les entreprises étrangères implantées en Espagne et les équipes internationales.' },
+      { title: 'Conformité réglementaire', text: 'Nous maîtrisons le cadre espagnol et européen : VeriFactu, facture électronique, RGPD et bonnes pratiques de sécurité.' },
+      { title: 'Des outils de niveau mondial', text: 'Nous sélectionnons et intégrons les meilleures solutions du marché international, adaptées à la réalité d’une PME espagnole.' },
+    ],
+    valuesEyebrow: 'Nos valeurs',
+    values: [
+      { title: 'Rigueur', text: 'L’excellence à chaque étape.' },
+      { title: 'Transparence', text: 'Nous parlons vrai, toujours.' },
+      { title: 'Proximité', text: 'Un interlocuteur qui répond.' },
+      { title: 'Impact', text: 'Des résultats, pas des promesses.' },
+    ],
+    finalTitle: 'Construisons ensemble la prochaine étape de votre entreprise.',
+    finalText: 'Un premier échange de 30 minutes, gratuit et sans engagement, pour comprendre vos priorités.',
+    finalCta: 'Réserver un appel',
+    caption: 'Alicante · Espagne',
+  },
+} as const;
+
+const c = copy[lang];
+const contactUrl = path('contact', lang);
+const servicesUrl = path('services', lang);
+const pad = (n: number) => String(n + 1).padStart(2, '0');
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: c.metaTitle,
+  description: c.metaDesc,
+  mainEntity: {
+    '@type': 'Organization',
+    name: siteConfig.name,
+    email: siteConfig.email,
+    telephone: siteConfig.phone,
+    address: { '@type': 'PostalAddress', streetAddress: 'Avenida Maisonave, 28 BIS, 4º', postalCode: '03003', addressLocality: 'Alicante', addressCountry: 'ES' },
+    knowsLanguage: ['es', 'en', 'fr'],
+    areaServed: 'ES',
+  },
+};
+---
+
+<Base lang={lang} page="about" title={c.metaTitle} description={c.metaDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
+  <!-- HERO -->
+  <section class="page-head about-hero">
+    <div class="container about-hero__inner">
+      <div>
+        <span class="eyebrow eyebrow--line">{c.eyebrow}</span>
+        <h1>{c.titleA}<span class="accent">{c.titleAccent}</span></h1>
+        <p class="lead">{c.lead}</p>
+        <div class="btn-row">
+          <a href={`${contactUrl}#reservar`} class="btn btn--primary btn--lg">{c.ctaPrimary}</a>
+          <a href={servicesUrl} class="btn btn--outline-light btn--lg btn--noarrow">{c.ctaSecondary}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section class="facts">
+    <div class="container">
+      <ul class="facts__list">
+        {
+          c.facts.map((f) => (
+            <li>
+              <strong>{f.value}</strong>
+              <span>{f.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section">
+    <div class="container story">
+      <div class="story__visual">
+        <div class="story__card">
+          <Logo markOnly height={150} />
+          <span class="story__badge">{c.caption}</span>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">{c.storyEyebrow}</span>
+        <blockquote class="story__quote">{c.storyQuote}</blockquote>
+        <p class="lead">{c.storyP1}</p>
+        <p class="lead">{c.storyP2}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION / VISION / COMMITMENT -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.pillarsEyebrow}</span>
+        <h2>{c.pillarsTitleA}<span class="accent">{c.pillarsAccent}</span></h2>
+      </div>
+      <div class="grid grid--3">
+        {
+          c.pillars.map((p, i) => (
+            <div class:list={['card', 'card--hover', 'pillar', { 'card--gold': i === 1 }]}>
+              <div class="icon-badge">
+                <Icon name={p.icon} />
+              </div>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <span class="eyebrow">{c.doEyebrow}</span>
+          <h2>{c.doTitleA}<span class="accent">{c.doAccent}</span></h2>
+        </div>
+        <p class="lead">{c.doLead}</p>
+      </div>
+      <ol class="disc">
+        {
+          services.map((s, i) => (
+            <li class="disc__item">
+              <span class="num">{pad(i)}</span>
+              <div class="disc__main">
+                <h3>{s.title[lang]}</h3>
+                <p>{s.short[lang]}</p>
+              </div>
+              <a href={`${servicesUrl}#${s.id}`} class="link-caps disc__link">
+                {c.doMore} →
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- APPROACH (dark) -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.approachEyebrow}</span>
+        <h2>{c.approachTitleA}<span class="accent">{c.approachAccent}</span></h2>
+      </div>
+      <div class="approach">
+        {
+          c.approach.map((a, i) => (
+            <div class="card card--dark approach__item">
+              <span class="approach__n">{pad(i)}</span>
+              <h3>{a.title}</h3>
+              <p>{a.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORS -->
+  <section class="section">
+    <div class="container sectors">
+      <div>
+        <span class="eyebrow">{c.sectorsEyebrow}</span>
+        <h2>{c.sectorsTitleA}<span class="accent">{c.sectorsAccent}</span></h2>
+        <p class="lead">{c.sectorsLead}</p>
+      </div>
+      <ul class="sectors__list">
+        {c.sectors.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- INTERNATIONAL -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">{c.intlEyebrow}</span>
+        <h2>{c.intlTitleA}<span class="accent">{c.intlAccent}</span></h2>
+      </div>
+      <div class="grid grid--3">
+        {
+          c.intl.map((x) => (
+            <div class="card card--hover intl">
+              <h3>{x.title}</h3>
+              <p>{x.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section--tight">
+    <div class="container">
+      <span class="eyebrow">{c.valuesEyebrow}</span>
+      <ul class="values">
+        {
+          c.values.map((v) => (
+            <li>
+              <strong>{v.title}</strong>
+              <span>{v.text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="final">
+        <div>
+          <h2>{c.finalTitle}</h2>
+          <p class="mono">{c.finalText}</p>
+        </div>
+        <a href={`${contactUrl}#reservar`} class="btn btn--light btn--lg">{c.finalCta}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero */
+  .about-hero {
+    padding: clamp(3rem, 7vw, 6rem) 0;
+    background:
+      radial-gradient(700px 420px at 90% 0%, rgba(184, 146, 61, 0.28), transparent 60%),
+      linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 100%);
+  }
+  .about-hero h1 {
+    max-width: 18ch;
+    font-size: clamp(2.5rem, 5.4vw, 4.4rem);
+  }
+  .about-hero .lead {
+    max-width: 680px;
+    margin-bottom: 2rem;
+  }
+
+  /* Facts */
+  .facts {
+    border-bottom: 1px solid var(--line);
+  }
+  .facts__list {
+    list-style: none;
+    margin: 0;
+    padding: 2.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .facts__list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--gold);
+  }
+  .facts__list strong {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .facts__list span {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  /* Story */
+  .story {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .story__card {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(600px 400px at 80% 0%, rgba(184, 146, 61, 0.35), transparent 60%),
+      linear-gradient(160deg, #1f1f1f, #0f0f0f);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .story__badge {
+    position: absolute;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+  }
+  .story__quote {
+    margin: 0 0 1.75rem;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--gold);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .story .lead {
+    font-size: 1rem;
+  }
+
+  /* Pillars */
+  .pillar p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+  .pillar.card--gold p {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  /* What we do list */
+  .disc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .disc__item {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 2rem;
+    align-items: baseline;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .disc__main h3 {
+    margin-bottom: 0.4rem;
+  }
+  .disc__main p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    max-width: 70ch;
+  }
+  .disc__link {
+    white-space: nowrap;
+  }
+
+  /* Approach */
+  .approach {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  .approach__n {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--gold-light);
+    margin-bottom: 1.25rem;
+  }
+  .approach__item h3 {
+    font-size: 1.1rem;
+  }
+  .approach__item p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  /* Sectors */
+  .sectors {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .sectors .lead {
+    margin: 0;
+  }
+  .sectors__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+  .sectors__list li {
+    padding: 0.75rem 1.15rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.92rem;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .sectors__list li:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+
+  /* International */
+  .intl {
+    border-top: 3px solid var(--gold);
+  }
+  .intl p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+
+  /* Values */
+  .values {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+  }
+  .values li {
+    padding: 1.75rem 1.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .values li + li {
+    border-left: 1px solid var(--line);
+    padding-left: 1.5rem;
+  }
+  .values strong {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+  }
+  .values li:nth-child(even) strong {
+    color: var(--gold);
+  }
+  .values span {
+    color: var(--muted);
+    font-size: 0.93rem;
+  }
+
+  /* Final */
+  .final {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-3) 100%);
+    border-radius: var(--radius-lg);
+  }
+  .final h2 {
+    color: #fff;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    margin-bottom: 0.5rem;
+    max-width: 26ch;
+  }
+  .final .mono {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+  }
+
+  @media (max-width: 1000px) {
+    .approach {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .facts__list,
+    .values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .values li:nth-child(3) {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+  @media (max-width: 860px) {
+    .story,
+    .sectors,
+    .final {
+      grid-template-columns: 1fr;
+    }
+    .story__card {
+      aspect-ratio: 16 / 10;
+    }
+    .disc__item {
+      grid-template-columns: 50px 1fr;
+    }
+    .disc__link {
+      grid-column: 2;
+    }
+  }
+  @media (max-width: 640px) {
+    .about-hero {
+      padding: 2.5rem 0;
+    }
+    .facts__list {
+      padding: 1.75rem 0;
+      gap: 1.25rem 1rem;
+    }
+    .approach,
+    .values {
+      grid-template-columns: 1fr;
+    }
+    .values li,
+    .values li + li {
+      border-left: none;
+      padding: 1.1rem 0 0;
+    }
+    .values li + li {
+      border-top: 1px solid var(--line);
+      margin-top: 1.1rem;
+    }
+    .story__card :global(.logo svg) {
+      height: 100px;
+    }
+    .disc__item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .disc__link {
+      grid-column: 1;
+    }
+    .sectors__list li {
+      font-size: 0.85rem;
+      padding: 0.6rem 0.95rem;
+    }
+    .final .btn {
+      width: 100%;
+    }
+  }
+</style>

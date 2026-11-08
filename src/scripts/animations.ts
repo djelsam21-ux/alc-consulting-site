@@ -33,10 +33,17 @@ const SELECTORS = [
   '.tool__result',
   '.prose > *',
   '.footer__grid > *',
+  '.facts__list li',
+  '.story > *',
+  '.disc__item',
+  '.sectors > *',
+  '.sectors__list li',
+  '.values li',
 ].join(',');
 
 /* Elementos en rejilla: retraso escalonado según su posición entre hermanos */
-const STAGGER_PARENTS = '.why__list, .svc-grid, .grid, .comp-cards, .process, .faq, .stats__list, .quiz, .footer__grid';
+const STAGGER_PARENTS =
+  '.why__list, .svc-grid, .grid, .comp-cards, .process, .faq, .stats__list, .quiz, .footer__grid, .facts__list, .approach, .sectors__list, .values, .disc';
 
 /** Envuelve cada palabra de un título en <span class="word"><span class="word__in">…</span></span>,
  *  conservando las etiquetas internas (p. ej. <span class="accent">). */
@@ -86,7 +93,7 @@ function setup() {
     requestAnimationFrame(() => requestAnimationFrame(() => h.classList.add('words-in')));
   });
   document
-    .querySelectorAll<HTMLElement>('.section-head h2, .why h2, .about h2, .diag h2, .faq-wrap h2, .final h2')
+    .querySelectorAll<HTMLElement>('.section-head h2, .why h2, .about h2, .diag h2, .faq-wrap h2, .final h2, .sectors h2')
     .forEach(splitWords);
 
   const els = Array.from(document.querySelectorAll<HTMLElement>(SELECTORS)).filter(

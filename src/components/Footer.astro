@@ -31,6 +31,7 @@ const year = new Date().getFullYear();
     <div>
       <h4>{tr('footer.nav')}</h4>
       <ul>
+        <li><a href={path('about', lang)} target="_blank" rel="noopener">{tr('nav.about')}</a></li>
         <li><a href={path('services', lang)}>{tr('nav.services')}</a></li>
         <li><a href={path('diagnostic', lang)}>{tr('nav.diagnostic')}</a></li>
         <li><a href={path('contact', lang)}>{tr('nav.contact')}</a></li>

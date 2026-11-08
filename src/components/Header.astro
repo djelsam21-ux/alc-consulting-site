@@ -10,7 +10,8 @@ interface Props {
 const { lang, page } = Astro.props;
 const tr = t(lang);
 
-const links: { key: PageKey; label: string }[] = [
+const links: { key: PageKey; label: string; newTab?: boolean }[] = [
+  { key: 'about', label: tr('nav.about'), newTab: true },
   { key: 'services', label: tr('nav.services') },
   { key: 'diagnostic', label: tr('nav.diagnostic') },
   { key: 'contact', label: tr('nav.contact') },
@@ -39,7 +40,12 @@ const links: { key: PageKey; label: string }[] = [
         {
           links.map((l) => (
             <li>
-              <a href={path(l.key, lang)} aria-current={l.key === page ? 'page' : undefined}>
+              <a
+                href={path(l.key, lang)}
+                aria-current={l.key === page ? 'page' : undefined}
+                target={l.newTab && l.key !== page ? '_blank' : undefined}
+                rel={l.newTab && l.key !== page ? 'noopener' : undefined}
+              >
                 {l.label}
               </a>
             </li>
@@ -83,17 +89,23 @@ const links: { key: PageKey; label: string }[] = [
   }
   .header__links {
     display: flex;
-    gap: 1.9rem;
+    gap: 1.75rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  @media (min-width: 961px) {
+  @media (min-width: 1121px) {
+    .header__links {
+      margin: 0 auto;
+    }
+  }
+  @media (min-width: 1360px) {
     .header__links {
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
+      margin: 0;
     }
   }
   .header__links a {
@@ -146,7 +158,7 @@ const links: { key: PageKey; label: string }[] = [
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  @media (max-width: 960px) {
+  @media (max-width: 1120px) {
     .header__toggle {
       display: flex;
     }
