@@ -19,7 +19,7 @@ export const siteConfig = {
   hours: { es: 'Lun – Vie · 9:00 – 18:30', en: 'Mon – Fri · 9:00 – 18:30', fr: 'Lun – Ven · 9h00 – 18h30' },
   // Enlace Cal.com para la reserva de llamadas, formato "usuario/evento".
   // Crea una cuenta gratuita en https://cal.com y copia aquí el enlace de tu evento.
-  calLink: 'alc-consulting/30min',
+  calLink: 'sami-djellal-qbdlzm/30min',
   // Redes sociales (deja vacío para ocultar)
   linkedin: 'https://www.linkedin.com/company/alc-consulting',
   // Datos legales (aviso legal / privacidad) – rellenar con los datos reales
