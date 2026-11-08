@@ -38,8 +38,54 @@ const SELECTORS = [
 /* Elementos en rejilla: retraso escalonado según su posición entre hermanos */
 const STAGGER_PARENTS = '.why__list, .svc-grid, .grid, .comp-cards, .process, .faq, .stats__list, .quiz, .footer__grid';
 
+/** Envuelve cada palabra de un título en <span class="word"><span class="word__in">…</span></span>,
+ *  conservando las etiquetas internas (p. ej. <span class="accent">). */
+function splitWords(heading: HTMLElement) {
+  if (heading.dataset.split) return;
+  heading.dataset.split = '1';
+  let i = 0;
+  const walk = (node: Node) => {
+    Array.from(node.childNodes).forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        const parts = (child.textContent || '').split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        parts.forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) {
+            frag.appendChild(document.createTextNode(part));
+            return;
+          }
+          const outer = document.createElement('span');
+          outer.className = 'word';
+          const inner = document.createElement('span');
+          inner.className = 'word__in';
+          inner.style.setProperty('--w', String(i++));
+          inner.textContent = part;
+          outer.appendChild(inner);
+          frag.appendChild(outer);
+        });
+        child.parentNode?.replaceChild(frag, child);
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        walk(child);
+      }
+    });
+  };
+  walk(heading);
+  heading.setAttribute('aria-label', heading.textContent?.replace(/\s+/g, ' ').trim() || '');
+}
+
 function setup() {
   if (!enabled) return;
+
+  /* Títulos animados palabra por palabra */
+  const pageTitles = Array.from(document.querySelectorAll<HTMLElement>('.hero h1, .page-head h1'));
+  pageTitles.forEach((h) => {
+    splitWords(h);
+    requestAnimationFrame(() => requestAnimationFrame(() => h.classList.add('words-in')));
+  });
+  document
+    .querySelectorAll<HTMLElement>('.section-head h2, .why h2, .about h2, .diag h2, .faq-wrap h2, .final h2')
+    .forEach(splitWords);
 
   const els = Array.from(document.querySelectorAll<HTMLElement>(SELECTORS)).filter(
     (el) => !el.closest('.hero') && !el.closest('.page-head') && !el.dataset.reveal,

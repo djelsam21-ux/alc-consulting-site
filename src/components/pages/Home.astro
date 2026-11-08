@@ -596,14 +596,14 @@ const faqSchema = {
 <style>
   /* Hero */
   .hero {
-    padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
+    padding: clamp(1.75rem, 3.5vw, 2.75rem) 0 clamp(3rem, 6vw, 5rem);
     overflow: hidden;
   }
   .hero__inner {
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
     gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
+    align-items: start;
   }
   .hero h1 {
     max-width: 13ch;
@@ -1031,7 +1031,7 @@ const faqSchema = {
 
   @media (max-width: 640px) {
     .hero {
-      padding: 2.25rem 0 2.5rem;
+      padding: 1.5rem 0 2.5rem;
     }
     .hero h1 {
       max-width: none;
