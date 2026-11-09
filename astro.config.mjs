@@ -19,7 +19,11 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/gracias/') && !page.includes('/thank-you/') && !page.includes('/merci/'),
+      filter: (page) =>
+        new URL(page).pathname !== '/' &&
+        !page.includes('/gracias/') &&
+        !page.includes('/thank-you/') &&
+        !page.includes('/merci/'),
     }),
   ],
 });

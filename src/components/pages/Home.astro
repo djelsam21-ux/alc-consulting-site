@@ -1773,9 +1773,12 @@ const faqSchema = {
     background: var(--surface);
     border-top: 1px solid var(--line);
   }
+  .steps__nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
   @media (max-width: 760px) {
     .steps__title {
-      font-size: 0.78rem;
+      display: none;
     }
     .steps__dot {
       width: 2.6rem;
