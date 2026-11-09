@@ -6,6 +6,19 @@
   NODE_VERSION = "22"
 
 # Redirección de la raíz según el idioma del navegador (Netlify evalúa de arriba abajo).
+# Antigua dirección de Netlify -> dominio propio
+[[redirects]]
+  from = "https://alc-consulting.netlify.app/*"
+  to = "https://alc-consulting.es/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://alc-consulting.netlify.app/*"
+  to = "https://alc-consulting.es/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/"
   to = "/fr/"
