@@ -31,6 +31,14 @@ const copy = {
     aboutText1: 'ALC Consulting reúne a consultores apasionados por el rendimiento y por las personas. Creemos que una estrategia vale tanto como las acciones concretas y los resultados que produce.',
     aboutText2: 'Nuestra fuerza: escucha atenta, un método probado y un compromiso total a tu lado, desde el primer taller hasta el éxito medible de tus proyectos.',
     aboutChecks: ['Rigor y excelencia en cada etapa', 'Un enfoque 100 % a medida', 'Transparencia y cercanía', 'Resultados medibles y tangibles'],
+    strengths: [
+      { k: 'Rigor', s: 'Excelencia en cada etapa' },
+      { k: 'A medida', s: 'Un enfoque 100 % personalizado' },
+      { k: 'Transparencia', s: 'Cercanía y comunicación clara' },
+      { k: 'Resultados', s: 'Medibles y tangibles' },
+    ],
+    baStages: ['Antes', 'Con ALC', 'Después'],
+    baCaptions: ['El problema', 'La solución', 'El resultado'],
     aboutCaption: 'Alicante · Clientes en toda España',
     heroNote: 'Respondemos en menos de 1 día laborable',
     visual: { hours: 'Horas ahorradas / mes', hoursValue: '+42 h', compliance: 'VeriFactu conforme', crm: 'Oportunidades en CRM', crmValue: '128', roi: 'Retorno estimado', roiValue: '4,2×' },
@@ -124,6 +132,14 @@ const copy = {
     aboutText1: 'ALC Consulting brings together consultants who are passionate about performance and people. We believe a strategy is only worth as much as the concrete actions and results it delivers.',
     aboutText2: 'Our strength: attentive listening, a proven methodology and total commitment by your side — from the first workshop to the measurable success of your projects.',
     aboutChecks: ['Rigour and excellence at every step', 'A fully bespoke approach', 'Transparency and closeness', 'Measurable, tangible results'],
+    strengths: [
+      { k: 'Rigour', s: 'Excellence at every step' },
+      { k: 'Bespoke', s: 'A fully tailored approach' },
+      { k: 'Transparency', s: 'Closeness and clear communication' },
+      { k: 'Results', s: 'Measurable and tangible' },
+    ],
+    baStages: ['Before', 'With ALC', 'After'],
+    baCaptions: ['The problem', 'The solution', 'The outcome'],
     aboutCaption: 'Alicante · Clients across Spain',
     heroNote: 'We respond within 1 business day',
     visual: { hours: 'Hours saved / month', hoursValue: '+42 h', compliance: 'VeriFactu compliant', crm: 'Opportunities in CRM', crmValue: '128', roi: 'Estimated return', roiValue: '4.2×' },
@@ -217,6 +233,14 @@ const copy = {
     aboutText1: 'ALC Consulting réunit des consultants passionnés par la performance et par les personnes. Une stratégie ne vaut que par les actions concrètes et les résultats qu’elle produit.',
     aboutText2: 'Notre force : une écoute attentive, une méthode éprouvée et un engagement total à vos côtés — du premier atelier jusqu’au succès mesurable de vos projets.',
     aboutChecks: ['Rigueur et excellence à chaque étape', 'Une approche 100 % sur mesure', 'Transparence et proximité', 'Des résultats mesurables et tangibles'],
+    strengths: [
+      { k: 'Rigueur', s: 'L’excellence à chaque étape' },
+      { k: 'Sur mesure', s: 'Une approche 100 % personnalisée' },
+      { k: 'Transparence', s: 'Proximité et communication claire' },
+      { k: 'Résultats', s: 'Mesurables et tangibles' },
+    ],
+    baStages: ['Avant', 'Avec ALC', 'Après'],
+    baCaptions: ['Le problème', 'La solution', 'Le résultat'],
     aboutCaption: 'Alicante · Clients dans toute l’Espagne',
     heroNote: 'Nous répondons sous 1 jour ouvré',
     visual: { hours: 'Heures gagnées / mois', hoursValue: '+42 h', compliance: 'VeriFactu conforme', crm: 'Opportunités dans le CRM', crmValue: '128', roi: 'Retour estimé', roiValue: '4,2×' },
@@ -432,9 +456,18 @@ const faqSchema = {
       <div>
         <span class="eyebrow">{c.aboutEyebrow}</span>
         <h2>{c.aboutTitleA}<span class="accent">{c.aboutAccent}</span></h2>
-        <p class="lead">{c.aboutText1}</p>
-        <p class="lead">{c.aboutText2}</p>
-        <ul class="checks">{c.aboutChecks.map((x) => <li>{x}</li>)}</ul>
+        <ul class="strengths" data-cycle>
+          {
+            c.strengths.map((x, i) => (
+              <li class:list={['strength', { 'is-active': i === 0 }]} data-cycle-item>
+                <span class="strength__n">{pad(i)}</span>
+                <span class="strength__k">{x.k}</span>
+                <span class="strength__s">{x.s}</span>
+                <i class="strength__bar"></i>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
   </section>
@@ -475,40 +508,44 @@ const faqSchema = {
         <span class="eyebrow">{c.compEyebrow}</span>
         <h2>{c.compTitleA}<span class="accent">{c.compAccent}</span></h2>
       </div>
-      <div class="table-wrap">
-        <table class="table">
-          <thead>
-            <tr>{c.compHead.map((h) => <th>{h}</th>)}</tr>
-          </thead>
-          <tbody>
-            {
-              c.comp.map((row) => (
-                <tr>
-                  <td class="is-muted">{row[0]}</td>
-                  <td class="is-strong">{row[1]}</td>
-                  <td class="is-gold">{row[2]}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-      <div class="comp-cards">
-        {
-          c.comp.map((row) => (
-            <div class="comp-card">
-              <p class="comp-card__before">
-                <span>{c.compHead[0]}</span>
-                <s>{row[0]}</s>
-              </p>
-              <p class="comp-card__after">
-                <span>{c.compHead[1]}</span>
-                {row[1]}
-              </p>
-              <p class="comp-card__impact">→ {row[2]}</p>
-            </div>
-          ))
-        }
+      <div class="ba" data-ba data-stage="0">
+        <div class="ba__tabs" role="tablist">
+          {
+            c.baStages.map((st, i) => (
+              <button type="button" role="tab" class:list={['ba__tab', { 'is-active': i === 0 }]} data-stage-btn={i} aria-selected={i === 0 ? 'true' : 'false'}>
+                <span class="ba__tab-n">{pad(i)}</span>
+                {st}
+                <i class="ba__progress"></i>
+              </button>
+            ))
+          }
+        </div>
+        <div class="ba__grid">
+          {
+            c.comp.map((row, i) => (
+              <div class="ba__card" style={`--i:${i}`}>
+                <div class="ba__top">
+                  <span class="ba__idx">{pad(i)}</span>
+                  <span class="ba__cap">
+                    {c.baCaptions.map((cap, s) => (
+                      <span class={`ba__layer ba__layer--${s}`}>{cap}</span>
+                    ))}
+                  </span>
+                </div>
+                <div class="ba__stack">
+                  {row.map((txt, s) => (
+                    <p class={`ba__layer ba__txt ba__layer--${s}`}>{txt}</p>
+                  ))}
+                </div>
+                <span class="ba__icon" aria-hidden="true">
+                  <span class="ba__layer ba__layer--0">✕</span>
+                  <span class="ba__layer ba__layer--1">✓</span>
+                  <span class="ba__layer ba__layer--2">↗</span>
+                </span>
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>
@@ -1206,6 +1243,316 @@ const faqSchema = {
     }
     .final .btn {
       width: 100%;
+    }
+  }
+  /* Fortalezas (sección "Un socio…") */
+  .strengths {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .strength {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 1rem;
+    padding: 1.15rem 0 1.25rem;
+    border-bottom: 1px solid var(--line);
+    cursor: default;
+    opacity: 0.38;
+    transition: opacity 0.5s ease;
+  }
+  .strength.is-active {
+    opacity: 1;
+  }
+  .strength__n {
+    grid-row: span 2;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    padding-top: 0.75rem;
+  }
+  .strength__k {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    transition: color 0.5s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .strength.is-active .strength__k {
+    color: var(--gold);
+    transform: translateX(6px);
+  }
+  .strength__s {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease, transform 0.6s ease;
+    transform: translateY(6px);
+  }
+  .strength.is-active .strength__s {
+    max-height: 3rem;
+    opacity: 1;
+    transform: none;
+  }
+  .strength__bar {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    width: 100%;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .strength.is-active .strength__bar {
+    animation: barfill var(--cycle, 2800ms) linear forwards;
+  }
+  .strengths.is-paused .strength.is-active .strength__bar {
+    animation: none;
+    transform: scaleX(1);
+  }
+  @keyframes barfill {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Antes / Con ALC / Después */
+  .ba__tabs {
+    display: inline-flex;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    border: 1px solid var(--line);
+    margin-bottom: 1.75rem;
+  }
+  .ba__tab {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.4rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 0.98rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .ba__tab:hover {
+    color: var(--ink);
+  }
+  .ba__tab-n {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .ba__tab.is-active {
+    background: var(--ink);
+    color: #fff;
+  }
+  .ba__progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--gold-light);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .ba.is-playing .ba__tab.is-active .ba__progress {
+    animation: barfill var(--ba-cycle, 3600ms) linear forwards;
+  }
+  .ba__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .ba__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: #fff;
+    overflow: hidden;
+    transition:
+      background 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.7s ease,
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i) * 70ms);
+  }
+  .ba__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .ba__idx {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+  .ba__cap,
+  .ba__stack,
+  .ba__icon {
+    display: grid;
+  }
+  .ba__cap > *,
+  .ba__stack > *,
+  .ba__icon > * {
+    grid-area: 1 / 1;
+  }
+  .ba__cap {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .ba__stack {
+    flex: 1;
+    align-items: start;
+  }
+  .ba__txt {
+    margin: 0;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+  .ba__icon {
+    margin-top: 1.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    place-items: center;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 1px solid var(--line-strong);
+    transition: border-color 0.6s ease, background 0.6s ease;
+  }
+  .ba__layer {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(4px);
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.55s ease;
+    transition-delay: calc(var(--i) * 70ms);
+  }
+  .ba[data-stage='0'] .ba__layer--0,
+  .ba[data-stage='1'] .ba__layer--1,
+  .ba[data-stage='2'] .ba__layer--2 {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition-delay: calc(var(--i) * 70ms + 120ms);
+  }
+  /* etapa 0: antes */
+  .ba[data-stage='0'] .ba__txt {
+    color: var(--muted);
+  }
+  .ba[data-stage='0'] .ba__cap,
+  .ba[data-stage='0'] .ba__icon {
+    color: #b4452b;
+  }
+  .ba[data-stage='0'] .ba__icon {
+    border-color: rgba(180, 69, 43, 0.35);
+  }
+  /* etapa 1: con ALC */
+  .ba[data-stage='1'] .ba__card {
+    background: var(--gold-pale);
+    border-color: var(--gold-light);
+  }
+  .ba[data-stage='1'] .ba__txt {
+    color: var(--ink);
+  }
+  .ba[data-stage='1'] .ba__cap,
+  .ba[data-stage='1'] .ba__icon {
+    color: var(--gold-dark);
+  }
+  .ba[data-stage='1'] .ba__icon {
+    border-color: var(--gold);
+  }
+  /* etapa 2: después */
+  .ba[data-stage='2'] .ba__card {
+    background: linear-gradient(160deg, #1f1f1f, #111);
+    border-color: #111;
+    transform: translateY(-4px);
+  }
+  .ba[data-stage='2'] .ba__txt {
+    color: #fff;
+  }
+  .ba[data-stage='2'] .ba__idx {
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .ba[data-stage='2'] .ba__cap,
+  .ba[data-stage='2'] .ba__icon {
+    color: var(--gold-light);
+  }
+  .ba[data-stage='2'] .ba__icon {
+    border-color: rgba(224, 201, 138, 0.5);
+    background: rgba(224, 201, 138, 0.1);
+  }
+
+  @media (max-width: 1000px) {
+    .ba__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .ba__tabs {
+      display: flex;
+      width: 100%;
+    }
+    .ba__tab {
+      flex: 1;
+      justify-content: center;
+      padding: 0.75rem 0.5rem;
+      font-size: 0.85rem;
+    }
+    .ba__tab-n {
+      display: none;
+    }
+    .ba__grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    .ba__card {
+      min-height: 0;
+      padding: 1.25rem;
+    }
+    .ba__top {
+      margin-bottom: 0.9rem;
+    }
+    .ba__txt {
+      font-size: 1.05rem;
+    }
+    .strength__k {
+      font-size: 1.9rem;
     }
   }
 </style>

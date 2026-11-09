@@ -162,4 +162,105 @@ const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
+/* Lista que resalta un elemento tras otro (fortalezas) */
+function setupCycle() {
+  document.querySelectorAll<HTMLElement>('[data-cycle]').forEach((list) => {
+    const items = Array.from(list.querySelectorAll<HTMLElement>('[data-cycle-item]'));
+    if (items.length < 2) return;
+    const DURATION = 2800;
+    list.style.setProperty('--cycle', `${DURATION}ms`);
+    let i = 0;
+    let timer: number | undefined;
+    const show = (n: number) => {
+      items.forEach((el, k) => el.classList.toggle('is-active', k === n));
+      // reinicia la animación de la barra
+      const bar = items[n].querySelector<HTMLElement>('.strength__bar');
+      if (bar) {
+        bar.style.animation = 'none';
+        void bar.offsetWidth;
+        bar.style.animation = '';
+      }
+      i = n;
+    };
+    const play = () => {
+      stop();
+      if (!enabled) return;
+      timer = window.setInterval(() => show((i + 1) % items.length), DURATION);
+      list.classList.remove('is-paused');
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = undefined;
+    };
+    items.forEach((el, k) =>
+      el.addEventListener('mouseenter', () => {
+        stop();
+        list.classList.add('is-paused');
+        show(k);
+      }),
+    );
+    list.addEventListener('mouseleave', play);
+    new IntersectionObserver(
+      ([e]) => (e.isIntersecting ? play() : stop()),
+      { threshold: 0.3 },
+    ).observe(list);
+  });
+}
+
+/* Antes / Con ALC / Después */
+function setupBeforeAfter() {
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((box) => {
+    const tabs = Array.from(box.querySelectorAll<HTMLButtonElement>('[data-stage-btn]'));
+    const CYCLE = 3600;
+    box.style.setProperty('--ba-cycle', `${CYCLE}ms`);
+    let stage = 0;
+    let timer: number | undefined;
+    let auto = enabled;
+    const set = (n: number) => {
+      stage = n;
+      box.dataset.stage = String(n);
+      tabs.forEach((t, k) => {
+        t.classList.toggle('is-active', k === n);
+        t.setAttribute('aria-selected', k === n ? 'true' : 'false');
+        const p = t.querySelector<HTMLElement>('.ba__progress');
+        if (p) {
+          p.style.animation = 'none';
+          void p.offsetWidth;
+          p.style.animation = '';
+        }
+      });
+    };
+    const play = () => {
+      if (!auto || timer) return;
+      box.classList.add('is-playing');
+      timer = window.setInterval(() => set((stage + 1) % tabs.length), CYCLE);
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = undefined;
+      box.classList.remove('is-playing');
+    };
+    tabs.forEach((t, k) =>
+      t.addEventListener('click', () => {
+        auto = false;
+        stop();
+        set(k);
+      }),
+    );
+    box.addEventListener('mouseenter', stop);
+    box.addEventListener('mouseleave', play);
+    new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          set(stage);
+          play();
+        } else stop();
+      },
+      { threshold: 0.35 },
+    ).observe(box);
+  });
+}
+
 setup();
+setupCycle();
+setupBeforeAfter();
