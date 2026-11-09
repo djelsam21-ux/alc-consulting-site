@@ -403,3 +403,43 @@ function setupScrollFx() {
 }
 
 setupScrollFx();
+
+/* Accueil : chaque section tient entièrement dans l'écran (desktop).
+   Si le contenu dépasse la hauteur disponible, on le réduit
+   proportionnellement avec zoom, sans toucher au fond de la section. */
+function setupFitSections() {
+  const root = document.querySelector<HTMLElement>('.snap-home');
+  if (!root) return;
+  const mq = window.matchMedia('(min-width: 900px) and (min-height: 620px)');
+  const sections = Array.from(root.children) as HTMLElement[];
+
+  const fit = () => {
+    const header = document.querySelector<HTMLElement>('.header');
+    const target = window.innerHeight - (header?.offsetHeight ?? 81);
+    sections.forEach((sec, i) => {
+      const kids = Array.from(sec.children) as HTMLElement[];
+      kids.forEach((k) => (k.style.zoom = ''));
+      if (!mq.matches || i === sections.length - 1) return;
+      const cs = getComputedStyle(sec);
+      const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      const natural = kids.reduce((s, k) => s + k.getBoundingClientRect().height, 0);
+      const avail = target - pad - 8;
+      if (natural > avail) {
+        const z = Math.max(0.62, avail / natural);
+        kids.forEach((k) => (k.style.zoom = String(z)));
+      }
+    });
+  };
+
+  let t = 0;
+  const schedule = () => {
+    cancelAnimationFrame(t);
+    t = requestAnimationFrame(fit);
+  };
+  fit();
+  window.addEventListener('resize', schedule, { passive: true });
+  window.addEventListener('load', schedule);
+  document.fonts?.ready.then(schedule);
+}
+
+setupFitSections();
