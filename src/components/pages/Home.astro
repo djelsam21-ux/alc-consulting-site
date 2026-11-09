@@ -43,7 +43,7 @@ const copy = {
     heroNote: 'Respondemos en menos de 1 día laborable',
     visual: { hours: 'Horas ahorradas / mes', hoursValue: '+42 h', compliance: 'VeriFactu conforme', crm: 'Oportunidades en CRM', crmValue: '128', roi: 'Retorno estimado', roiValue: '4,2×' },
     stats: [
-      { value: '6', unit: '', label: 'disciplinas bajo un mismo responsable' },
+      { value: '7', unit: '', label: 'disciplinas bajo un mismo responsable' },
       { value: '3', unit: 'idiomas', label: 'español, inglés y francés' },
       { value: '2–6', unit: 'sem.', label: 'por fase de implantación' },
       { value: '100', unit: '%', label: 'enfoque en PYMES y autónomos' },
@@ -145,7 +145,7 @@ const copy = {
     heroNote: 'We respond within 1 business day',
     visual: { hours: 'Hours saved / month', hoursValue: '+42 h', compliance: 'VeriFactu compliant', crm: 'Opportunities in CRM', crmValue: '128', roi: 'Estimated return', roiValue: '4.2×' },
     stats: [
-      { value: '6', unit: '', label: 'disciplines under one accountable lead' },
+      { value: '7', unit: '', label: 'disciplines under one accountable lead' },
       { value: '3', unit: 'languages', label: 'Spanish, English and French' },
       { value: '2–6', unit: 'wks', label: 'per implementation phase' },
       { value: '100', unit: '%', label: 'focus on SMEs and freelancers' },
@@ -247,7 +247,7 @@ const copy = {
     heroNote: 'Nous répondons sous 1 jour ouvré',
     visual: { hours: 'Heures gagnées / mois', hoursValue: '+42 h', compliance: 'VeriFactu conforme', crm: 'Opportunités dans le CRM', crmValue: '128', roi: 'Retour estimé', roiValue: '4,2×' },
     stats: [
-      { value: '6', unit: '', label: 'disciplines sous un seul responsable' },
+      { value: '7', unit: '', label: 'disciplines sous un seul responsable' },
       { value: '3', unit: 'langues', label: 'espagnol, anglais et français' },
       { value: '2–6', unit: 'sem.', label: 'par phase de mise en œuvre' },
       { value: '100', unit: '%', label: 'dédiés aux PME et indépendants' },
@@ -422,12 +422,11 @@ const faqSchema = {
           <span class="eyebrow">{c.servicesEyebrow}</span>
           <h2>{c.servicesTitle}</h2>
         </div>
-        <a href={servicesUrl} class="btn btn--ghost svc-all">{c.allServices}</a>
       </div>
       <div class="svc-grid">
         {
           services.map((s, i) => (
-            <a href={`${servicesUrl}#${s.id}`} class:list={['svc', 'flip', 'card', 'card--hover', i === 1 ? 'card--gold' : 'card--soft']}>
+            <a href={`${servicesUrl}#${s.id}`} class:list={['svc', 'flip', 'card', 'card--hover', s.id === 'facturacion' ? 'card--gold' : 'card--soft', { 'svc--wide': s.id === 'creacion' }]}>
               <div class="flip__front" aria-hidden="true">
                 <div class="icon-badge">
                   <Icon name={s.icon} />
@@ -445,6 +444,10 @@ const faqSchema = {
             </a>
           ))
         }
+        <a href={servicesUrl} class="svc-more">
+          <span class="svc-more__label">{c.allServices}</span>
+          <span class="svc-more__arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
   </section>
@@ -1801,6 +1804,72 @@ const faqSchema = {
     }
     .steps__cta .btn {
       width: 100%;
+    }
+  }
+  /* Oferta destacada y tarjeta "ver todos" */
+  .svc--wide {
+    grid-column: span 2;
+  }
+  .svc--wide .flip__title {
+    max-width: 22ch !important;
+  }
+  .svc-more {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    background: var(--ink);
+    color: #fff;
+    text-decoration: none;
+    min-height: 250px;
+    transition: background 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .svc-more:hover {
+    background: var(--gold);
+    color: #fff;
+    transform: translateY(-3px);
+  }
+  .svc-more__label {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(1.35rem, 1.8vw, 1.7rem);
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    max-width: 12ch;
+  }
+  .svc-more__arrow {
+    align-self: flex-end;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    font-size: 1.2rem;
+    transition: transform 0.35s ease;
+  }
+  .svc-more:hover .svc-more__arrow {
+    transform: rotate(45deg);
+  }
+  @media (max-width: 1000px) {
+    .svc-more {
+      grid-column: span 2;
+      min-height: 0;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  @media (max-width: 640px) {
+    .svc--wide,
+    .svc-more {
+      grid-column: auto;
+    }
+    .svc-more {
+      padding: 1.4rem;
+    }
+    .svc-more__label {
+      font-size: 1.15rem;
     }
   }
 </style>

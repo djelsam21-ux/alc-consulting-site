@@ -1,6 +1,6 @@
 import type { Lang } from '../i18n/routes';
 
-export type ServiceIcon = 'compass' | 'invoice' | 'bolt' | 'globe' | 'users' | 'graduation';
+export type ServiceIcon = 'compass' | 'invoice' | 'bolt' | 'globe' | 'users' | 'graduation' | 'rocket';
 
 export interface Service {
   id: string;
@@ -15,6 +15,58 @@ export interface Service {
 }
 
 export const services: Service[] = [
+  {
+    id: 'creacion',
+    icon: 'rocket',
+    title: {
+      es: 'Creación de empresa y estrategia',
+      en: 'Business creation & strategy',
+      fr: 'Création d’entreprise et stratégie',
+    },
+    short: {
+      es: 'Te acompañamos de la idea al lanzamiento —estudio de mercado, modelo de negocio, plan financiero— y redefinimos la estrategia de las empresas que quieren dar un nuevo impulso.',
+      en: 'We take you from idea to launch — market study, business model, financial plan — and reshape the strategy of companies ready for their next stage of growth.',
+      fr: 'Nous vous accompagnons de l’idée au lancement — étude de marché, modèle économique, plan financier — et redéfinissons la stratégie des entreprises qui veulent passer un cap.',
+    },
+    forWho: {
+      es: 'Emprendedores que quieren crear su empresa en España y PYMES que necesitan replantear su estrategia, abrir una nueva línea de negocio o preparar una búsqueda de financiación.',
+      en: 'Entrepreneurs setting up a business in Spain, and SMEs that need to rethink their strategy, open a new business line or prepare to raise funding.',
+      fr: 'Porteurs de projet qui veulent créer leur entreprise en Espagne, et PME qui doivent repenser leur stratégie, lancer une nouvelle activité ou préparer une levée de fonds.',
+    },
+    includes: {
+      es: [
+        'Estudio de mercado, análisis de la competencia y del cliente ideal',
+        'Modelo de negocio, propuesta de valor, precios y posicionamiento',
+        'Plan de negocio y previsión financiera a 3 años',
+        'Elección de forma jurídica y búsqueda de financiación (ayudas públicas, ENISA, ICO, banca), en coordinación con tu gestoría',
+        'Plan estratégico, objetivos e indicadores, y plan de lanzamiento comercial',
+      ],
+      en: [
+        'Market study, competitor analysis and ideal customer profile',
+        'Business model, value proposition, pricing and positioning',
+        'Business plan and 3-year financial forecast',
+        'Choice of legal structure and funding search (public grants, ENISA, ICO, banks), coordinated with your accountant',
+        'Strategic plan, goals and KPIs, and go-to-market plan',
+      ],
+      fr: [
+        'Étude de marché, analyse de la concurrence et du client idéal',
+        'Modèle économique, proposition de valeur, prix et positionnement',
+        'Business plan et prévisionnel financier à 3 ans',
+        'Choix de la forme juridique et recherche de financements (aides publiques, ENISA, ICO, banques), en lien avec votre gestoría',
+        'Plan stratégique, objectifs et indicateurs, et plan de lancement commercial',
+      ],
+    },
+    outcome: {
+      es: 'Un proyecto sólido, financiable y listo para arrancar, con las decisiones correctas desde el primer día.',
+      en: 'A solid, fundable project ready to launch, with the right decisions from day one.',
+      fr: 'Un projet solide, finançable et prêt à démarrer, avec les bonnes décisions dès le premier jour.',
+    },
+    deliverables: {
+      es: ['Estudio de mercado', 'Plan de negocio', 'Plan estratégico'],
+      en: ['Market study', 'Business plan', 'Strategic plan'],
+      fr: ['Étude de marché', 'Business plan', 'Plan stratégique'],
+    },
+  },
   {
     id: 'diagnostico',
     icon: 'compass',
