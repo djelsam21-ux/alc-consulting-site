@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // ⚠️ Cambia esta URL por tu dominio definitivo antes de desplegar (sirve para canonical, hreflang y sitemap).
-const SITE_URL = 'https://alc-consulting.netlify.app';
+const SITE_URL = 'https://alc-consulting.es';
 
 export default defineConfig({
   site: SITE_URL,

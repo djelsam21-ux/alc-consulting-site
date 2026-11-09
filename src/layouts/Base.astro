@@ -23,7 +23,7 @@ interface Props {
 
 const { lang, page, title, description, noindex = false } = Astro.props;
 const tr = t(lang);
-const site = Astro.site ?? new URL('https://alc-consulting.netlify.app');
+const site = Astro.site ?? new URL('https://alc-consulting.es');
 const canonical = new URL(routes[page][lang], site).href;
 const fullTitle = page === 'home' ? `${siteConfig.name} | ${title}` : `${title} · ${siteConfig.name}`;
 
