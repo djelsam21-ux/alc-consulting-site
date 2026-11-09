@@ -343,6 +343,7 @@ const faqSchema = {
 <Base lang={lang} page="home" title={c.metaTitle} description={c.metaDesc}>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
+  <div class="snap-home">
   <!-- HERO -->
   <section class="hero">
     <div class="container hero__inner">
@@ -362,6 +363,7 @@ const faqSchema = {
     </div>
   </section>
 
+  <div class="screen screen--group">
   <!-- STATS -->
   <section class="stats">
     <div class="container">
@@ -389,7 +391,7 @@ const faqSchema = {
   </div>
 
   <!-- WHY -->
-  <section class="section">
+  <section class="section section--why">
     <div class="container why">
       <div>
         <span class="eyebrow">{c.whyEyebrow}</span>
@@ -415,6 +417,8 @@ const faqSchema = {
       </ul>
     </div>
   </section>
+
+  </div>
 
   <!-- WHAT WE DO (dark) -->
   <section class="section">
@@ -688,7 +692,64 @@ const faqSchema = {
       </div>
     </div>
   </section>
+  </div>
 </Base>
+
+<style is:global>
+  /* Pantallas completas con desplazamiento por secciones (solo inicio) */
+  @media (min-width: 900px) and (min-height: 620px) {
+    html:has(.snap-home) {
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: var(--header-h, 81px);
+    }
+    .snap-home > section,
+    .snap-home > .screen {
+      min-height: calc(100svh - var(--header-h, 81px));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+    .snap-home > section > .container,
+    .snap-home > .screen > section > .container {
+      width: 100%;
+    }
+    .snap-home > section.hero {
+      padding-top: clamp(1rem, 2.5vh, 2rem);
+      padding-bottom: clamp(1.5rem, 4vh, 3rem);
+    }
+    .snap-home > .screen--group > .section--why {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-block: clamp(2rem, 5vh, 4rem);
+    }
+    .snap-home > section:last-child {
+      min-height: 0;
+      scroll-snap-align: none;
+    }
+    html:has(.snap-home) footer {
+      scroll-snap-align: end;
+    }
+  }
+  @media (max-width: 899px), (max-height: 619px) {
+    html:has(.snap-home) {
+      scroll-snap-type: y proximity;
+      scroll-padding-top: var(--header-h, 70px);
+    }
+    .snap-home > section,
+    .snap-home > .screen {
+      scroll-snap-align: start;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html:has(.snap-home) {
+      scroll-snap-type: none;
+    }
+  }
+</style>
 
 <style>
   /* Hero */
