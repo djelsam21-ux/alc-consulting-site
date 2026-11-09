@@ -252,10 +252,6 @@ const calUrl = `https://cal.com/${siteConfig.calLink}`;
             <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
           </li>
           <li>
-            <Icon name="phone" size={20} />
-            <a href={siteConfig.phoneHref}>{siteConfig.phone}</a>
-          </li>
-          <li>
             <Icon name="pin" size={20} />
             <span>{siteConfig.address}</span>
           </li>
@@ -264,9 +260,6 @@ const calUrl = `https://cal.com/${siteConfig.calLink}`;
             <span>{siteConfig.hours[lang]}</span>
           </li>
         </ul>
-        <a href={siteConfig.whatsapp} class="btn btn--ghost" target="_blank" rel="noopener noreferrer">
-          {c.whatsapp}
-        </a>
       </aside>
     </div>
   </section>
