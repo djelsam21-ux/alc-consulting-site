@@ -400,13 +400,19 @@ const faqSchema = {
       <div class="svc-grid">
         {
           services.map((s, i) => (
-            <a href={`${servicesUrl}#${s.id}`} class:list={['svc', 'card', 'card--hover', i === 1 ? 'card--gold' : 'card--soft']}>
-              <div class="icon-badge">
-                <Icon name={s.icon} />
+            <a href={`${servicesUrl}#${s.id}`} class:list={['svc', 'flip', 'card', 'card--hover', i === 1 ? 'card--gold' : 'card--soft']}>
+              <div class="flip__front" aria-hidden="true">
+                <div class="icon-badge">
+                  <Icon name={s.icon} />
+                </div>
+                <span class="flip__plus"></span>
+                <p class="flip__title">{s.title[lang]}</p>
               </div>
-              <h3>{s.title[lang]}</h3>
-              <p>{s.short[lang]}</p>
-              <span class="svc__deliv">{s.deliverables[lang].join(' · ')}</span>
+              <div class="flip__back">
+                <h3>{s.title[lang]}</h3>
+                <p>{s.short[lang]}</p>
+                <span class="svc__deliv">{s.deliverables[lang].join(' · ')}</span>
+              </div>
             </a>
           ))
         }
@@ -443,12 +449,18 @@ const faqSchema = {
       <div class="grid grid--4">
         {
           c.pains.map((p) => (
-            <div class="card card--hover pain">
-              <div class="icon-badge">
-                <Icon name={p.icon} />
+            <div class="card card--hover pain flip" tabindex="0">
+              <div class="flip__front" aria-hidden="true">
+                <div class="icon-badge">
+                  <Icon name={p.icon} />
+                </div>
+                <span class="flip__plus"></span>
+                <p class="flip__title">{p.title}</p>
               </div>
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
+              <div class="flip__back">
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </div>
             </div>
           ))
         }
@@ -558,11 +570,17 @@ const faqSchema = {
       <div class="grid grid--3">
         {
           c.ways.map((w) => (
-            <div class="card card--hover way">
-              <span class="way__tag">{w.tag}</span>
-              <h3>{w.title}</h3>
-              <p>{w.text}</p>
-              <a href={contactUrl} class="link-caps">{w.link}</a>
+            <div class="card card--hover way flip" tabindex="0">
+              <div class="flip__front" aria-hidden="true">
+                <span class="way__tag">{w.tag}</span>
+                <span class="flip__plus"></span>
+                <p class="flip__title">{w.title}</p>
+              </div>
+              <div class="flip__back">
+                <h3>{w.title}</h3>
+                <p>{w.text}</p>
+                <a href={contactUrl} class="link-caps">{w.link} →</a>
+              </div>
             </div>
           ))
         }
@@ -1144,22 +1162,6 @@ const faqSchema = {
     }
     .about__card :global(.logo svg) {
       height: 90px;
-    }
-    .pain {
-      display: grid;
-      grid-template-columns: 38px 1fr;
-      column-gap: 0.9rem;
-      padding: 1.2rem;
-    }
-    .pain .icon-badge {
-      width: 38px;
-      height: 38px;
-      margin: 0;
-      grid-row: span 2;
-    }
-    .pain h3 {
-      font-size: 1rem;
-      margin-bottom: 0.3rem;
     }
     .pain p {
       font-size: 0.9rem;
