@@ -698,6 +698,14 @@ const faqSchema = {
 <style is:global>
   /* Pantallas completas con desplazamiento por secciones (solo inicio) */
   @media (min-width: 900px) and (min-height: 620px) {
+    html:has(.snap-home) {
+      scroll-snap-type: y proximity;
+      scroll-padding-top: var(--header-h, 81px);
+    }
+    .snap-home > section,
+    .snap-home > .screen {
+      scroll-snap-align: start;
+    }
     .snap-home > section,
     .snap-home > .screen {
       min-height: calc(100svh - var(--header-h, 81px));
