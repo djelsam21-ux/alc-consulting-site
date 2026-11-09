@@ -18,7 +18,7 @@ export const siteConfig = {
   // Crea una cuenta gratuita en https://cal.com y copia aquí el enlace de tu evento.
   calLink: 'sami-djellal-qbdlzm/30min',
   // Redes sociales (deja vacío para ocultar)
-  linkedin: 'https://www.linkedin.com/company/alc-consulting',
+  linkedin: '', // a completar con la página de LinkedIn de Valteon
   // Datos legales (aviso legal / privacidad): rellenar con los datos reales
   legal: {
     companyName: 'Sami Djellal (Valteon)',
