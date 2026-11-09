@@ -3,7 +3,7 @@
  * los datos de contacto, el enlace de reservas, redes sociales, etc.
  */
 export const siteConfig = {
-  name: 'ALC Consulting',
+  name: 'Valteon',
   tagline: {
     es: 'Transformación digital para PYMES',
     en: 'Digital transformation for SMEs',
@@ -21,7 +21,7 @@ export const siteConfig = {
   linkedin: 'https://www.linkedin.com/company/alc-consulting',
   // Datos legales (aviso legal / privacidad): rellenar con los datos reales
   legal: {
-    companyName: 'Sami Djellal (ALC Consulting)',
+    companyName: 'Sami Djellal (Valteon)',
     taxId: 'Y8931597K',
     address: 'Avenida Maisonave, 28 BIS, 4º, 03003 Alicante, España',
     registry: '',

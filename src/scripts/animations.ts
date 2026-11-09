@@ -206,7 +206,7 @@ function setupCycle() {
   });
 }
 
-/* Antes / Con ALC / Después */
+/* Antes / Con Valteon / Después */
 function setupBeforeAfter() {
   document.querySelectorAll<HTMLElement>('[data-ba]').forEach((box) => {
     const tabs = Array.from(box.querySelectorAll<HTMLButtonElement>('[data-stage-btn]'));
