@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../Icon.astro';
 import HeroVisual from '../HeroVisual.astro';
-import Logo from '../Logo.astro';
 import { services } from '../../data/services';
 import { siteConfig } from '../../config';
 import { path, type Lang } from '../../i18n/routes';
@@ -40,6 +39,7 @@ const copy = {
     baStages: ['Hoy', 'Con ALC', 'Después'],
     baCaptions: ['Lo que hoy le ocupa', 'Nuestra solución', 'Lo que gana'],
     aboutCaption: 'Alicante · Clientes en toda España',
+    aboutPhotoAlt: 'Equipo de ALC Consulting trabajando con un cliente',
     heroNote: 'Respondemos en menos de 1 día laborable',
     visual: { hours: 'Horas ahorradas / mes', hoursValue: '+42 h', compliance: 'VeriFactu conforme', crm: 'Oportunidades en CRM', crmValue: '128', roi: 'Retorno estimado', roiValue: '4,2×' },
     stats: [
@@ -142,6 +142,7 @@ const copy = {
     baStages: ['Today', 'With ALC', 'After'],
     baCaptions: ['What takes your time today', 'Our solution', 'What you gain'],
     aboutCaption: 'Alicante · Clients across Spain',
+    aboutPhotoAlt: 'The ALC Consulting team working with a client',
     heroNote: 'We respond within 1 business day',
     visual: { hours: 'Hours saved / month', hoursValue: '+42 h', compliance: 'VeriFactu compliant', crm: 'Opportunities in CRM', crmValue: '128', roi: 'Estimated return', roiValue: '4.2×' },
     stats: [
@@ -244,6 +245,7 @@ const copy = {
     baStages: ['Aujourd’hui', 'Avec ALC', 'Après'],
     baCaptions: ['Ce qui vous occupe', 'Notre solution', 'Ce que vous gagnez'],
     aboutCaption: 'Alicante · Clients dans toute l’Espagne',
+    aboutPhotoAlt: 'L’équipe ALC Consulting au travail avec un client',
     heroNote: 'Nous répondons sous 1 jour ouvré',
     visual: { hours: 'Heures gagnées / mois', hoursValue: '+42 h', compliance: 'VeriFactu conforme', crm: 'Opportunités dans le CRM', crmValue: '128', roi: 'Retour estimé', roiValue: '4,2×' },
     stats: [
@@ -457,7 +459,7 @@ const faqSchema = {
     <div class="container about">
       <div class="about__visual">
         <div class="about__card">
-          <Logo markOnly height={140} />
+          <img class="about__photo" src="/equipo.jpg" alt={c.aboutPhotoAlt} width="1110" height="885" loading="lazy" decoding="async" />
           <span class="about__badge">{c.aboutCaption}</span>
         </div>
       </div>
@@ -875,6 +877,19 @@ const faqSchema = {
     display: grid;
     place-items: center;
     overflow: hidden;
+  }
+  .about__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% 40%;
+    filter: grayscale(1) contrast(1.05);
+    transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .about__card:hover .about__photo {
+    transform: scale(1.03);
   }
   .about__badge {
     position: absolute;
