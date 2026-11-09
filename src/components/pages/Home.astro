@@ -698,18 +698,12 @@ const faqSchema = {
 <style is:global>
   /* Pantallas completas con desplazamiento por secciones (solo inicio) */
   @media (min-width: 900px) and (min-height: 620px) {
-    html:has(.snap-home) {
-      scroll-snap-type: y mandatory;
-      scroll-padding-top: var(--header-h, 81px);
-    }
     .snap-home > section,
     .snap-home > .screen {
       min-height: calc(100svh - var(--header-h, 81px));
       display: flex;
       flex-direction: column;
       justify-content: center;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
     }
     .snap-home > section > .container,
     .snap-home > .screen > section > .container {
@@ -728,10 +722,6 @@ const faqSchema = {
     }
     .snap-home > section:last-child {
       min-height: 0;
-      scroll-snap-align: none;
-    }
-    html:has(.snap-home) footer {
-      scroll-snap-align: end;
     }
   }
   @media (max-width: 899px), (max-height: 619px) {
