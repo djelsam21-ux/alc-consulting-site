@@ -19,8 +19,7 @@ const SELECTORS = [
   '.card',
   '.comp-card',
   '.table-wrap',
-  '.process__row',
-  '.process__cta',
+  '.steps',
   '.diag',
   '.faq-wrap > div:first-child',
   '.faq__item',
@@ -261,6 +260,47 @@ function setupBeforeAfter() {
   });
 }
 
+/* Método: frise de 4 étapes */
+function setupSteps() {
+  document.querySelectorAll<HTMLElement>('[data-steps]').forEach((box) => {
+    const btns = Array.from(box.querySelectorAll<HTMLButtonElement>('[data-step-btn]'));
+    const CYCLE = 4200;
+    let step = 0;
+    let timer: number | undefined;
+    let auto = enabled;
+    const set = (n: number) => {
+      step = n;
+      box.dataset.step = String(n);
+      btns.forEach((b, k) => {
+        b.classList.toggle('is-active', k === n);
+        b.setAttribute('aria-selected', k === n ? 'true' : 'false');
+      });
+    };
+    const play = () => {
+      if (!auto || timer) return;
+      timer = window.setInterval(() => set((step + 1) % btns.length), CYCLE);
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = undefined;
+    };
+    btns.forEach((b, k) => {
+      b.addEventListener('click', () => {
+        auto = false;
+        stop();
+        set(k);
+      });
+      b.addEventListener('mouseenter', () => {
+        stop();
+        set(k);
+      });
+    });
+    box.addEventListener('mouseleave', play);
+    new IntersectionObserver(([e]) => (e.isIntersecting ? play() : stop()), { threshold: 0.35 }).observe(box);
+  });
+}
+
 setup();
 setupCycle();
 setupBeforeAfter();
+setupSteps();
