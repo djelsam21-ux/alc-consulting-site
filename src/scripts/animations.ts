@@ -130,19 +130,31 @@ function setup() {
     }
   });
 
+  // Guardar el retraso escalonado para reutilizarlo cada vez que el bloque vuelve a entrar
+  els.forEach((el) => {
+    const d = el.style.getPropertyValue('--reveal-delay');
+    if (d) el.dataset.delay = d;
+  });
+  const timers = new WeakMap<HTMLElement, number>();
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const t = entry.target as HTMLElement;
+        const t = entry.target as HTMLElement;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.12) {
+          if (t.dataset.delay) t.style.setProperty('--reveal-delay', t.dataset.delay);
           t.classList.add('is-visible');
-          io.unobserve(t);
           // tras la entrada, quitar el retraso para que el hover responda al instante
-          window.setTimeout(() => t.style.removeProperty('--reveal-delay'), 1400);
+          window.clearTimeout(timers.get(t));
+          timers.set(t, window.setTimeout(() => t.style.removeProperty('--reveal-delay'), 1400));
+        } else if (!entry.isIntersecting) {
+          // Fuera de pantalla: se reinicia para animarse de nuevo en el próximo paso
+          window.clearTimeout(timers.get(t));
+          t.style.removeProperty('--reveal-delay');
+          t.classList.remove('is-visible');
         }
       });
     },
-    { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+    { rootMargin: '0px 0px -8% 0px', threshold: [0, 0.12] },
   );
   els.forEach((el) => io.observe(el));
 
