@@ -300,7 +300,33 @@ function setupSteps() {
   });
 }
 
+/* Tarjetas "flip" en táctil: un toque abre, el segundo sigue el enlace */
+function setupTapCards() {
+  const touch = window.matchMedia('(hover: none), (pointer: coarse)');
+  document.querySelectorAll<HTMLElement>('.flip').forEach((card) => {
+    card.addEventListener('click', (ev) => {
+      if (!touch.matches) return;
+      const target = ev.target as HTMLElement;
+      const innerLink = target.closest('a');
+      const isCardLink = card.tagName === 'A';
+      if (!card.classList.contains('is-open')) {
+        // primer toque: abrir (y cerrar las demás de la misma rejilla)
+        if (isCardLink || (innerLink && innerLink !== card)) ev.preventDefault();
+        card.parentElement?.querySelectorAll<HTMLElement>('.flip.is-open').forEach((o) => o.classList.remove('is-open'));
+        card.classList.add('is-open');
+        card.setAttribute('aria-expanded', 'true');
+        return;
+      }
+      // tarjeta abierta: un enlace interno o la tarjeta-enlace navega; si no, se cierra
+      if (isCardLink || (innerLink && innerLink !== card)) return;
+      card.classList.remove('is-open');
+      card.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
 setup();
+setupTapCards();
 setupCycle();
 setupBeforeAfter();
 setupSteps();

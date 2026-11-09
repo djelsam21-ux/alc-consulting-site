@@ -437,8 +437,10 @@ const faqSchema = {
               </div>
               <div class="flip__back">
                 <h3>{s.title[lang]}</h3>
-                <p>{s.short[lang]}</p>
-                <span class="svc__deliv">{s.deliverables[lang].join(' · ')}</span>
+                <div class="flip__inner">
+                  <p>{s.short[lang]}</p>
+                  <span class="svc__deliv">{s.deliverables[lang].join(' · ')}</span>
+                </div>
               </div>
             </a>
           ))
@@ -495,7 +497,9 @@ const faqSchema = {
               </div>
               <div class="flip__back">
                 <h3>{p.title}</h3>
-                <p>{p.text}</p>
+                <div class="flip__inner">
+                  <p>{p.text}</p>
+                </div>
               </div>
             </div>
           ))
@@ -636,8 +640,10 @@ const faqSchema = {
               </div>
               <div class="flip__back">
                 <h3>{w.title}</h3>
-                <p>{w.text}</p>
-                <a href={contactUrl} class="link-caps">{w.link} →</a>
+                <div class="flip__inner">
+                  <p>{w.text}</p>
+                  <a href={contactUrl} class="link-caps">{w.link} →</a>
+                </div>
               </div>
             </div>
           ))
