@@ -947,14 +947,14 @@ input[type='range'] {
   }
 
   .flip .flip__title {
-    font-size: clamp(1.35rem, 1.8vw, 1.7rem);
+    font-size: clamp(1.35rem, 1.8vw, 1.7rem) !important;
     line-height: 1.12;
     letter-spacing: -0.03em;
     max-width: 15ch;
-    color: var(--ink);
+    color: var(--ink) !important;
   }
   .card--gold .flip__title {
-    color: #fff;
+    color: #fff !important;
   }
 
   /* botón "+" que gira a "×" */
