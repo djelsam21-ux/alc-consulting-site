@@ -733,6 +733,19 @@ const faqSchema = {
     .snap-home .svc {
       padding: clamp(1.1rem, 2.4vh, 1.6rem);
     }
+    /* Al girar la tarjeta solo se muestra la descripción (el título ya está en la cara frontal) */
+    .snap-home .svc .flip__back h3,
+    .snap-home .svc .svc__deliv {
+      display: none;
+    }
+    .snap-home .svc .flip__back p {
+      font-size: 0.86rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .snap-home .svc {
+      min-height: 0;
+    }
     .snap-home .svc-more {
       min-height: 0;
       padding: clamp(1.1rem, 2.4vh, 1.6rem);
