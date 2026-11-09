@@ -5,20 +5,44 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Redirección de la raíz según el idioma del navegador (Netlify evalúa de arriba abajo).
-# Antigua dirección de Netlify -> dominio propio
+# Direcciones antiguas -> dominio principal valteon.es
 [[redirects]]
   from = "https://alc-consulting.netlify.app/*"
-  to = "https://alc-consulting.es/:splat"
+  to = "https://valteon.es/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "http://alc-consulting.netlify.app/*"
-  to = "https://alc-consulting.es/:splat"
+  to = "https://valteon.es/:splat"
   status = 301
   force = true
 
+[[redirects]]
+  from = "https://alc-consulting.es/*"
+  to = "https://valteon.es/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://alc-consulting.es/*"
+  to = "https://valteon.es/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.alc-consulting.es/*"
+  to = "https://valteon.es/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.alc-consulting.es/*"
+  to = "https://valteon.es/:splat"
+  status = 301
+  force = true
+
+# Redirección de la raíz según el idioma del navegador (Netlify evalúa de arriba abajo).
 [[redirects]]
   from = "/"
   to = "/fr/"

@@ -4,4 +4,4 @@ Disallow: /es/gracias/
 Disallow: /en/thank-you/
 Disallow: /fr/merci/
 
-Sitemap: https://alc-consulting.es/sitemap-index.xml
+Sitemap: https://valteon.es/sitemap-index.xml
