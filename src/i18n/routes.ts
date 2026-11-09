@@ -69,7 +69,7 @@ export const ui = {
     'footer.contact': 'Contact',
     'footer.nav': 'Navigation',
     'footer.about':
-      'Digital transformation agency for small and medium-sized businesses in Spain. Processes, invoicing, automation and online presence, without the hype.',
+      'A digital transformation agency for small and medium-sized businesses in Spain. Processes, invoicing, automation and online presence, without the buzzwords.',
     'skip': 'Skip to content',
   },
   fr: {
@@ -86,7 +86,7 @@ export const ui = {
     'footer.contact': 'Contact',
     'footer.nav': 'Navigation',
     'footer.about':
-      'Agence de transformation digitale pour les PME en Espagne. Processus, facturation, automatisation et présence en ligne, sans bla-bla.',
+      'Agence de transformation digitale au service des PME en Espagne. Processus, facturation, automatisation et présence en ligne, sans jargon inutile.',
     'skip': 'Aller au contenu',
   },
 } as const;

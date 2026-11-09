@@ -25,7 +25,7 @@ export const services: Service[] = [
     },
     short: {
       es: 'Te acompañamos de la idea al lanzamiento con estudio de mercado, modelo de negocio y plan financiero. También redefinimos la estrategia de las empresas que quieren dar un nuevo impulso.',
-      en: 'We take you from idea to launch with a market study, a business model and a financial plan. We also reshape the strategy of companies ready for their next stage of growth.',
+      en: 'We guide you from idea to launch with a market study, a business model and a financial plan. We also help established companies rethink their strategy for the next stage of growth.',
       fr: 'Nous vous accompagnons de l’idée au lancement avec une étude de marché, un modèle économique et un plan financier. Nous redéfinissons aussi la stratégie des entreprises qui veulent passer un cap.',
     },
     forWho: {
@@ -42,23 +42,23 @@ export const services: Service[] = [
         'Plan estratégico, objetivos e indicadores, y plan de lanzamiento comercial',
       ],
       en: [
-        'Market study, competitor analysis and ideal customer profile',
+        'Market research, competitor analysis and ideal customer profile',
         'Business model, value proposition, pricing and positioning',
         'Business plan and 3-year financial forecast',
-        'Choice of legal structure and funding search (public grants, ENISA, ICO, banks), coordinated with your accountant',
-        'Strategic plan, goals and KPIs, and go-to-market plan',
+        'Choosing the right legal structure and finding funding (public grants, ENISA, ICO, banks), working alongside your accountant',
+        'Strategic plan with goals and KPIs, plus a go-to-market plan',
       ],
       fr: [
-        'Étude de marché, analyse de la concurrence et du client idéal',
+        'Étude de marché, analyse de la concurrence et portrait du client idéal',
         'Modèle économique, proposition de valeur, prix et positionnement',
         'Business plan et prévisionnel financier à 3 ans',
         'Choix de la forme juridique et recherche de financements (aides publiques, ENISA, ICO, banques), en lien avec votre gestoría',
-        'Plan stratégique, objectifs et indicateurs, et plan de lancement commercial',
+        'Plan stratégique avec objectifs et indicateurs, et plan de lancement commercial',
       ],
     },
     outcome: {
       es: 'Un proyecto sólido, financiable y listo para arrancar, con las decisiones correctas desde el primer día.',
-      en: 'A solid, fundable project ready to launch, with the right decisions from day one.',
+      en: 'A solid, investor-ready project, set up with the right decisions from day one.',
       fr: 'Un projet solide, finançable et prêt à démarrer, avec les bonnes décisions dès le premier jour.',
     },
     deliverables: {
@@ -78,7 +78,7 @@ export const services: Service[] = [
     short: {
       es: 'Analizamos cómo trabaja tu empresa hoy y te entregamos un plan priorizado: qué digitalizar primero, cuánto cuesta y qué retorno esperar.',
       en: 'We analyse how your business works today and hand you a prioritised plan: what to digitise first, what it costs and what return to expect.',
-      fr: 'Nous analysons le fonctionnement actuel de votre entreprise et vous livrons un plan priorisé : quoi digitaliser en premier, à quel coût et avec quel retour.',
+      fr: 'Nous analysons le fonctionnement actuel de votre entreprise et vous remettons un plan par priorités : ce qu’il faut digitaliser en premier, ce que cela coûte et ce que cela rapporte.',
     },
     forWho: {
       es: 'Empresas que saben que deben modernizarse pero no saben por dónde empezar ni en qué invertir.',
@@ -93,22 +93,22 @@ export const services: Service[] = [
         'Sesión de presentación y preguntas con dirección',
       ],
       en: [
-        'Team interviews and map of current processes',
+        'Team interviews and a map of how things work today',
         'Audit of tools, data and online presence',
         '12-month plan with priorities, budget and estimated ROI',
-        'Presentation and Q&A session with management',
+        'Presentation of findings and Q&A with management',
       ],
       fr: [
         'Entretiens avec l’équipe et cartographie des processus actuels',
         'Audit des outils, des données et de la présence en ligne',
         'Plan à 12 mois avec priorités, budget et ROI estimé',
-        'Session de restitution et questions avec la direction',
+        'Présentation des résultats et échange avec la direction',
       ],
     },
     outcome: {
       es: 'Decisiones claras y un plan que puedes ejecutar con nosotros o con quien quieras.',
-      en: 'Clear decisions and a plan you can execute with us or anyone else.',
-      fr: 'Des décisions claires et un plan exécutable avec nous ou avec qui vous voulez.',
+      en: 'Clear decisions and a plan you can carry out with us or with anyone else.',
+      fr: 'Des décisions claires et un plan que vous pouvez mettre en œuvre avec nous ou avec le prestataire de votre choix.',
     },
     deliverables: {
       es: ['Mapa de procesos', 'Plan a 12 meses', 'ROI por iniciativa'],
@@ -127,12 +127,12 @@ export const services: Service[] = [
     short: {
       es: 'Adaptamos tu facturación a la normativa española (VeriFactu, factura electrónica B2B) eligiendo e implantando el software adecuado para tu negocio.',
       en: 'We bring your invoicing in line with Spanish regulation (VeriFactu, B2B e-invoicing), selecting and implementing the right software for your business.',
-      fr: 'Nous mettons votre facturation en conformité avec la réglementation espagnole (VeriFactu, facture électronique B2B) en choisissant et déployant le bon logiciel.',
+      fr: 'Nous mettons votre facturation en conformité avec la réglementation espagnole (VeriFactu, facture électronique entre entreprises) en choisissant et en installant le logiciel adapté.',
     },
     forWho: {
       es: 'Autónomos y PYMES que facturan con Excel, Word o un programa antiguo y necesitan cumplir sin complicarse.',
-      en: 'Freelancers and SMEs invoicing with Excel, Word or legacy software who need to comply without the headache.',
-      fr: 'Indépendants et PME qui facturent sous Excel, Word ou un vieux logiciel et doivent se conformer sans se compliquer la vie.',
+      en: 'Freelancers and SMEs still invoicing in Excel, Word or old software who need to get compliant without the hassle.',
+      fr: 'Indépendants et PME qui facturent encore sous Excel, Word ou un vieux logiciel et doivent se mettre en règle sans prise de tête.',
     },
     includes: {
       es: [
@@ -142,22 +142,22 @@ export const services: Service[] = [
         'Formación del equipo y soporte en los primeros ciclos de facturación',
       ],
       en: [
-        'Analysis of your invoicing flow and applicable obligations',
-        'Selection of certified software and cost comparison',
-        'Migration of customers, products and history',
-        'Team training and support through the first invoicing cycles',
+        'Review of your current invoicing and the rules that apply to you',
+        'Choosing certified software, with a cost comparison',
+        'Moving over your customers, products and history',
+        'Team training and support through your first invoicing runs',
       ],
       fr: [
-        'Analyse de votre flux de facturation et des obligations applicables',
+        'Analyse de votre facturation actuelle et des obligations qui vous concernent',
         'Sélection d’un logiciel certifié et comparatif des coûts',
-        'Migration des clients, produits et historiques',
+        'Reprise des clients, des produits et de l’historique',
         'Formation de l’équipe et accompagnement sur les premiers cycles de facturation',
       ],
     },
     outcome: {
       es: 'Facturas conformes, menos tiempo administrativo y tranquilidad ante Hacienda.',
-      en: 'Compliant invoices, less admin time and peace of mind with the tax authority.',
-      fr: 'Des factures conformes, moins de temps administratif et la sérénité face au fisc.',
+      en: 'Compliant invoices, less time on admin and peace of mind with the tax office.',
+      fr: 'Des factures conformes, moins de temps passé sur l’administratif et l’esprit tranquille face au fisc.',
     },
     deliverables: {
       es: ['Software certificado operativo', 'Datos migrados', 'Equipo formado'],
@@ -175,13 +175,13 @@ export const services: Service[] = [
     },
     short: {
       es: 'Eliminamos tareas repetitivas: presupuestos, seguimiento de clientes, informes, conciliaciones. Conectamos tus herramientas y añadimos IA donde aporta valor real.',
-      en: 'We remove repetitive tasks: quotes, customer follow-up, reports, reconciliations. We connect your tools and add AI where it brings real value.',
+      en: 'We take repetitive work off your plate: quotes, customer follow-ups, reports, reconciliations. We connect your tools and use AI where it genuinely helps.',
       fr: 'Nous supprimons les tâches répétitives : devis, relances clients, rapports, rapprochements. Nous connectons vos outils et ajoutons de l’IA là où elle apporte une vraie valeur.',
     },
     forWho: {
       es: 'Equipos que pierden horas copiando datos entre programas o respondiendo siempre a las mismas preguntas.',
       en: 'Teams losing hours copying data between systems or answering the same questions over and over.',
-      fr: 'Équipes qui perdent des heures à recopier des données ou à répondre toujours aux mêmes questions.',
+      fr: 'Équipes qui perdent des heures à ressaisir des données ou à répondre sans cesse aux mêmes questions.',
     },
     includes: {
       es: [
@@ -191,13 +191,13 @@ export const services: Service[] = [
         'Panel de control con los indicadores clave del negocio',
       ],
       en: [
-        'Identification of the 3 to 5 processes with the highest return',
+        'Pinpointing the 3 to 5 processes most worth automating',
         'Integrations between CRM, invoicing, email and spreadsheets',
         'AI assistants for customer service or internal documentation',
         'Dashboard with your key business indicators',
       ],
       fr: [
-        'Identification des 3 à 5 processus au meilleur retour',
+        'Repérage des 3 à 5 processus les plus rentables à automatiser',
         'Intégrations entre CRM, facturation, e-mail et tableurs',
         'Assistants IA pour le service client ou la documentation interne',
         'Tableau de bord avec les indicateurs clés de l’activité',
@@ -224,13 +224,13 @@ export const services: Service[] = [
     },
     short: {
       es: 'Diseñamos webs rápidas y claras que generan contactos, con ficha de Google optimizada y bases de SEO local para que te encuentren en tu zona.',
-      en: 'We design fast, clear websites that generate leads, with an optimised Google profile and local SEO foundations so customers in your area find you.',
-      fr: 'Nous concevons des sites rapides et clairs qui génèrent des contacts, avec une fiche Google optimisée et des bases de SEO local pour être trouvé dans votre zone.',
+      en: 'We build fast, clear websites that bring in enquiries, with an optimised Google Business Profile and local SEO basics so customers nearby can find you.',
+      fr: 'Nous créons des sites rapides et clairs qui vous apportent des demandes, avec une fiche Google optimisée et les bases du référencement local pour que les clients de votre secteur vous trouvent.',
     },
     forWho: {
       es: 'Negocios sin web, con una web anticuada o que no reciben ningún contacto desde internet.',
       en: 'Businesses with no website, an outdated one, or one that never brings in a single enquiry.',
-      fr: 'Entreprises sans site, avec un site dépassé ou qui ne reçoivent aucun contact via internet.',
+      fr: 'Entreprises sans site, avec un site vieillissant, ou dont le site ne génère aucune demande.',
     },
     includes: {
       es: [
@@ -242,14 +242,14 @@ export const services: Service[] = [
       en: [
         'Multilingual, fast, mobile-ready website',
         'Forms, appointment booking and chat connected to your systems',
-        'Google Business Profile and reviews',
-        'Simple analytics so you know what works',
+        'Google Business Profile and review management',
+        'Simple analytics so you can see what works',
       ],
       fr: [
         'Site multilingue, rapide et adapté au mobile',
-        'Formulaires, prise de rendez-vous et chat connectés à votre gestion',
-        'Fiche d’établissement Google et avis',
-        'Analytique simple pour savoir ce qui fonctionne',
+        'Formulaires, prise de rendez-vous et chat reliés à vos outils',
+        'Fiche Google Business et gestion des avis',
+        'Des statistiques simples pour savoir ce qui marche',
       ],
     },
     outcome: {
@@ -260,7 +260,7 @@ export const services: Service[] = [
     deliverables: {
       es: ['Web multilingüe', 'Ficha de Google optimizada', 'Analítica configurada'],
       en: ['Multilingual website', 'Optimised Google profile', 'Analytics in place'],
-      fr: ['Site multilingue', 'Fiche Google optimisée', 'Analytique en place'],
+      fr: ['Site multilingue', 'Fiche Google optimisée', 'Statistiques de visite en place'],
     },
   },
   {
@@ -274,12 +274,12 @@ export const services: Service[] = [
     short: {
       es: 'Centralizamos tus clientes, presupuestos y seguimientos en un CRM sencillo para que ninguna oportunidad se pierda en un cuaderno o en WhatsApp.',
       en: 'We centralise your customers, quotes and follow-ups in a simple CRM so no opportunity gets lost in a notebook or WhatsApp thread.',
-      fr: 'Nous centralisons vos clients, devis et relances dans un CRM simple pour qu’aucune opportunité ne se perde dans un carnet ou sur WhatsApp.',
+      fr: 'Nous regroupons vos clients, devis et relances dans un CRM simple, pour qu’aucune opportunité ne se perde dans un carnet ou une conversation WhatsApp.',
     },
     forWho: {
       es: 'Empresas con varios comerciales o técnicos que gestionan clientes de memoria.',
-      en: 'Businesses with several sales reps or technicians managing customers from memory.',
-      fr: 'Entreprises avec plusieurs commerciaux ou techniciens qui gèrent les clients de mémoire.',
+      en: 'Businesses with several salespeople or technicians who keep track of customers from memory.',
+      fr: 'Entreprises avec plusieurs commerciaux ou techniciens qui suivent leurs clients de mémoire.',
     },
     includes: {
       es: [
@@ -289,27 +289,27 @@ export const services: Service[] = [
         'Formación y acompañamiento del equipo comercial',
       ],
       en: [
-        'Selection and set-up of a right-sized CRM',
-        'Contact import and sales funnel definition',
+        'Choosing and setting up a CRM that fits your size',
+        'Importing your contacts and mapping out your sales stages',
         'Automatic reminders and follow-up templates',
         'Training and coaching for the sales team',
       ],
       fr: [
-        'Choix et mise en place d’un CRM à votre taille (sans surdimensionner)',
-        'Import des contacts et définition de l’entonnoir de vente',
+        'Choix et mise en place d’un CRM adapté à votre taille',
+        'Import des contacts et définition de vos étapes de vente',
         'Rappels et modèles de relance automatiques',
         'Formation et accompagnement de l’équipe commerciale',
       ],
     },
     outcome: {
       es: 'Visibilidad total de tu cartera y más presupuestos cerrados.',
-      en: 'Full visibility of your pipeline and more quotes closed.',
-      fr: 'Une visibilité totale sur votre portefeuille et plus de devis signés.',
+      en: 'A clear view of your sales pipeline and more quotes won.',
+      fr: 'Une vision complète de vos ventes en cours et plus de devis signés.',
     },
     deliverables: {
       es: ['CRM implantado', 'Embudo de ventas definido', 'Seguimientos automáticos'],
-      en: ['CRM live', 'Sales funnel defined', 'Automatic follow-ups'],
-      fr: ['CRM en place', 'Entonnoir de vente défini', 'Relances automatiques'],
+      en: ['CRM up and running', 'Sales pipeline set up', 'Automatic follow-ups'],
+      fr: ['CRM en place', 'Étapes de vente définies', 'Relances automatiques'],
     },
   },
   {
@@ -322,8 +322,8 @@ export const services: Service[] = [
     },
     short: {
       es: 'La tecnología solo funciona si el equipo la usa. Formamos a tu gente, documentamos los procesos y seguimos a tu lado después del arranque.',
-      en: 'Technology only works if the team uses it. We train your people, document processes and stay by your side after go-live.',
-      fr: 'La technologie ne fonctionne que si l’équipe l’utilise. Nous formons vos collaborateurs, documentons les processus et restons à vos côtés après le lancement.',
+      en: 'Technology only pays off if your team actually uses it. We train your people, document your processes and stay with you after launch.',
+      fr: 'Un outil ne sert à rien si l’équipe ne l’utilise pas. Nous formons vos collaborateurs, documentons les processus et restons à vos côtés après le lancement.',
     },
     forWho: {
       es: 'Empresas que ya han comprado herramientas pero nadie las usa de verdad.',
@@ -338,10 +338,10 @@ export const services: Service[] = [
         'Dirección digital externalizada (CTO/CDO a tiempo parcial)',
       ],
       en: [
-        'Hands-on sessions per role (management, admin, sales)',
+        'Hands-on sessions for each role (management, admin, sales)',
         'Short internal guides and videos',
-        'Monthly support and quarterly KPI review',
-        'Outsourced digital leadership (fractional CTO/CDO)',
+        'Monthly support and a quarterly KPI review',
+        'Part-time digital leadership (fractional CTO/CDO)',
       ],
       fr: [
         'Sessions pratiques par profil (direction, administration, commercial)',
@@ -352,12 +352,12 @@ export const services: Service[] = [
     },
     outcome: {
       es: 'Un equipo autónomo y una inversión que de verdad se amortiza.',
-      en: 'An autonomous team and an investment that actually pays off.',
-      fr: 'Une équipe autonome et un investissement réellement rentabilisé.',
+      en: 'A self-sufficient team and an investment that finally pays off.',
+      fr: 'Une équipe autonome et un investissement enfin rentable.',
     },
     deliverables: {
       es: ['Equipo autónomo', 'Guías internas', 'Revisión trimestral'],
-      en: ['Autonomous team', 'Internal guides', 'Quarterly review'],
+      en: ['Self-sufficient team', 'Internal guides', 'Quarterly review'],
       fr: ['Équipe autonome', 'Guides internes', 'Revue trimestrielle'],
     },
   },
