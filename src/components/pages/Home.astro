@@ -698,13 +698,15 @@ const faqSchema = {
 <style is:global>
   /* Pantallas completas con desplazamiento por secciones (solo inicio) */
   @media (min-width: 900px) and (min-height: 620px) {
+    /* Cada sección ocupa exactamente una pantalla y el scroll se detiene en cada una */
     html:has(.snap-home) {
-      scroll-snap-type: y proximity;
+      scroll-snap-type: y mandatory;
       scroll-padding-top: var(--header-h, 81px);
     }
     .snap-home > section,
     .snap-home > .screen {
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .snap-home > section,
     .snap-home > .screen {
@@ -712,6 +714,34 @@ const faqSchema = {
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+    /* Márgenes ajustados a la altura de la pantalla para que todo quepa */
+    .snap-home > section.section {
+      padding-block: clamp(1.5rem, 5vh, 3.5rem);
+    }
+    .snap-home .section-head {
+      margin-bottom: clamp(1.25rem, 3.5vh, 2.5rem);
+    }
+    /* Servicios: 4 columnas x 2 filas para caber en una pantalla */
+    .snap-home .svc-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .snap-home .svc--wide {
+      grid-column: auto;
+    }
+    .snap-home .svc {
+      padding: clamp(1.1rem, 2.4vh, 1.6rem);
+    }
+    .snap-home .svc-more {
+      min-height: 0;
+      padding: clamp(1.1rem, 2.4vh, 1.6rem);
+    }
+    .snap-home > section:last-child {
+      scroll-snap-stop: normal;
+    }
+    html:has(.snap-home) .footer {
+      scroll-snap-align: end;
     }
     .snap-home > section.hero {
       padding-top: clamp(1rem, 2.5vh, 2rem);
