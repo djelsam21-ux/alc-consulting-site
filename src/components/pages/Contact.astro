@@ -174,14 +174,14 @@ const calUrl = `https://cal.com/${siteConfig.calLink}`;
         <p class="muted">{c.formText}</p>
 
         <form
-          name="contacto"
+          name={`contacto-${lang}`}
           method="POST"
           action={thanksUrl}
           data-netlify="true"
           netlify-honeypot="bot-field"
           class="form card"
         >
-          <input type="hidden" name="form-name" value="contacto" />
+          <input type="hidden" name="form-name" value={`contacto-${lang}`} />
           <input type="hidden" name="idioma" value={lang} />
           <p class="visually-hidden">
             <label>Don’t fill this out: <input name="bot-field" /></label>
