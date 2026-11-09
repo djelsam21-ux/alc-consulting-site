@@ -24,9 +24,9 @@ export const services: Service[] = [
       fr: 'Création d’entreprise et stratégie',
     },
     short: {
-      es: 'Te acompañamos de la idea al lanzamiento —estudio de mercado, modelo de negocio, plan financiero— y redefinimos la estrategia de las empresas que quieren dar un nuevo impulso.',
-      en: 'We take you from idea to launch — market study, business model, financial plan — and reshape the strategy of companies ready for their next stage of growth.',
-      fr: 'Nous vous accompagnons de l’idée au lancement — étude de marché, modèle économique, plan financier — et redéfinissons la stratégie des entreprises qui veulent passer un cap.',
+      es: 'Te acompañamos de la idea al lanzamiento con estudio de mercado, modelo de negocio y plan financiero. También redefinimos la estrategia de las empresas que quieren dar un nuevo impulso.',
+      en: 'We take you from idea to launch with a market study, a business model and a financial plan. We also reshape the strategy of companies ready for their next stage of growth.',
+      fr: 'Nous vous accompagnons de l’idée au lancement avec une étude de marché, un modèle économique et un plan financier. Nous redéfinissons aussi la stratégie des entreprises qui veulent passer un cap.',
     },
     forWho: {
       es: 'Emprendedores que quieren crear su empresa en España y PYMES que necesitan replantear su estrategia, abrir una nueva línea de negocio o preparar una búsqueda de financiación.',
@@ -191,7 +191,7 @@ export const services: Service[] = [
         'Panel de control con los indicadores clave del negocio',
       ],
       en: [
-        'Identification of the 3–5 processes with the highest return',
+        'Identification of the 3 to 5 processes with the highest return',
         'Integrations between CRM, invoicing, email and spreadsheets',
         'AI assistants for customer service or internal documentation',
         'Dashboard with your key business indicators',

@@ -49,7 +49,7 @@ const copy = {
     hours: 'Horas semanales por persona en tareas manuales repetitivas',
     hoursHint: 'Facturar, copiar datos, perseguir cobros, rehacer informes…',
     cost: 'Coste por hora de esas personas (€)',
-    costHint: 'Salario bruto + seguridad social ÷ horas trabajadas. Como referencia, 18–30 €.',
+    costHint: 'Salario bruto + seguridad social ÷ horas trabajadas. Como referencia, entre 18 y 30 €.',
     share: 'Porcentaje de esas tareas que se puede automatizar',
     investment: 'Inversión estimada en el proyecto (€)',
     investmentHint: 'Puedes dejar el valor orientativo; lo ajustaremos juntos.',
@@ -73,7 +73,7 @@ const copy = {
     title: 'Digital assessment & ', accent: 'savings calculator.',
     lead: 'Two minutes, no sign-up. First assess your digital maturity; then calculate how much you could save by automating. At the end you can send us the result to receive personalised recommendations.',
     quizTitle: '1. Where does your business stand?',
-    quizHelp: 'Answer honestly — there are no wrong answers, only starting points.',
+    quizHelp: 'Answer honestly. There are no wrong answers, only starting points.',
     scale: ['No', 'Partly', 'Yes'],
     questions: [
       'Our invoicing already complies with VeriFactu / e-invoicing using certified software.',
@@ -106,7 +106,7 @@ const copy = {
     hours: 'Weekly hours per person on repetitive manual tasks',
     hoursHint: 'Invoicing, copying data, chasing payments, rebuilding reports…',
     cost: 'Hourly cost of those people (€)',
-    costHint: 'Gross salary + social security ÷ hours worked. As a reference, €18–30.',
+    costHint: 'Gross salary + social security ÷ hours worked. As a reference, between €18 and €30.',
     share: 'Share of those tasks that can be automated',
     investment: 'Estimated project investment (€)',
     investmentHint: 'You can leave the indicative value; we will refine it together.',
@@ -163,7 +163,7 @@ const copy = {
     hours: 'Heures hebdomadaires par personne en tâches manuelles répétitives',
     hoursHint: 'Facturer, recopier des données, relancer les paiements, refaire des rapports…',
     cost: 'Coût horaire de ces personnes (€)',
-    costHint: 'Salaire brut + charges sociales ÷ heures travaillées. À titre indicatif, 18–30 €.',
+    costHint: 'Salaire brut + charges sociales ÷ heures travaillées. À titre indicatif, entre 18 et 30 €.',
     share: 'Part de ces tâches automatisable',
     investment: 'Investissement estimé du projet (€)',
     investmentHint: 'Vous pouvez laisser la valeur indicative ; nous l’affinerons ensemble.',
@@ -254,7 +254,7 @@ const i18nForScript = {
               <span id="score-value">0</span>
             </div>
             <div>
-              <h3 id="score-level">—</h3>
+              <h3 id="score-level">…</h3>
               <p id="score-text" class="muted">{c.quizHelp}</p>
             </div>
           </div>
@@ -297,15 +297,15 @@ const i18nForScript = {
         <aside class="tool__result card card--brand">
           <div class="res">
             <span class="res__label">{c.resHours}</span>
-            <strong id="res-hours">—</strong>
+            <strong id="res-hours">…</strong>
           </div>
           <div class="res res--big">
             <span class="res__label">{c.resMoney}</span>
-            <strong id="res-money">—</strong>
+            <strong id="res-money">…</strong>
           </div>
           <div class="res">
             <span class="res__label">{c.resPayback}</span>
-            <strong id="res-payback">—</strong>
+            <strong id="res-payback">…</strong>
           </div>
           <p class="res__note">{c.resNote}</p>
         </aside>
@@ -587,7 +587,7 @@ const i18nForScript = {
       if (resHours) resHours.textContent = `${nf.format(Math.round(hoursSaved))} h`;
       if (resMoney) resMoney.textContent = cf.format(Math.round(moneySaved));
 
-      let payback = '—';
+      let payback = '…';
       if (moneySaved > 0) {
         const months = inv / (moneySaved / 12);
         payback = months < 1 ? i18n.paybackFast : `${nf.format(Math.ceil(months))} ${i18n.months}`;
@@ -606,7 +606,7 @@ const i18nForScript = {
       const levelName =
         state.answered > 0
           ? (state.score < 40 ? i18n.levels[0] : state.score < 70 ? i18n.levels[1] : i18n.levels[2]).name
-          : '—';
+          : '…';
       const summary =
         `${i18n.summaryPrefix}: ${i18n.levelLabel} ${state.score}/100 (${levelName}, ${state.answered}/${state.total}). ` +
         `${i18n.resHours}: ${nf.format(state.hours)} h. ${i18n.resMoney}: ${cf.format(state.money)}. ${i18n.resPayback}: ${state.payback}.`;

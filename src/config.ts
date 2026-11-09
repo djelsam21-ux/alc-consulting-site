@@ -16,13 +16,13 @@ export const siteConfig = {
   whatsapp: 'https://wa.me/34610419171',
   city: 'Alicante, España',
   address: 'Avenida Maisonave, 28 BIS, 4º · 03003 Alicante',
-  hours: { es: 'Lun – Vie · 9:00 – 18:30', en: 'Mon – Fri · 9:00 – 18:30', fr: 'Lun – Ven · 9h00 – 18h30' },
+  hours: { es: 'Lunes a viernes · 9:00 a 18:30', en: 'Monday to Friday · 9:00 to 18:30', fr: 'Du lundi au vendredi · 9h00 à 18h30' },
   // Enlace Cal.com para la reserva de llamadas, formato "usuario/evento".
   // Crea una cuenta gratuita en https://cal.com y copia aquí el enlace de tu evento.
   calLink: 'sami-djellal-qbdlzm/30min',
   // Redes sociales (deja vacío para ocultar)
   linkedin: 'https://www.linkedin.com/company/alc-consulting',
-  // Datos legales (aviso legal / privacidad) – rellenar con los datos reales
+  // Datos legales (aviso legal / privacidad): rellenar con los datos reales
   legal: {
     companyName: 'Sami Djellal (ALC Consulting)',
     taxId: 'Y8931597K',
