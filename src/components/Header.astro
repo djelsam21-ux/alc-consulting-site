@@ -105,6 +105,8 @@ const links: { key: PageKey; label: string; newTab?: boolean }[] = [
     }
   }
   .header__links a {
+    position: relative;
+    display: inline-block;
     text-decoration: none;
     color: var(--ink);
     font-family: var(--font-head);
@@ -112,13 +114,58 @@ const links: { key: PageKey; label: string; newTab?: boolean }[] = [
     font-weight: 800;
     letter-spacing: -0.01em;
     padding: 0.4rem 0;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    background-image: linear-gradient(
+      100deg,
+      var(--ink) 0%,
+      var(--ink) 40%,
+      #e9cf86 48%,
+      #fff4cf 50%,
+      #e9cf86 52%,
+      var(--ink) 60%,
+      var(--ink) 100%
+    );
+    background-size: 260% 100%;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  .header__links a:hover,
-  .header__links a[aria-current='page'] {
-    color: var(--ink);
-    border-bottom-color: var(--gold);
+  .header__links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--gold), #e9cf86, var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .header__links a:hover {
+    animation: nav-shine 0.9s cubic-bezier(0.3, 0.6, 0.3, 1) forwards;
+  }
+  .header__links a:hover::after,
+  .header__links a[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+  .header__links a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+  }
+  @keyframes nav-shine {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: 0% 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .header__links a:hover {
+      animation: none;
+    }
   }
   .header__actions {
     display: flex;
