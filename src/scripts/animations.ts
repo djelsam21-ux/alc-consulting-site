@@ -44,6 +44,27 @@ const SELECTORS = [
 const STAGGER_PARENTS =
   '.why__list, .svc-grid, .grid, .comp-cards, .process, .faq, .stats__list, .quiz, .footer__grid, .facts__list, .approach, .sectors__list, .values, .disc';
 
+/* Variantes de entrada según el tipo de bloque (por defecto: subir) */
+const VARIANTS: Record<string, string> = {
+  '.about__visual': 'zoom',
+  '.about > div:last-child': 'right',
+  '.why > div:first-child': 'left',
+  '.why__item': 'right',
+  '.svc': 'blur',
+  '.pain': 'blur',
+  '.comp-card': 'zoom',
+  '.table-wrap': 'zoom',
+  '.diag': 'zoom',
+  '.final': 'zoom',
+  '.faq__item': 'left',
+  '.steps': 'blur',
+  '.facts__list li': 'zoom',
+  '.story > *': 'left',
+  '.disc__item': 'blur',
+  '.values li': 'blur',
+  '.sectors__list li': 'zoom',
+};
+
 /** Envuelve cada palabra de un título en <span class="word"><span class="word__in">…</span></span>,
  *  conservando las etiquetas internas (p. ej. <span class="accent">). */
 function splitWords(heading: HTMLElement) {
@@ -100,7 +121,8 @@ function setup() {
   );
 
   els.forEach((el) => {
-    el.dataset.reveal = '';
+    const variant = Object.keys(VARIANTS).find((sel) => el.matches(sel));
+    el.dataset.reveal = variant ? VARIANTS[variant] : '';
     const parent = el.parentElement;
     if (parent && parent.matches(STAGGER_PARENTS)) {
       const i = Array.from(parent.children).indexOf(el);
@@ -330,3 +352,42 @@ setupTapCards();
 setupCycle();
 setupBeforeAfter();
 setupSteps();
+
+/* Barra de progreso de lectura + parallax suave (rAF, sin bloquear el scroll) */
+function setupScrollFx() {
+  if (!enabled) return;
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+
+  const parallax = Array.from(
+    document.querySelectorAll<HTMLElement>('.hero__visual, .about__photo, .final'),
+  ).map((el) => ({ el, speed: el.classList.contains('hero__visual') ? 0.08 : el.classList.contains('about__photo') ? -0.06 : 0.04 }));
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    bar.style.transform = `scaleX(${p})`;
+    const vh = window.innerHeight;
+    parallax.forEach(({ el, speed }) => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const offset = (r.top + r.height / 2 - vh / 2) * speed;
+      el.style.translate = `0 ${offset.toFixed(1)}px`;
+    });
+  };
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+}
+
+setupScrollFx();
