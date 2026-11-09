@@ -162,10 +162,6 @@ const calUrl = `https://cal.com/${siteConfig.calLink}`;
               };
           })(window, 'https://app.cal.com/embed/embed.js', 'init');
         </script>
-        <p class="booking__fallback muted">
-          {c.bookFallback}
-          <a href={calUrl} target="_blank" rel="noopener noreferrer">{c.bookOpen}</a>
-        </p>
       </div>
     </div>
   </section>
@@ -271,17 +267,14 @@ const calUrl = `https://cal.com/${siteConfig.calLink}`;
     scroll-margin-top: var(--header-h);
   }
   .booking {
-    padding: 1rem;
+    max-width: 1060px;
+    margin-inline: auto;
+    padding: 0.25rem;
     overflow: hidden;
   }
   .booking__embed {
     min-height: 560px;
     width: 100%;
-  }
-  .booking__fallback {
-    margin: 0.75rem 0 0;
-    font-size: 0.9rem;
-    text-align: center;
   }
   .contact {
     display: grid;
