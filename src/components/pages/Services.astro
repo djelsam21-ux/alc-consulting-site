@@ -206,13 +206,18 @@ const diagnosticUrl = path('diagnostic', lang);
     font-size: 0.72rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 0.55rem 0.9rem;
-    border: 1px solid var(--line-strong);
-    color: var(--ink-2);
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(250, 248, 243, 0.35);
+    border-radius: 999px;
+    color: #faf8f3;
+    background: rgba(250, 248, 243, 0.04);
+    transition: color 0.25s, border-color 0.25s, background 0.25s;
   }
   .jump a:hover {
-    border-color: var(--gold);
-    color: var(--gold-dark);
+    border-color: #d4b25e;
+    color: #d4b25e;
+    background: rgba(212, 178, 94, 0.08);
   }
 
   .services-list {
