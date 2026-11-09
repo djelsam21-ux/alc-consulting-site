@@ -1328,16 +1328,4 @@ input[type='range'] {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-  /* El banda de palabras clave sigue girando, más despacio */
-  .marquee__track {
-    animation: marquee 60s linear infinite !important;
-  }
-}
+/* Animaciones activas en todos los dispositivos (móvil y ordenador). */
